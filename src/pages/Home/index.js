@@ -4,10 +4,19 @@ import GenericButton from "../../components/Buttons/GenericButton";
 import Checkbox from "../../components/Inputs/Checkbox";
 import RangeBar from "../../components/Inputs/RangeBar";
 import { goToInformation } from "../../store/Home/actions";
-import { Wrapper, ButtonContainer, Container, 
-    Title, TitleContainer, ConfigContainer, 
-                    TextContainer,
-                    Text, RangeBarContainer, InputsContainer, CheckboxContainer} from "./styled";
+import { 
+    Wrapper, 
+    ButtonContainer,
+    Container, 
+    Title, 
+    TitleContainer,
+    ConfigContainer, 
+    TextContainer,
+    Text,
+    RangeBarContainer,
+    InputsContainer,
+    CheckboxContainer
+} from "./styled";
 
 const Home = () => {
     const dispatch = useDispatch()
