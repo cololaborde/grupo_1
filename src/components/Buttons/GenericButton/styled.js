@@ -1,20 +1,22 @@
 import styled from 'styled-components';
 import { COLORS } from '../../../utils/colors';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div `
   height: 100%;
   width: 100%;
 `;
 
-export const Button = styled.div`
+export const Button = styled.div `
   height: 100%;
   border-radius: 30px;
   color: ${(props) => props.textColor || 'white'};
   background-color: ${(props) => props.backgroundColor || COLORS.blue};
   font-size: ${(props) => props.fontSize || '12px'}
   text-align: center;
-  padding: 10px 30px;
+  padding: 10px;
+  margin: 10px;
   font-size: small;
+  font-family: Arial;
   transition: all 0.2s;
   cursor: pointer;
   display: flex;

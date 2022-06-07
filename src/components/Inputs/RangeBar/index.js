@@ -5,7 +5,7 @@ const RangeBar = (props) => {
         <input 
           id="typeinp" 
           type="range" 
-          min="0" max="5"
+          min="0" max="3"
           onChange={props.onChange}
           step="1"/>
       );

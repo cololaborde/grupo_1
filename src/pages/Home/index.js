@@ -1,3 +1,4 @@
+import { Info } from "@material-ui/icons";
 import React from "react";
 import { useDispatch } from "react-redux";
 import GenericButton from "../../components/Buttons/GenericButton";
@@ -15,7 +16,9 @@ import {
     Text,
     RangeBarContainer,
     InputsContainer,
-    CheckboxContainer
+    CheckboxContainer,
+    InfoContainer,
+    InfoButtonContainer
 } from "./styled";
 
 const Home = () => {
@@ -41,10 +44,14 @@ const Home = () => {
                     </InputsContainer>
                 </ConfigContainer>
                 <ButtonContainer>
-                    <GenericButton onSubmit={() => dispatch(goToInformation)} text={'Información'}/>
                     <GenericButton onSubmit={() => alert('Hello')} text={'Jugar'}/>
                 </ButtonContainer>
             </Container>
+            <InfoContainer>
+                <InfoButtonContainer>
+                    <GenericButton onSubmit={() => dispatch(goToInformation)} text={'Información'}/>
+                </InfoButtonContainer>
+            </InfoContainer>
         </Wrapper>
     )
 }
