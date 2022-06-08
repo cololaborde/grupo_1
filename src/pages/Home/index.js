@@ -1,10 +1,10 @@
 import { Info } from "@material-ui/icons";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GenericButton from "../../components/Buttons/GenericButton";
 import Checkbox from "../../components/Inputs/Checkbox";
 import RangeBar from "../../components/Inputs/RangeBar";
-import { goToInformation } from "../../store/Home/actions";
+import { goToInformation, setFontIncrease } from "../../store/Home/actions";
 import { 
     Wrapper, 
     ButtonContainer,
@@ -20,23 +20,34 @@ import {
     InfoContainer,
     InfoButtonContainer
 } from "./styled";
+import { selectFontIncrease } from '../../store/Home/selectors'
 
 const Home = () => {
     const dispatch = useDispatch()
+    const fontIncrease = useSelector(selectFontIncrease)
+
+    const handleInputChange = (name, value) => {
+        switch (name) {
+        case 'fontSizeRange':
+            dispatch(setFontIncrease(value))
+            break;
+        }
+      };
+    console.log(Number(fontIncrease) + 20)
     return(
         <Wrapper>
             <Container>
                 <TitleContainer>
-                    <Title>{"Juego de preguntas"}</Title>
+                    <Title fontSize={40 + Number(fontIncrease) + 'px'}>{"Juego de preguntas"}</Title>
                 </TitleContainer>
                 <ConfigContainer>
                     <TextContainer>
-                        <Text>{"Tamaño del texto"}</Text>
-                        <Text>{"Contraste alto"}</Text>
+                        <Text fontSize={20 + Number(fontIncrease) + 'px'}>{"Tamaño del texto"}</Text>
+                        <Text fontSize={20 + Number(fontIncrease) + 'px'}>{"Contraste alto"}</Text>
                     </TextContainer>
                     <InputsContainer>
                         <RangeBarContainer>
-                            <RangeBar />
+                            <RangeBar onChange={handleInputChange}/>
                         </RangeBarContainer>
                         <CheckboxContainer>
                             <Checkbox />
