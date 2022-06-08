@@ -50,14 +50,20 @@ export const Title = styled.p `
 
 export const SearchContainer = styled.div `
     margin: 10px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 export const SearchBar = styled.input `
-    height: 24px;
+    height: 36px;
+    margin-right: 0px;
     font-size: 16px;
     padding: 4px;
     padding-left: 8px;
-    border-radius: 4px;
+    padding-right: 0px;
+    border-radius: 10px;
     border: none;
     &:focus {
         outline: none;

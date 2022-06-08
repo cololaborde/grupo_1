@@ -4,6 +4,7 @@ import BackButton from "../../components/Buttons/BackButton";
 import DownloadButton from "../../components/Buttons/DownloadButton";
 import SettingsButton from "../../components/Buttons/SettingsButton";
 import HomeButton from "../../components/Buttons/HomeButton";
+import SearchButton from "../../components/Buttons/SearchButton";
 import { goToHome } from "../../store/Home/actions";
 import { 
     Wrapper,
@@ -36,7 +37,8 @@ const Information = () => {
                     <Title>Título</Title>
                 </TitleContainer>
                 <SearchContainer>
-                    <SearchBar type="text" name="searchbar" placeholder="Buscar"></SearchBar>
+                    <SearchBar type="text" name="searchbar" placeholder="Buscar"/>
+                    <SearchButton/>
                 </SearchContainer>
                 <CardsContainer>
                     <CardContainer><CardText>Card Test 1</CardText></CardContainer>

@@ -11,7 +11,6 @@ export const Button = styled.div `
   border-radius: 10px;
   color: ${(props) => props.textColor || 'black'};
   background-color: ${(props) => props.backgroundColor || COLORS.softWhite};
-  font-size: ${(props) => props.fontSize || '12px'}
   text-align: center;
   padding: 10px;
   margin: 5px;
