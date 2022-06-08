@@ -19,7 +19,7 @@ export const MainContainer = styled.div `
     margin-top: 5%;
     display: flex;
     flex-direction: column;
-    border-radius: 30px;
+    border-radius: 20px;
     align-items: center;
     justify-content: center;
     background-color: ${COLORS.lightGray}
@@ -27,15 +27,14 @@ export const MainContainer = styled.div `
 
 export const BackContainer = styled.div `
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 15px;
+    top: 15px;
 ` 
 
 export const MenuContainer = styled.div `
     position: absolute;
-    right: 10px;
-    top: 10px;
-    display: inline;
+    right: 15px;
+    top: 15px;
 `
 
 export const TitleContainer = styled.div `
