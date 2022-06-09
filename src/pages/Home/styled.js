@@ -8,7 +8,12 @@ export const Wrapper = styled.div `
 
 export const TitleContainer = styled.div `
     display: flex;
-    `
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+`
 
 export const Title = styled.p `
     font-size: ${(props) => props.fontSize || '40px'};
@@ -18,35 +23,46 @@ export const Title = styled.p `
 `
 
 export const ConfigContainer = styled.div `
+    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-
-`
-export const TextContainer = styled.div `
-    display: flex;
+    align-items: center;
     flex-direction: column;
 `
+
+export const LineContainer = styled.div `
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 20px;
+`
+
 export const Text = styled.p `
     font-size: ${(props) => props.fontSize || '20px'};
     font-weight: bold;
     font-family: Arial;
     color: ${(props) => props.color || 'blue'};
-`
-
-export const InputsContainer = styled.div `
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 100px;
+    float: left;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 30px;
+    max-width: 50%;
 `
 
 export const CheckboxContainer = styled.div `
-    margin-top: 35px;
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 30px;
+    padding-right: 50px;
+    max-width: 50%;
 `
 
 export const RangeBarContainer = styled.div `
-    margin-bottom: 5px;
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 30px;
+    max-width: 50%;
 `
 
 export const ButtonContainer = styled.div `
@@ -65,30 +81,27 @@ export const Container = styled.div `
     margin-top: 10%;
     display: flex;
     flex-direction: column;
-    border-radius: 30px;
+    border-radius: 20px;
     align-items: center;
     justify-content: center;
     background-color: ${COLORS.softWhite}
 `
 
 export const InfoButtonContainer = styled.div `
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+    margin: 10px;
     width: auto;
     min-width: 150px;
 `
 
 export const InfoContainer = styled.div `
+    min-width: 100px;
     width: auto;
-    max-width: 300px;
+    max-width: 500px;
     height: auto;
     margin: auto;
     margin-top: 20px;
     display: flex;
-    flex-direction: column;
-    border-radius: 30px;
+    border-radius: 20px;
     align-items: center;
     justify-content: center;
     background-color: ${COLORS.softWhite}

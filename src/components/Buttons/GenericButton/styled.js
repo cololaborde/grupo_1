@@ -11,11 +11,10 @@ export const Button = styled.div `
   border-radius: 30px;
   color: ${(props) => props.textColor || 'white'};
   background-color: ${(props) => props.backgroundColor || COLORS.blue};
-  font-size: ${(props) => props.fontSize || '12px'}
+  font-size: ${(props) => props.fontSize || '20px'};
   text-align: center;
   padding: 10px;
   margin: 10px;
-  font-size: small;
   font-family: Arial;
   transition: all 0.2s;
   cursor: pointer;
