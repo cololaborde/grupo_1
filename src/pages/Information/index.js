@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../../components/Buttons/BackButton";
 import DownloadButton from "../../components/Buttons/DownloadButton";
 import SettingsButton from "../../components/Buttons/SettingsButton";
@@ -18,11 +18,15 @@ import {
     CardText,
     SearchBar,
 } from "./styled";
+import ExitModal from "../../components/Modals/ExitModal";
+import { selectShowExitModal } from "../../store/Home/selectors";
 
 const Information = () => {
     const dispatch = useDispatch()
-    return(
+    const showExitModal = useSelector(selectShowExitModal)
+    return(        
         <Wrapper>
+            <ExitModal show={showExitModal}/>
             <MainContainer>
                 <BackContainer>
                     <BackButton onSubmit={() => dispatch(goToHome)}/>

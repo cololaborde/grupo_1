@@ -8,6 +8,9 @@ const homeReducer = (state = initialState, action) =>
             case types.CHANGE_FONT_INCREASE:
                 draft.fontIncrease = action.increase
                 break;
+            case types.SET_SHOW_EXIT_MODAL:
+                draft.showExitModal = action.show
+                break;
         }
     })
 export default homeReducer;

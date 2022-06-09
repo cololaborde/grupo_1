@@ -15,3 +15,10 @@ export const setFontIncrease = (increase) => {
         increase
     }
 }
+
+export const setShowExitModal = (show) => {
+    return{
+        type: types.SET_SHOW_EXIT_MODAL,
+        show
+    }
+}
