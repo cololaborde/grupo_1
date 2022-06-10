@@ -4,7 +4,7 @@ import { Wrapper, Button } from "./styled";
 const IconButton = (props) => {
     return(
         <Wrapper>
-            <Button onClick={props.onSubmit}>
+            <Button onClick={props.onSubmit} textColor={props.textColor} backgroundColor={props.backgroundColor}>
                 {props.icon}
             </Button>
         </Wrapper>

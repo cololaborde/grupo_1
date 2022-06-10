@@ -4,4 +4,6 @@ export const COLORS = {
     softWhite: '#e8e6e6',
     white: '#f0f0f0',
     black: '#000000',
+    lightBlue: '#4BCCDB',
+    lightRed: '#F56666'
 }

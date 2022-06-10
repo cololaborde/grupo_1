@@ -18,6 +18,8 @@ import {
     ButtonWrapper,
 } from "./styled";
 import { goToHome } from '../../../store/Home/actions'
+import IconButton from "../../Buttons/IconButton";
+import { COLORS } from "../../../utils/colors";
 
 const ExitModal = (props) => {
     if (!props.show) return null
@@ -39,9 +41,11 @@ const ExitModal = (props) => {
                     </TextContainer>
                     <ButtonsContainer>
                         <ButtonWrapper>
-                            <GenericButton text={"Si"} onSubmit={() => dispatch(goToHome)}/>
-                            <GenericButton text={"No"} onSubmit={() => dispatch(setShowExitModal(false))}/>
+                            <IconButton icon={'Si'} textColor={COLORS.softWhite} backgroundColor={COLORS.lightBlue} onSubmit={() => {dispatch(goToHome); dispatch(setShowExitModal(false))}}/>
                         </ButtonWrapper>
+                        <ButtonWrapper>
+                            <IconButton icon={'No'} textColor={COLORS.softWhite} backgroundColor={COLORS.lightRed} onSubmit={() => dispatch(setShowExitModal(false))}/>
+                            </ButtonWrapper>
                     </ButtonsContainer>
                 </Container>
             </Box>

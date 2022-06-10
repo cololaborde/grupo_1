@@ -19,7 +19,7 @@ export const Box = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 0 0 20px 0;
   overflow: hidden;
@@ -112,10 +112,11 @@ export const ButtonsContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin: auto;
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin: auto;
+  width: 60px;
 `
