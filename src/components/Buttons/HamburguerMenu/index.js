@@ -18,7 +18,7 @@ const HamburguerMenu = (props) => {
         custom_button = <DownloadButton onSubmit={ props.onSubmit }/>
     }
     let menu;
-    if (window.innerWidth < 2024) {
+    if (window.innerWidth < 1024) {
         menu = 
         <MenuContainer>
             <MenuButton onSubmit={ handleToggle }/>
