@@ -4,11 +4,11 @@ import IconButton from "../IconButton";
 import { Wrapper } from "./styled";
 
 const BackButton = (props) => {
-    return(
-        <Wrapper>
-            <IconButton onSubmit={props.onSubmit} icon={<ArrowBack/>}/>
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper>
+      <IconButton onSubmit={props.onSubmit} icon={<ArrowBack />} />
+    </Wrapper>
+  );
+};
 
-export default BackButton
+export default BackButton;

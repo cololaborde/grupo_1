@@ -5,66 +5,75 @@ import GenericButton from "../../components/Buttons/GenericButton";
 import Checkbox from "../../components/Inputs/Checkbox";
 import RangeBar from "../../components/Inputs/RangeBar";
 import { goToInformation, setFontIncrease } from "../../store/Home/actions";
-import { 
-    Wrapper, 
-    ButtonContainer,
-    Container, 
-    Title, 
-    TitleContainer,
-    ConfigContainer, 
-    TextContainer,
-    Text,
-    RangeBarContainer,
-    InputsContainer,
-    CheckboxContainer,
-    InfoContainer,
-    InfoButtonContainer
+import {
+  Wrapper,
+  ButtonContainer,
+  Container,
+  Title,
+  TitleContainer,
+  ConfigContainer,
+  TextContainer,
+  Text,
+  RangeBarContainer,
+  InputsContainer,
+  CheckboxContainer,
+  InfoContainer,
+  InfoButtonContainer,
 } from "./styled";
-import { selectFontIncrease } from '../../store/Home/selectors'
+import { selectFontIncrease } from "../../store/Home/selectors";
 
 const Home = () => {
-    const dispatch = useDispatch()
-    const fontIncrease = useSelector(selectFontIncrease)
+  const dispatch = useDispatch();
+  const fontIncrease = useSelector(selectFontIncrease);
 
-    const handleInputChange = (name, value) => {
-        switch (name) {
-        case 'fontSizeRange':
-            dispatch(setFontIncrease(value))
-            break;
-        }
-      };
-    console.log(Number(fontIncrease) + 20)
-    return(
-        <Wrapper>
-            <Container>
-                <TitleContainer>
-                    <Title fontSize={40 + Number(fontIncrease) + 'px'}>{"Juego de preguntas"}</Title>
-                </TitleContainer>
-                <ConfigContainer>
-                    <TextContainer>
-                        <Text fontSize={20 + Number(fontIncrease) + 'px'}>{"Tamaño del texto"}</Text>
-                        <Text fontSize={20 + Number(fontIncrease) + 'px'}>{"Contraste alto"}</Text>
-                    </TextContainer>
-                    <InputsContainer>
-                        <RangeBarContainer>
-                            <RangeBar onChange={handleInputChange}/>
-                        </RangeBarContainer>
-                        <CheckboxContainer>
-                            <Checkbox />
-                        </CheckboxContainer>
-                    </InputsContainer>
-                </ConfigContainer>
-                <ButtonContainer>
-                    <GenericButton onSubmit={() => alert('Hello')} text={'Jugar'}/>
-                </ButtonContainer>
-            </Container>
-            <InfoContainer>
-                <InfoButtonContainer>
-                    <GenericButton onSubmit={() => dispatch(goToInformation)} text={'Información'}/>
-                </InfoButtonContainer>
-            </InfoContainer>
-        </Wrapper>
-    )
-}
+  const handleInputChange = (name, value) => {
+    switch (name) {
+      case "fontSizeRange":
+        dispatch(setFontIncrease(value));
+        break;
+    }
+  };
+  console.log(Number(fontIncrease) + 20);
+  return (
+    <Wrapper>
+      <Container>
+        <TitleContainer>
+          <Title fontSize={40 + Number(fontIncrease) + "px"}>
+            {"Juego de preguntas"}
+          </Title>
+        </TitleContainer>
+        <ConfigContainer>
+          <TextContainer>
+            <Text fontSize={20 + Number(fontIncrease) + "px"}>
+              {"Tamaño del texto"}
+            </Text>
+            <Text fontSize={20 + Number(fontIncrease) + "px"}>
+              {"Contraste alto"}
+            </Text>
+          </TextContainer>
+          <InputsContainer>
+            <RangeBarContainer>
+              <RangeBar onChange={handleInputChange} />
+            </RangeBarContainer>
+            <CheckboxContainer>
+              <Checkbox />
+            </CheckboxContainer>
+          </InputsContainer>
+        </ConfigContainer>
+        <ButtonContainer>
+          <GenericButton onSubmit={() => alert("Hello")} text={"Jugar"} />
+        </ButtonContainer>
+      </Container>
+      <InfoContainer>
+        <InfoButtonContainer>
+          <GenericButton
+            onSubmit={() => dispatch(goToInformation)}
+            text={"Información"}
+          />
+        </InfoButtonContainer>
+      </InfoContainer>
+    </Wrapper>
+  );
+};
 
-export default Home
+export default Home;

@@ -1,8 +1,6 @@
-import styled from 'styled-components';
-import { Close } from '@material-ui/icons';
-import { COLORS } from '../../../utils/colors';
-
-
+import styled from "styled-components";
+import { Close } from "@material-ui/icons";
+import { COLORS } from "../../../utils/colors";
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -70,7 +68,7 @@ export const Title = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${COLORS.black}
+  color: ${COLORS.black};
 `;
 export const IconContainer = styled.div`
   cursor: pointer;
@@ -105,7 +103,6 @@ export const Text = styled.div`
   color: black;
 `;
 
-
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -119,4 +116,4 @@ export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 60px;
-`
+`;

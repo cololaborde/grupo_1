@@ -1,4 +1,4 @@
 export const initialState = {
-    fontIncrease: 0,
-    showExitModal: true,
-}
+  fontIncrease: 0,
+  showExitModal: true,
+};

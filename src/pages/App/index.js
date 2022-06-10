@@ -1,9 +1,9 @@
-import React from 'react';
-import { Route, Router, Switch, Redirect, withRouter } from 'react-router-dom';
-import styled from 'styled-components';
-import Home from '../Home'
-import history from '../../utils/history';
-import Information from '../Information';
+import React from "react";
+import { Route, Router, Switch, Redirect, withRouter } from "react-router-dom";
+import styled from "styled-components";
+import Home from "../Home";
+import history from "../../utils/history";
+import Information from "../Information";
 /* import PrivateRoute from 'components/commons/PrivateRoute';
  */
 export const Container = styled.div`
@@ -16,7 +16,7 @@ const App = () => {
       <Router history={history}>
         <Switch>
           <Route exact path="/">
-            <Redirect from="/" to={{ pathname: '/home' }} />
+            <Redirect from="/" to={{ pathname: "/home" }} />
           </Route>
           <Route exact path="/home" component={withRouter(Home)} />
           <Route exact path="/info" component={withRouter(Information)} />
