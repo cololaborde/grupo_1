@@ -1,4 +1,6 @@
 export const initialState = {
   fontIncrease: 0,
-  showExitModal: true,
+  showExitModal: false,
+  showConfigModal: true,
+  showHelpModal: false,
 };

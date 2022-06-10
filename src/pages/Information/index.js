@@ -18,15 +18,15 @@ import {
   CardText,
   SearchBar,
 } from "./styled";
-import ExitModal from "../../components/Modals/ExitModal";
-import { selectShowExitModal } from "../../store/Home/selectors";
+import { selectShowConfigModal } from "../../store/Home/selectors";
+import ConfigModal from "../../components/Modals/ConfigModal";
 
 const Information = () => {
   const dispatch = useDispatch();
-  const showExitModal = useSelector(selectShowExitModal);
+  const showConfigModal = useSelector(selectShowConfigModal);
   return (
     <Wrapper>
-      <ExitModal show={showExitModal} />
+      <ConfigModal show={showConfigModal} />
       <MainContainer>
         <BackContainer>
           <BackButton onSubmit={() => dispatch(goToHome)} />

@@ -11,6 +11,12 @@ const homeReducer = (state = initialState, action) =>
       case types.SET_SHOW_EXIT_MODAL:
         draft.showExitModal = action.show;
         break;
+      case types.SET_SHOW_CONFIG_MODAL:
+        draft.showConfigModal = action.show;
+        break;
+      case types.SET_SHOW_HELP_MODAL:
+        draft.showHelpModal = action.show;
+        break;
     }
   });
 export default homeReducer;

@@ -22,3 +22,17 @@ export const setShowExitModal = (show) => {
     show,
   };
 };
+
+export const setShowConfigModal = (show) => {
+  return {
+    type: types.SET_SHOW_CONFIG_MODAL,
+    show,
+  };
+};
+
+export const setShowHelpModal = (show) => {
+  return {
+    type: types.SET_SHOW_HELP_MODAL,
+    show,
+  };
+};

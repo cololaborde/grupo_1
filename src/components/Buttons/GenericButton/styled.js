@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
 export const Button = styled.div`
   height: 100%;
   border-radius: 30px;
+  font-weight: bold;
   color: ${(props) => props.textColor || "white"};
   background-color: ${(props) => props.backgroundColor || COLORS.blue};
   font-size: ${(props) => props.fontSize || "12px"}

@@ -4,7 +4,15 @@ import { Wrapper, Button } from "./styled";
 const GenericButton = (props) => {
   return (
     <Wrapper>
-      <Button onClick={props.onSubmit}> {props.text}</Button>
+      <Button
+        textColor={props.textColor}
+        fontSize={props.fontSize}
+        backgroundColor={props.backgroundColor}
+        onClick={props.onSubmit}
+      >
+        {" "}
+        {props.text}
+      </Button>
     </Wrapper>
   );
 };
