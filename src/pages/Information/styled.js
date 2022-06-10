@@ -31,12 +31,6 @@ export const BackContainer = styled.div `
     top: 15px;
 ` 
 
-export const MenuContainer = styled.div `
-    position: absolute;
-    right: 15px;
-    top: 15px;
-`
-
 export const TitleContainer = styled.div `
 `
 

@@ -1,16 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import BackButton from "../../components/Buttons/BackButton";
-import DownloadButton from "../../components/Buttons/DownloadButton";
-import SettingsButton from "../../components/Buttons/SettingsButton";
-import HomeButton from "../../components/Buttons/HomeButton";
+import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import { goToHome } from "../../store/Home/actions";
 import { 
     Wrapper,
     MainContainer,
     BackContainer,
-    MenuContainer,
     TitleContainer,
     Title,
     SearchContainer,
@@ -28,11 +25,7 @@ const Information = () => {
                 <BackContainer>
                     <BackButton onSubmit={() => dispatch(goToHome)}/>
                 </BackContainer>
-                <MenuContainer>
-                    <DownloadButton/>
-                    <SettingsButton/>
-                    <HomeButton/>
-                </MenuContainer>
+                <HamburguerMenu/>
                 <TitleContainer>
                     <Title>Título</Title>
                 </TitleContainer>
