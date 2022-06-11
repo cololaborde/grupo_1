@@ -1,6 +1,6 @@
 export const initialState = {
-  fontIncrease: 0,
+  fontIncrease: JSON.parse(localStorage.getItem("fontIncrease")) || 0,
   showExitModal: false,
-  showConfigModal: false,
-  showHelpModal: true,
+  showConfigModal: true,
+  showHelpModal: false,
 };

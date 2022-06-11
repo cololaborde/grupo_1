@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const RangeBar = (props) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(props.value);
   const handleChange = (event) => {
     setValue(event.target.value);
     props.onChange(event.target.name, event.target.value);

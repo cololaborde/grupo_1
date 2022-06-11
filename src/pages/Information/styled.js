@@ -34,7 +34,7 @@ export const BackContainer = styled.div`
 export const TitleContainer = styled.div``;
 
 export const Title = styled.p`
-  font-size: 40px;
+  font-size: ${(props) => props.fontSize || "40px"};
   color: ${(props) => props.color || COLORS.black};
   font-weight: bold;
   font-family: Arial;

@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  restartFontIncrease,
+  saveFontIncrease,
   setFontIncrease,
   setShowConfigModal,
 } from "../../../store/Home/actions";
@@ -51,7 +53,7 @@ const ConfigModal = (props) => {
           </TextContainer>
           <InputsContainer>
             <RangeBarContainer>
-              <RangeBar onChange={handleInputChange} />
+              <RangeBar value={fontIncrease} onChange={handleInputChange} />
             </RangeBarContainer>
             <CheckboxContainer>
               <Checkbox />
@@ -59,12 +61,27 @@ const ConfigModal = (props) => {
           </InputsContainer>
         </ConfigContainer>
         <ButtonsContainer>
-          <GenericButton text={"Guardar"} backgroundColor={COLORS.lightBlue} />
-          <GenericButton text={"Cancelar"} backgroundColor={COLORS.lightRed} />
+          <GenericButton
+            text={"Guardar"}
+            backgroundColor={COLORS.lightBlue}
+            onSubmit={() => {
+              dispatch(setShowConfigModal(false));
+              dispatch(saveFontIncrease(fontIncrease));
+            }}
+          />
+          <GenericButton
+            text={"Cancelar"}
+            backgroundColor={COLORS.lightRed}
+            onSubmit={() => {
+              dispatch(setShowConfigModal(false));
+              dispatch(restartFontIncrease());
+            }}
+          />
           <GenericButton
             textColor={COLORS.black}
             text={"Restablecer"}
             backgroundColor={COLORS.lightGray}
+            onSubmit={() => dispatch(restartFontIncrease())}
           />
         </ButtonsContainer>
       </Container>

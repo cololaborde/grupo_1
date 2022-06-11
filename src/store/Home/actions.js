@@ -16,6 +16,19 @@ export const setFontIncrease = (increase) => {
   };
 };
 
+export const saveFontIncrease = (increase) => {
+  return {
+    type: types.SAVE_FONT_INCREASE,
+    increase,
+  };
+};
+
+export const restartFontIncrease = () => {
+  return {
+    type: types.RESTART_FONT_INCREASE,
+  };
+};
+
 export const setShowExitModal = (show) => {
   return {
     type: types.SET_SHOW_EXIT_MODAL,

@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import GenericButton from "../../components/Buttons/GenericButton";
 import Checkbox from "../../components/Inputs/Checkbox";
 import RangeBar from "../../components/Inputs/RangeBar";
-import { goToInformation, setFontIncrease } from "../../store/Home/actions";
+import {
+  goToInformation,
+  saveFontIncrease,
+  setFontIncrease,
+} from "../../store/Home/actions";
 import {
   Wrapper,
   ButtonContainer,
@@ -46,7 +50,7 @@ const Home = () => {
               {"Tamaño del texto"}
             </Text>
             <RangeBarContainer>
-              <RangeBar onChange={handleInputChange} />
+              <RangeBar value={fontIncrease} onChange={handleInputChange} />
             </RangeBarContainer>
           </LineContainer>
           <LineContainer>
@@ -60,7 +64,10 @@ const Home = () => {
         </ConfigContainer>
         <ButtonContainer>
           <GenericButton
-            onSubmit={() => alert("Hello")}
+            onSubmit={() => {
+              alert("Hello");
+              dispatch(saveFontIncrease(fontIncrease));
+            }}
             text={"Jugar"}
             fontSize={20 + Number(fontIncrease) * 2 + "px"}
           />

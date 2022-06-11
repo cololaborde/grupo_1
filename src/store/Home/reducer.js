@@ -8,6 +8,14 @@ const homeReducer = (state = initialState, action) =>
       case types.CHANGE_FONT_INCREASE:
         draft.fontIncrease = action.increase;
         break;
+      case types.SAVE_FONT_INCREASE:
+        draft.fontIncrease = action.increase;
+        localStorage.setItem("fontIncrease", JSON.stringify(action.increase));
+        break;
+      case types.RESTART_FONT_INCREASE:
+        draft.fontIncrease =
+          JSON.parse(localStorage.getItem("fontIncrease")) || 0;
+        break;
       case types.SET_SHOW_EXIT_MODAL:
         draft.showExitModal = action.show;
         break;
