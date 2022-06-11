@@ -18,15 +18,16 @@ import {
   CardText,
   SearchBar,
 } from "./styled";
-import { selectShowConfigModal } from "../../store/Home/selectors";
-import ConfigModal from "../../components/Modals/ConfigModal";
+import { selectShowHelpModal } from "../../store/Home/selectors";
+import HelpModal from "../../components/Modals/HelpModal";
+import { CONSTANTS } from "./constants";
 
 const Information = () => {
   const dispatch = useDispatch();
-  const showConfigModal = useSelector(selectShowConfigModal);
+  const showHelpModal = useSelector(selectShowHelpModal);
   return (
     <Wrapper>
-      <ConfigModal show={showConfigModal} />
+      <HelpModal show={showHelpModal} title={"Basura"} text={CONSTANTS.text} />
       <MainContainer>
         <BackContainer>
           <BackButton onSubmit={() => dispatch(goToHome)} />

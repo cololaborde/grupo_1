@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { COLORS } from "../../../utils/colors";
 
 export const Container = styled.div`
   display: flex;
@@ -33,40 +32,7 @@ export const CheckboxContainer = styled.div`
   margin-top: 25px;
 `;
 
-export const RangeBarContainer = styled.div`
-  margin-bottom: 0px;
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: space-between;
-  padding: 10px;
-  width: auto;
-  min-width: 130px;
-`;
-
-export const InfoButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  width: auto;
-  min-width: 150px;
-`;
-
-export const InfoContainer = styled.div`
-  width: auto;
-  max-width: 300px;
-  height: auto;
-  margin: auto;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 30px;
-  align-items: center;
-  justify-content: center;
-  background-color: ${COLORS.softWhite};
-`;
+export const RangeBarContainer = styled.div``;
 
 export const ButtonsContainer = styled.div`
   display: flex;

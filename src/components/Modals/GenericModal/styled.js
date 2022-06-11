@@ -18,9 +18,10 @@ export const Box = styled.div`
   left: 0;
   right: 0;
   max-width: 400px;
+  max-height: 250px;
   margin: 0 auto;
-  padding: 0 0 20px 0;
-  overflow: hidden;
+  padding-bottom: 5px;
+  overflow-x: hidden;
   box-sizing: border-box;
   z-index: 1;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);

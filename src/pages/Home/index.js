@@ -1,4 +1,3 @@
-import { Info } from "@material-ui/icons";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GenericButton from "../../components/Buttons/GenericButton";
@@ -33,7 +32,6 @@ const Home = () => {
         break;
     }
   };
-  console.log(Number(fontIncrease) + 20);
   return (
     <Wrapper>
       <Container>
