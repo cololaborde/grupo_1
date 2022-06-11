@@ -4,11 +4,11 @@ import IconButton from "../IconButton";
 import { Wrapper } from "./styled";
 
 const SearchButton = (props) => {
-    return(
-        <Wrapper>
-            <IconButton onSubmit={props.onSubmit} icon={<Search/>}/>
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper>
+      <IconButton onSubmit={props.onSubmit} icon={<Search />} />
+    </Wrapper>
+  );
+};
 
-export default SearchButton
+export default SearchButton;
