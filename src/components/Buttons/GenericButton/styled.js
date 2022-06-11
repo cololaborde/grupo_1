@@ -1,17 +1,18 @@
-import styled from 'styled-components';
-import { COLORS } from '../../../utils/colors';
+import styled from "styled-components";
+import { COLORS } from "../../../utils/colors";
 
-export const Wrapper = styled.div `
+export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
 `;
 
-export const Button = styled.div `
+export const Button = styled.div`
   height: 100%;
   border-radius: 30px;
-  color: ${(props) => props.textColor || 'white'};
+  font-weight: bold;
+  color: ${(props) => props.textColor || "white"};
   background-color: ${(props) => props.backgroundColor || COLORS.blue};
-  font-size: ${(props) => props.fontSize || '20px'};
+  font-size: ${(props) => props.fontSize || "12px"}
   text-align: center;
   padding: 10px;
   margin: 10px;
