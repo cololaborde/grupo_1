@@ -16,7 +16,6 @@ export const Button = styled.div`
   text-align: center;
   padding: 10px;
   margin: 10px;
-  font-size: small;
   font-family: Arial;
   transition: all 0.2s;
   cursor: pointer;

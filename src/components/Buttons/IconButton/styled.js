@@ -15,7 +15,7 @@ export const Button = styled.div`
   font-size: ${(props) => props.fontSize || "12px"}
   text-align: center;
   padding: 10px;
-  margin: 10px;
+  margin: 5px;
   font-size: small;
   font-family: Arial;
   transition: all 0.2s;

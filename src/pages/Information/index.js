@@ -1,15 +1,13 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import BackButton from "../../components/Buttons/BackButton";
-import DownloadButton from "../../components/Buttons/DownloadButton";
-import SettingsButton from "../../components/Buttons/SettingsButton";
-import HomeButton from "../../components/Buttons/HomeButton";
+import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
+import SearchButton from "../../components/Buttons/SearchButton";
 import { goToHome } from "../../store/Home/actions";
 import {
   Wrapper,
   MainContainer,
   BackContainer,
-  MenuContainer,
   TitleContainer,
   Title,
   SearchContainer,
@@ -18,34 +16,22 @@ import {
   CardText,
   SearchBar,
 } from "./styled";
-import { selectShowHelpModal } from "../../store/Home/selectors";
-import HelpModal from "../../components/Modals/HelpModal";
-import { CONSTANTS } from "./constants";
 
 const Information = () => {
   const dispatch = useDispatch();
-  const showHelpModal = useSelector(selectShowHelpModal);
   return (
     <Wrapper>
-      <HelpModal show={showHelpModal} title={"Basura"} text={CONSTANTS.text} />
       <MainContainer>
         <BackContainer>
           <BackButton onSubmit={() => dispatch(goToHome)} />
         </BackContainer>
-        <MenuContainer>
-          <DownloadButton />
-          <SettingsButton />
-          <HomeButton />
-        </MenuContainer>
+        <HamburguerMenu />
         <TitleContainer>
           <Title>Título</Title>
         </TitleContainer>
         <SearchContainer>
-          <SearchBar
-            type="text"
-            name="searchbar"
-            placeholder="Buscar"
-          ></SearchBar>
+          <SearchBar type="text" name="searchbar" placeholder="Buscar" />
+          <SearchButton />
         </SearchContainer>
         <CardsContainer>
           <CardContainer>

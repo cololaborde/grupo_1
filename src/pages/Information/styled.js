@@ -19,7 +19,7 @@ export const MainContainer = styled.div`
   margin-top: 5%;
   display: flex;
   flex-direction: column;
-  border-radius: 30px;
+  border-radius: 20px;
   align-items: center;
   justify-content: center;
   background-color: ${COLORS.lightGray};
@@ -27,15 +27,8 @@ export const MainContainer = styled.div`
 
 export const BackContainer = styled.div`
   position: absolute;
-  left: 10px;
-  top: 10px;
-`;
-
-export const MenuContainer = styled.div`
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  display: inline;
+  left: 15px;
+  top: 15px;
 `;
 
 export const TitleContainer = styled.div``;
@@ -50,14 +43,20 @@ export const Title = styled.p`
 
 export const SearchContainer = styled.div`
   margin: 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const SearchBar = styled.input`
-  height: 24px;
+  height: 36px;
+  margin-right: 0px;
   font-size: 16px;
   padding: 4px;
   padding-left: 8px;
-  border-radius: 4px;
+  padding-right: 0px;
+  border-radius: 10px;
   border: none;
   &:focus {
     outline: none;
