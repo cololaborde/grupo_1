@@ -98,3 +98,13 @@ export const InfoContainer = styled.div`
   justify-content: center;
   background-color: ${COLORS.softWhite};
 `;
+
+export const ButtonContainer = styled.div`
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${COLORS.softWhite};
+`;

@@ -1,3 +1,4 @@
+import { Info } from "@material-ui/icons";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GenericButton from "../../components/Buttons/GenericButton";
@@ -11,10 +12,9 @@ import {
   Title,
   TitleContainer,
   ConfigContainer,
-  TextContainer,
+  LineContainer,
   Text,
   RangeBarContainer,
-  InputsContainer,
   CheckboxContainer,
   InfoContainer,
   InfoButtonContainer,
@@ -32,34 +32,39 @@ const Home = () => {
         break;
     }
   };
+  console.log(Number(fontIncrease) + 20);
   return (
     <Wrapper>
       <Container>
         <TitleContainer>
-          <Title fontSize={40 + Number(fontIncrease) + "px"}>
+          <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
             {"Juego de preguntas"}
           </Title>
         </TitleContainer>
         <ConfigContainer>
-          <TextContainer>
-            <Text fontSize={20 + Number(fontIncrease) + "px"}>
+          <LineContainer>
+            <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
               {"Tamaño del texto"}
             </Text>
-            <Text fontSize={20 + Number(fontIncrease) + "px"}>
-              {"Contraste alto"}
-            </Text>
-          </TextContainer>
-          <InputsContainer>
             <RangeBarContainer>
               <RangeBar onChange={handleInputChange} />
             </RangeBarContainer>
+          </LineContainer>
+          <LineContainer>
+            <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
+              {"Contraste alto"}
+            </Text>
             <CheckboxContainer>
               <Checkbox />
             </CheckboxContainer>
-          </InputsContainer>
+          </LineContainer>
         </ConfigContainer>
         <ButtonContainer>
-          <GenericButton onSubmit={() => alert("Hello")} text={"Jugar"} />
+          <GenericButton
+            onSubmit={() => alert("Hello")}
+            text={"Jugar"}
+            fontSize={20 + Number(fontIncrease) * 2 + "px"}
+          />
         </ButtonContainer>
       </Container>
       <InfoContainer>
@@ -67,6 +72,7 @@ const Home = () => {
           <GenericButton
             onSubmit={() => dispatch(goToInformation)}
             text={"Información"}
+            fontSize={20 + Number(fontIncrease) * 2 + "px"}
           />
         </InfoButtonContainer>
       </InfoContainer>
