@@ -5,6 +5,7 @@ const GenericButton = (props) => {
   return (
     <Wrapper>
       <Button
+        disabled={props.disabled}
         textColor={props.textColor}
         fontSize={props.fontSize}
         backgroundColor={props.backgroundColor}

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Home from "../Home";
 import history from "../../utils/history";
 import Information from "../Information";
+import Question from "../Question";
 /* import PrivateRoute from 'components/commons/PrivateRoute';
  */
 export const Container = styled.div`
@@ -20,6 +21,7 @@ const App = () => {
           </Route>
           <Route exact path="/home" component={withRouter(Home)} />
           <Route exact path="/info" component={withRouter(Information)} />
+          <Route exact path="/pregunta" component={withRouter(Question)} />
         </Switch>
       </Router>
     </Container>

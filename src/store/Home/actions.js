@@ -9,6 +9,10 @@ export const goToHome = () => {
   history.push("/home");
 };
 
+export const goToQuestion = () => {
+  history.push("/pregunta");
+};
+
 export const setFontIncrease = (increase) => {
   return {
     type: types.CHANGE_FONT_INCREASE,

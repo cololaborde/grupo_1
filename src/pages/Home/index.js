@@ -5,6 +5,7 @@ import Checkbox from "../../components/Inputs/Checkbox";
 import RangeBar from "../../components/Inputs/RangeBar";
 import {
   goToInformation,
+  goToQuestion,
   saveFontIncrease,
   setFontIncrease,
 } from "../../store/Home/actions";
@@ -65,7 +66,7 @@ const Home = () => {
         <ButtonContainer>
           <GenericButton
             onSubmit={() => {
-              alert("Hello");
+              dispatch(goToQuestion());
               dispatch(saveFontIncrease(fontIncrease));
             }}
             text={"Jugar"}
