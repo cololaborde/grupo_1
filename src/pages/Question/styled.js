@@ -5,7 +5,9 @@ export const Wrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
+  max-height: 200vh;
   width: 100vw;
   background-color: ${COLORS.softWhite};
 `;
@@ -17,6 +19,7 @@ export const MainContainer = styled.div`
   height: auto;
   margin: auto;
   margin-top: 5%;
+  margin-bottom: 5%;
   display: flex;
   flex-direction: column;
   min-height: 500px;
@@ -50,17 +53,22 @@ export const Title = styled.p`
 
 export const AnswersContainer = styled.div`
   width: 100%;
-  display: flex;
   margin-top: 40px;
-  flex-direction: row;
-  justify-content: space-between;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Answer = styled.div`
   text-align: center;
   margin: 0 50px;
-  display: flex;
-  flex-direction: column;
+  height: auto;
+  width: 20%;
+  @media (max-width: 767px) {
+    margin: 0 10px;
+    width: 40%;
+  }
 `;
 
 export const AnswerTitle = styled.div`
