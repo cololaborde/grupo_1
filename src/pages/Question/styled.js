@@ -66,6 +66,8 @@ export const Answer = styled.div`
 export const AnswerTitle = styled.div`
   font-size: ${(props) => props.fontSize || "20px"};
   color: ${(props) => props.color || COLORS.black};
+  text-decoration: ${(props) =>
+    props.underline ? "underline" : "none" || "none"};
 `;
 
 export const AnswerImage = styled.div`

@@ -63,6 +63,23 @@ const Question = () => {
           {currentQuestion.answers.map((answ, index) => (
             <Answer key={index}>
               <AnswerTitle
+                color={
+                  answered
+                    ? selectedAnswer !== null
+                      ? answ.correct
+                        ? "green"
+                        : "red"
+                      : "black"
+                    : "black"
+                }
+                underline={
+                  selectedAnswer !== null
+                    ? selectedAnswer.title ===
+                      currentQuestion.answers[index].title
+                      ? true
+                      : false
+                    : false
+                }
                 onClick={() =>
                   !answered
                     ? setSelectedAnswer(currentQuestion.answers[index])
