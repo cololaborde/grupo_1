@@ -62,11 +62,11 @@ export const AnswersContainer = styled.div`
 
 export const Answer = styled.div`
   text-align: center;
-  margin: 0 50px;
+  margin: 0 50px auto;
   height: auto;
   width: 20%;
   @media (max-width: 767px) {
-    margin: 0 10px;
+    margin: 0 10px auto;
     width: 40%;
   }
 `;
