@@ -85,7 +85,7 @@ const Question = () => {
                     ? setSelectedAnswer(currentQuestion.answers[index])
                     : null
                 }
-                fontSize={20 + Number(fontIncrease) + "px"}
+                fontSize={20 + Number(fontIncrease) * 2 + "px"}
               >
                 {answ.title}
               </AnswerTitle>

@@ -75,6 +75,11 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${COLORS.white};
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const CardText = styled.p`

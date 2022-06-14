@@ -40,6 +40,13 @@ export const TitleContainer = styled.div`
   justify-content: center;
   align-self: center;
   width: 60%;
+  @media (max-width: 767px) {
+    width: 80%;
+  }
+  @media (max-width: 420px) {
+    width: 100%;
+    margin-top: 60px;
+  }
 `;
 
 export const Title = styled.p`
@@ -73,6 +80,7 @@ export const Answer = styled.div`
 
 export const AnswerTitle = styled.div`
   font-size: ${(props) => props.fontSize || "20px"};
+  font-family: Arial;
   color: ${(props) => props.color || COLORS.black};
   text-decoration: ${(props) =>
     props.underline ? "underline" : "none" || "none"};
@@ -89,6 +97,9 @@ export const ResultContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 50%;
+  @media (max-width: 767px) {
+    width: 90%;
+  }
 `;
 
 export const SendButtonContainer = styled.div`
@@ -114,5 +125,7 @@ export const ResultButtons = styled.div`
   text-align: center;
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
 `;

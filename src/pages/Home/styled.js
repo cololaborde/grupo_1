@@ -17,7 +17,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.p`
   font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || COLORS.blue};
+  color: ${(props) => props.color || COLORS.black};
   font-weight: bold;
   font-family: Arial;
 `;
@@ -40,7 +40,7 @@ export const Text = styled.p`
   font-size: ${(props) => props.fontSize || "20px"};
   font-weight: bold;
   font-family: Arial;
-  color: ${(props) => props.color || "blue"};
+  color: ${(props) => props.color || COLORS.black};
   float: left;
   margin-top: auto;
   margin-bottom: auto;
