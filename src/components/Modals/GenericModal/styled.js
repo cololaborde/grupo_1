@@ -72,6 +72,7 @@ export const Title = styled.div`
   color: ${COLORS.black};
 `;
 export const IconContainer = styled.div`
+  display: flex;
   cursor: pointer;
   right: 0;
   margin-left: auto;

@@ -4,10 +4,12 @@ import BackButton from "../../components/Buttons/BackButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
-import { goToHome } from "../../store/Home/actions";
+import ExitModal from "../../components/Modals/ExitModal";
+import { setShowExitModal, setShowHelpModal } from "../../store/Home/actions";
 import {
   selectFontIncrease,
   selectShowConfigModal,
+  selectShowExitModal,
 } from "../../store/Home/selectors";
 import { selectInformation } from "../../store/Information/selectors";
 import {
@@ -32,7 +34,6 @@ const Information = () => {
 
   const pages = useSelector(selectInformation);
   const fontIncrease = useSelector(selectFontIncrease);
-
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
   function goMain() {
@@ -54,10 +55,13 @@ const Information = () => {
       setCurrentSection(newSection);
     }
   }
+  const showConfigModal = useSelector(selectShowConfigModal);
+  const showExitModal = useSelector(selectShowExitModal);
   return (
     <Wrapper>
       <MainContainer>
-        <ConfigModal show={useSelector(selectShowConfigModal)} />
+        <ConfigModal show={showConfigModal} />
+        <ExitModal show={showExitModal} />
         <BackContainer>
           <BackButton
             onSubmit={() =>
@@ -65,7 +69,7 @@ const Information = () => {
                 ? goBack(navPages.length - 2)
                 : navPages.length == 1
                 ? goMain()
-                : dispatch(goToHome)
+                : dispatch(setShowExitModal(true))
             }
           />
         </BackContainer>

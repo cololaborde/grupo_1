@@ -63,7 +63,6 @@ const ConfigModal = (props) => {
         <ButtonsContainer>
           <GenericButton
             text={"Guardar"}
-            backgroundColor={COLORS.lightBlue}
             onSubmit={() => {
               dispatch(setShowConfigModal(false));
               dispatch(saveFontIncrease(fontIncrease));

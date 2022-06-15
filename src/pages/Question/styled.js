@@ -76,6 +76,10 @@ export const Answer = styled.div`
     margin: 0 10px auto;
     width: 40%;
   }
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+  }
 `;
 
 export const AnswerTitle = styled.div`
@@ -86,7 +90,7 @@ export const AnswerTitle = styled.div`
     props.underline ? "underline" : "none" || "none"};
 `;
 
-export const AnswerImage = styled.div`
+export const AnswerImage = styled.img`
   width: 100%;
   height: 200px;
 `;
@@ -128,4 +132,15 @@ export const ResultButtons = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+`;
+
+export const CounterContainer = styled.div`
+  display: flex;
+  background-color: ${COLORS.white};
+  border-radius: 10px;
+  padding: 5px;
+  margin: 0 5px 6px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;
