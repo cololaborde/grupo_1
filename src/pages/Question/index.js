@@ -5,7 +5,7 @@ import GenericButton from "../../components/Buttons/GenericButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import HelpModal from "../../components/Modals/HelpModal";
-import { goToHome, setShowHelpModal } from "../../store/Home/actions";
+import { goToHome } from "../../store/Home/actions";
 import {
   selectFontIncrease,
   selectShowConfigModal,
@@ -94,7 +94,7 @@ const Question = () => {
               >
                 {answ.title}
               </AnswerTitle>
-              <AnswerImage>{answ.img}</AnswerImage>
+              <AnswerImage src={answ.img} />
             </Answer>
           ))}
         </AnswersContainer>

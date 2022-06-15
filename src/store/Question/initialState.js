@@ -1,3 +1,7 @@
+import image1 from "../../images/p1i1.png";
+import image2 from "../../images/p1i2.png";
+import image3 from "../../images/p1i3.png";
+
 export const initialState = {
   questions: [
     {
@@ -9,19 +13,19 @@ export const initialState = {
       answers: [
         {
           title: "Dejarla como está",
-          img: "",
+          img: image1,
           correct: false,
           tip: "La corriente puede llevarse la basura y esta tapar las boca de agua",
         },
         {
           title: "Juntar la basura y no sacarla",
-          img: "",
+          img: image2,
           correct: true,
           tip: "La corriente puede llevarse la basura y esta tapar las boca de agua",
         },
         {
           title: "Juntar la basura y sacarla a la calle",
-          img: "",
+          img: image3,
           correct: false,
           tip: "La corriente puede llevarse la basura y esta tapar las boca de agua",
         },

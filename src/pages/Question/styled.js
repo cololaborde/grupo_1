@@ -86,7 +86,7 @@ export const AnswerTitle = styled.div`
     props.underline ? "underline" : "none" || "none"};
 `;
 
-export const AnswerImage = styled.div`
+export const AnswerImage = styled.img`
   width: 100%;
   height: 200px;
 `;
