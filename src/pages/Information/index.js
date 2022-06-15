@@ -4,10 +4,12 @@ import BackButton from "../../components/Buttons/BackButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
-import { setShowHelpModal } from "../../store/Home/actions";
+import ExitModal from "../../components/Modals/ExitModal";
+import { setShowExitModal, setShowHelpModal } from "../../store/Home/actions";
 import {
   selectFontIncrease,
   selectShowConfigModal,
+  selectShowExitModal,
 } from "../../store/Home/selectors";
 import {
   Wrapper,
@@ -25,12 +27,15 @@ import {
 const Information = () => {
   const dispatch = useDispatch();
   const fontIncrease = useSelector(selectFontIncrease);
+  const showConfigModal = useSelector(selectShowConfigModal);
+  const showExitModal = useSelector(selectShowExitModal);
   return (
     <Wrapper>
       <MainContainer>
-        <ConfigModal show={useSelector(selectShowConfigModal)} />
+        <ConfigModal show={showConfigModal} />
+        <ExitModal show={showExitModal} />
         <BackContainer>
-          <BackButton onSubmit={() => dispatch(setShowHelpModal(true))} />
+          <BackButton onSubmit={() => dispatch(setShowExitModal(true))} />
         </BackContainer>
         <HamburguerMenu />
         <TitleContainer>
