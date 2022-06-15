@@ -63,6 +63,7 @@ const ConfigModal = (props) => {
         <ButtonsContainer>
           <GenericButton
             text={"Guardar"}
+            backgroundColor={COLORS.btn_primary}
             onSubmit={() => {
               dispatch(setShowConfigModal(false));
               dispatch(saveFontIncrease(fontIncrease));
@@ -70,16 +71,15 @@ const ConfigModal = (props) => {
           />
           <GenericButton
             text={"Cancelar"}
-            backgroundColor={COLORS.lightRed}
+            backgroundColor={COLORS.btn_error}
             onSubmit={() => {
               dispatch(setShowConfigModal(false));
               dispatch(restartFontIncrease());
             }}
           />
           <GenericButton
-            textColor={COLORS.black}
             text={"Restablecer"}
-            backgroundColor={COLORS.lightGray}
+            backgroundColor={COLORS.btn_secondary}
             onSubmit={() => dispatch(restartFontIncrease())}
           />
         </ButtonsContainer>

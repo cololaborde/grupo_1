@@ -140,8 +140,8 @@ const Question = () => {
               />
               <GenericButton
                 text={"Más información"}
-                textColor={COLORS.black}
-                backgroundColor={COLORS.softWhite}
+                textColor={COLORS.text}
+                backgroundColor={COLORS.bg_secondary}
               />
             </ResultButtons>
             <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>

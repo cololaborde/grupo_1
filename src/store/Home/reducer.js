@@ -16,6 +16,17 @@ const homeReducer = (state = initialState, action) =>
         draft.fontIncrease =
           JSON.parse(localStorage.getItem("fontIncrease")) || 0;
         break;
+      case types.CHANGE_HIGH_CONTRAST:
+        draft.highContrast = action.new_value;
+        break;
+      case types.SAVE_HIGH_CONTRAST:
+        draft.highContrast = action.new_value;
+        localStorage.setItem("highContrast", JSON.stringify(action.new_value));
+        break;
+      case types.RESTART_HIGH_CONTRAST:
+        draft.highContrast =
+          JSON.parse(localStorage.getItem("highContrast")) || false;
+        break;
       case types.SET_SHOW_EXIT_MODAL:
         draft.showExitModal = action.show;
         break;

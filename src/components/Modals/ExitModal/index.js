@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { setShowExitModal } from "../../../store/Home/actions";
 import { ButtonsContainer, TextContainer, Text, ButtonWrapper } from "./styled";
 import { goToHome } from "../../../store/Home/actions";
-import IconButton from "../../Buttons/IconButton";
 import { COLORS } from "../../../utils/colors";
 import GenericModal from "../GenericModal";
+import GenericButton from "../../Buttons/GenericButton";
 
 const ExitModal = (props) => {
   if (!props.show) return null;
@@ -20,10 +20,9 @@ const ExitModal = (props) => {
       </TextContainer>
       <ButtonsContainer>
         <ButtonWrapper>
-          <IconButton
-            icon={"Si"}
-            textColor={COLORS.softWhite}
-            backgroundColor={COLORS.lightBlue}
+          <GenericButton
+            text={"Si"}
+            backgroundColor={COLORS.btn_primary}
             onSubmit={() => {
               dispatch(goToHome);
               dispatch(setShowExitModal(false));
@@ -31,10 +30,9 @@ const ExitModal = (props) => {
           />
         </ButtonWrapper>
         <ButtonWrapper>
-          <IconButton
-            icon={"No"}
-            textColor={COLORS.softWhite}
-            backgroundColor={COLORS.lightRed}
+          <GenericButton
+            text={"No"}
+            backgroundColor={COLORS.btn_error}
             onSubmit={() => dispatch(setShowExitModal(false))}
           />
         </ButtonWrapper>

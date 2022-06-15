@@ -4,6 +4,7 @@ import { COLORS } from "../../utils/colors";
 export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
+  background-color: ${COLORS.bg};
 `;
 
 export const TitleContainer = styled.div`
@@ -17,7 +18,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.p`
   font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || COLORS.text};
   font-weight: bold;
   font-family: Arial;
 `;
@@ -40,7 +41,7 @@ export const Text = styled.p`
   font-size: ${(props) => props.fontSize || "20px"};
   font-weight: bold;
   font-family: Arial;
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || COLORS.text};
   float: left;
   margin-top: auto;
   margin-bottom: auto;
@@ -77,7 +78,7 @@ export const Container = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.softWhite};
+  background-color: ${COLORS.bg_secondary};
 `;
 
 export const InfoButtonContainer = styled.div`
@@ -97,7 +98,7 @@ export const InfoContainer = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.softWhite};
+  background-color: ${COLORS.bg_secondary};
 `;
 
 export const ButtonContainer = styled.div`
@@ -107,5 +108,5 @@ export const ButtonContainer = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.softWhite};
+  background-color: ${COLORS.bg_secondary};
 `;

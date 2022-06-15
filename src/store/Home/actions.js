@@ -33,6 +33,26 @@ export const restartFontIncrease = () => {
   };
 };
 
+export const setHighContrast = (new_value) => {
+  return {
+    type: types.CHANGE_HIGH_CONTRAST,
+    new_value,
+  };
+};
+
+export const saveHighContrast = (new_value) => {
+  return {
+    type: types.SAVE_HIGH_CONTRAST,
+    new_value,
+  };
+};
+
+export const restartHighContrast = () => {
+  return {
+    type: types.RESTART_HIGH_CONTRAST,
+  };
+};
+
 export const setShowExitModal = (show) => {
   return {
     type: types.SET_SHOW_EXIT_MODAL,

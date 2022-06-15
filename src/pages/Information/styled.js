@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   height: auto;
   min-height: 100vh;
   width: 100vw;
-  background-color: ${COLORS.softWhite};
+  background-color: ${COLORS.bg};
 `;
 
 export const MainContainer = styled.div`
@@ -24,7 +24,7 @@ export const MainContainer = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.lightGray};
+  background-color: ${COLORS.bg_primary};
 `;
 
 export const BackContainer = styled.div`
@@ -49,7 +49,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.p`
   font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || COLORS.text};
   font-weight: bold;
   font-family: Arial;
   margin: 15px;
@@ -84,10 +84,13 @@ export const NavContainer = styled.div`
 
 export const NavText = styled.p`
   font-size: ${(props) => props.fontSize || "15px"};
-  color: ${(props) => props.color || COLORS.blue};
+  color: ${(props) => props.color || COLORS.link};
   font-weight: bold;
   font-family: Arial;
   display: inline;
+  background-color: ${COLORS.bg_secondary};
+  border-radius: 2px;
+  padding: 2px;
   &:hover {
     cursor: pointer;
     background-color: ${COLORS.white};
@@ -126,7 +129,7 @@ export const CardContainer = styled.div`
 
 export const CardText = styled.p`
   font-size: ${(props) => props.fontSize || "20px"};
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || COLORS.text};
   font-weight: bold;
   font-family: Arial;
   margin: 15px;
@@ -141,7 +144,7 @@ export const ContentContainer = styled.div`
 
 export const Content = styled.p`
   font-size: ${(props) => props.fontSize || "15px"};
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || COLORS.text};
   font-weight: bold;
   font-family: Arial;
   margin: 15px;

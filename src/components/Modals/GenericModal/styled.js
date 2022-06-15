@@ -37,7 +37,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  color: ${COLORS.lightGray};
+  color: ${COLORS.bg_primary};
 `;
 
 export const ModalBg = styled.div`
@@ -52,7 +52,7 @@ export const TopBar = styled.div`
   width: 100%;
   align-items: center;
   flex-direction: row;
-  background-color: ${COLORS.lightGray};
+  background-color: ${COLORS.bg_primary};
 `;
 export const TitleContainer = styled.div`
   padding: 15px;
@@ -66,10 +66,11 @@ export const Title = styled.div`
   width: 100%;
   font-size: 1.25rem;
   font-weight: bold;
+  font-family: Arial;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${COLORS.black};
+  color: ${COLORS.text};
 `;
 export const IconContainer = styled.div`
   display: flex;
@@ -81,5 +82,5 @@ export const IconContainer = styled.div`
 `;
 
 export const CloseIcon = styled(Close)`
-  color: ${COLORS.black};
+  color: ${COLORS.text};
 `;

@@ -11,8 +11,8 @@ export const Button = styled.div`
   border-radius: 30px;
   font-weight: bold;
   pointer-events: ${(props) => (props.disabled ? "none" : "")};
-  color: ${(props) => props.textColor || "white"};
-  background-color: ${(props) => props.backgroundColor || COLORS.lightBlue};
+  color: ${(props) => props.textColor || COLORS.btn_text};
+  background-color: ${(props) => props.backgroundColor || COLORS.btn_primary};
   font-size: ${(props) => props.fontSize || "12px"}
   text-align: center;
   padding: 10px;

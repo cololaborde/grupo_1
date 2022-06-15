@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   min-height: 100vh;
   max-height: 200vh;
   width: 100vw;
-  background-color: ${COLORS.softWhite};
+  background-color: ${COLORS.bg};
 `;
 
 export const MainContainer = styled.div`
@@ -26,7 +26,7 @@ export const MainContainer = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.lightGray};
+  background-color: ${COLORS.bg_primary};
 `;
 
 export const BackContainer = styled.div`
@@ -51,7 +51,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.p`
   font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || COLORS.text};
   font-weight: bold;
   font-family: Arial;
   margin: 15px;
@@ -85,7 +85,7 @@ export const Answer = styled.div`
 export const AnswerTitle = styled.div`
   font-size: ${(props) => props.fontSize || "20px"};
   font-family: Arial;
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || COLORS.text};
   text-decoration: ${(props) =>
     props.underline ? "underline" : "none" || "none"};
 `;
@@ -113,7 +113,7 @@ export const SendButtonContainer = styled.div`
 
 export const ResultTitle = styled.div`
   font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || COLORS.text};
   font-weight: bold;
   font-family: Arial;
 `;
@@ -121,7 +121,7 @@ export const ResultTitle = styled.div`
 export const ResultTip = styled.div`
   margin: 15px 0;
   font-size: ${(props) => props.fontSize || "20px"};
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || COLORS.text};
   text-align: center;
 `;
 
