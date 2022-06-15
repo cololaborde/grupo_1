@@ -66,7 +66,14 @@ const Question = () => {
         </TitleContainer>
         <AnswersContainer>
           {currentQuestion.answers.map((answ, index) => (
-            <Answer key={index}>
+            <Answer
+              key={index}
+              onClick={() =>
+                !answered
+                  ? setSelectedAnswer(currentQuestion.answers[index])
+                  : null
+              }
+            >
               <AnswerTitle
                 color={
                   answered
@@ -84,11 +91,6 @@ const Question = () => {
                       ? true
                       : false
                     : false
-                }
-                onClick={() =>
-                  !answered
-                    ? setSelectedAnswer(currentQuestion.answers[index])
-                    : null
                 }
                 fontSize={20 + Number(fontIncrease) * 2 + "px"}
               >

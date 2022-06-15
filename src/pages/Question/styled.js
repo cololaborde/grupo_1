@@ -76,6 +76,10 @@ export const Answer = styled.div`
     margin: 0 10px auto;
     width: 40%;
   }
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+  }
 `;
 
 export const AnswerTitle = styled.div`
