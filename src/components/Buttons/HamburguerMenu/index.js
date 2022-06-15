@@ -7,8 +7,8 @@ import MenuButton from "../MenuButton";
 import HelpButton from "../HelpButton";
 import { useDispatch } from "react-redux";
 import {
-  goToHome,
   setShowConfigModal,
+  setShowExitModal,
   setShowHelpModal,
 } from "../../../store/Home/actions";
 
@@ -37,7 +37,7 @@ const HamburguerMenu = (props) => {
             <SettingsButton
               onSubmit={() => dispatch(setShowConfigModal(true))}
             />
-            <HomeButton onSubmit={() => dispatch(goToHome())} />
+            <HomeButton onSubmit={() => dispatch(setShowExitModal(true))} />
           </HiddenContainer>
         ) : (
           ""
@@ -49,7 +49,7 @@ const HamburguerMenu = (props) => {
       <MenuContainer>
         {custom_button}
         <SettingsButton onSubmit={() => dispatch(setShowConfigModal(true))} />
-        <HomeButton onSubmit={() => dispatch(goToHome())} />
+        <HomeButton onSubmit={() => dispatch(setShowExitModal(true))} />
       </MenuContainer>
     );
   }

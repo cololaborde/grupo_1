@@ -4,7 +4,7 @@ import BackButton from "../../components/Buttons/BackButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
-import { goToHome } from "../../store/Home/actions";
+import { setShowHelpModal } from "../../store/Home/actions";
 import {
   selectFontIncrease,
   selectShowConfigModal,
@@ -30,7 +30,7 @@ const Information = () => {
       <MainContainer>
         <ConfigModal show={useSelector(selectShowConfigModal)} />
         <BackContainer>
-          <BackButton onSubmit={() => dispatch(goToHome)} />
+          <BackButton onSubmit={() => dispatch(setShowHelpModal(true))} />
         </BackContainer>
         <HamburguerMenu />
         <TitleContainer>

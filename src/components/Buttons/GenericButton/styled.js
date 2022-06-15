@@ -12,7 +12,7 @@ export const Button = styled.div`
   font-weight: bold;
   pointer-events: ${(props) => (props.disabled ? "none" : "")};
   color: ${(props) => props.textColor || "white"};
-  background-color: ${(props) => props.backgroundColor || COLORS.blue};
+  background-color: ${(props) => props.backgroundColor || COLORS.lightBlue};
   font-size: ${(props) => props.fontSize || "12px"}
   text-align: center;
   padding: 10px;
