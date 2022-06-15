@@ -4,10 +4,12 @@ import BackButton from "../../components/Buttons/BackButton";
 import GenericButton from "../../components/Buttons/GenericButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import ConfigModal from "../../components/Modals/ConfigModal";
-import { goToHome } from "../../store/Home/actions";
+import HelpModal from "../../components/Modals/HelpModal";
+import { goToHome, setShowHelpModal } from "../../store/Home/actions";
 import {
   selectFontIncrease,
   selectShowConfigModal,
+  selectShowHelpModal,
 } from "../../store/Home/selectors";
 import { selectQuestions } from "../../store/Question/selectors";
 import {
@@ -32,6 +34,8 @@ const Question = () => {
 
   const questions = useSelector(selectQuestions);
   const fontIncrease = useSelector(selectFontIncrease);
+  const showConfigModal = useSelector(selectShowConfigModal);
+  const showHelpModal = useSelector(selectShowHelpModal);
 
   const [index, setIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(questions[index]);
@@ -48,12 +52,13 @@ const Question = () => {
 
   return (
     <Wrapper>
+      <ConfigModal show={showConfigModal} />
+      <HelpModal show={showHelpModal} />
       <MainContainer>
-        <ConfigModal show={useSelector(selectShowConfigModal)} />
         <BackContainer>
           <BackButton onSubmit={() => dispatch(goToHome)} />
         </BackContainer>
-        <HamburguerMenu />
+        <HamburguerMenu hasHelp />
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) + "px"}>
             {currentQuestion.title}

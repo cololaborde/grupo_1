@@ -5,15 +5,24 @@ import SettingsButton from "../SettingsButton";
 import HomeButton from "../HomeButton";
 import MenuButton from "../MenuButton";
 import HelpButton from "../HelpButton";
+import { useDispatch } from "react-redux";
+import {
+  goToHome,
+  setShowConfigModal,
+  setShowHelpModal,
+} from "../../../store/Home/actions";
 
 const HamburguerMenu = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useDispatch();
   const handleToggle = () => {
     setMenuOpen(!menuOpen);
   };
   let custom_button;
-  if (props.hasHelp === "true") {
-    custom_button = <HelpButton onSubmit={props.onSubmit} />;
+  if (props.hasHelp) {
+    custom_button = (
+      <HelpButton onSubmit={() => dispatch(setShowHelpModal(true))} />
+    );
   } else {
     custom_button = <DownloadButton onSubmit={props.onSubmit} />;
   }
@@ -25,8 +34,10 @@ const HamburguerMenu = (props) => {
         {menuOpen ? (
           <HiddenContainer>
             {custom_button}
-            <SettingsButton />
-            <HomeButton />
+            <SettingsButton
+              onSubmit={() => dispatch(setShowConfigModal(true))}
+            />
+            <HomeButton onSubmit={() => dispatch(goToHome())} />
           </HiddenContainer>
         ) : (
           ""
@@ -37,8 +48,8 @@ const HamburguerMenu = (props) => {
     menu = (
       <MenuContainer>
         {custom_button}
-        <SettingsButton />
-        <HomeButton />
+        <SettingsButton onSubmit={() => dispatch(setShowConfigModal(true))} />
+        <HomeButton onSubmit={() => dispatch(goToHome())} />
       </MenuContainer>
     );
   }
