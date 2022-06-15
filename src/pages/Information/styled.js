@@ -5,7 +5,9 @@ export const Wrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
+  max-height: 200vh;
   width: 100vw;
   background-color: ${COLORS.softWhite};
 `;
@@ -17,6 +19,7 @@ export const MainContainer = styled.div`
   height: auto;
   margin: auto;
   margin-top: 5%;
+  margin-bottom: 5%;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
@@ -63,7 +66,27 @@ export const SearchBar = styled.input`
   }
 `;
 
-export const CardsContainer = styled.div``;
+export const NavContainer = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+
+export const NavText = styled.p`
+  font-size: ${(props) => props.fontSize || "15px"};
+  color: ${(props) => props.color || COLORS.blue};
+  font-weight: bold;
+  font-family: Arial;
+  display: inline;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+export const CardsContainer = styled.div`
+  margin-bottom: 30px;
+`;
 
 export const CardContainer = styled.div`
   min-width: 400px;
@@ -84,6 +107,18 @@ export const CardContainer = styled.div`
 
 export const CardText = styled.p`
   font-size: 20px;
+  color: ${(props) => props.color || COLORS.black};
+  font-weight: bold;
+  font-family: Arial;
+  margin: 15px;
+`;
+
+export const ContentContainer = styled.div`
+  margin: 0 20px 30px 20px;
+`;
+
+export const Content = styled.p`
+  font-size: ${(props) => props.fontSize || "20px"};
   color: ${(props) => props.color || COLORS.black};
   font-weight: bold;
   font-family: Arial;
