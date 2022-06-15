@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../../components/Buttons/BackButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
@@ -35,6 +35,12 @@ const Information = () => {
 
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
+  function goMain() {
+    if (navPages.length > 0) {
+      setNavPages([]);
+      setCurrentSection(pages);
+    }
+  }
 
   function goBack(index = -1) {
     if (index < navPages.length - 1) {
@@ -53,7 +59,15 @@ const Information = () => {
       <MainContainer>
         <ConfigModal show={useSelector(selectShowConfigModal)} />
         <BackContainer>
-          <BackButton onSubmit={() => dispatch(goToHome)} />
+          <BackButton
+            onSubmit={() =>
+              navPages.length > 1
+                ? goBack(navPages.length - 2)
+                : navPages.length == 1
+                ? goMain()
+                : dispatch(goToHome)
+            }
+          />
         </BackContainer>
         <HamburguerMenu />
         <TitleContainer>
@@ -64,10 +78,15 @@ const Information = () => {
           <SearchButton />
         </SearchContainer>
         <NavContainer>
+          <NavText
+            fontSize={15 + Number(fontIncrease) + "px"}
+            onClick={() => goMain()}
+          >
+            {" > Información"}
+          </NavText>
           {navPages.map((page, index) => (
             <NavText
               key={index}
-              underline={true}
               fontSize={15 + Number(fontIncrease) + "px"}
               onClick={() => goBack(index)}
             >

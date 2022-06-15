@@ -19,15 +19,15 @@ export const initialState = {
             "■ Identificá qué muebles o ropa pueden verse afectados por el agua. Planificá cómo podrías ele-varlos en caso de precisarlo y de ser posible, adelantate y colocalos en un lugar alto, ¡te ahorrará mucha energía si hay una emergencia!",
           ],
         },
-        { type: "Page", name: "Durante", description: "", content: "" },
-        { type: "Page", name: "Después", description: "", content: "" },
+        { type: "Page", name: "Durante", description: "", content: [] },
+        { type: "Page", name: "Después", description: "", content: [] },
       ],
     },
     {
       type: "Page",
       name: "Refugios",
       description: "",
-      content: "",
+      content: [""],
     },
   ],
 };
