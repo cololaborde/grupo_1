@@ -30,6 +30,7 @@ import {
   ResultButtons,
   AnswerTitle,
   AnswerImage,
+  CounterContainer,
 } from "./styled";
 
 const Question = () => {
@@ -120,6 +121,9 @@ const Question = () => {
             />
           </SendButtonContainer>
         )}
+        <CounterContainer>
+          {"Pregunta: " + (Number(index) + 1) + "/" + questions.length}
+        </CounterContainer>
         {answered && (
           <ResultContainer>
             <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>

@@ -133,3 +133,14 @@ export const ResultButtons = styled.div`
   align-items: center;
   flex-direction: row;
 `;
+
+export const CounterContainer = styled.div`
+  display: flex;
+  background-color: ${COLORS.white};
+  border-radius: 10px;
+  padding: 5px;
+  margin: 0 5px 6px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+`;
