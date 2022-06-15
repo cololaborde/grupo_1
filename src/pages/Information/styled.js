@@ -7,7 +7,6 @@ export const Wrapper = styled.div`
   left: 0;
   height: auto;
   min-height: 100vh;
-  max-height: 200vh;
   width: 100vw;
   background-color: ${COLORS.softWhite};
 `;
@@ -34,7 +33,19 @@ export const BackContainer = styled.div`
   top: 15px;
 `;
 
-export const TitleContainer = styled.div``;
+export const TitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 60%;
+  @media (max-width: 767px) {
+    width: 80%;
+  }
+  @media (max-width: 420px) {
+    width: 100%;
+    margin-top: 60px;
+  }
+`;
 
 export const Title = styled.p`
   font-size: ${(props) => props.fontSize || "40px"};
@@ -79,17 +90,25 @@ export const NavText = styled.p`
   display: inline;
   &:hover {
     cursor: pointer;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    background-color: ${COLORS.white};
+    border-style: solid;
+    border-width: 1px;
   }
 `;
 
 export const CardsContainer = styled.div`
   margin-bottom: 30px;
+  min-width: 50%;
+  @media (max-width: 767px) {
+    min-width: 70%;
+    margin: 0px 5% 30px;
+  }
+  @media (max-width: 420px) {
+    min-width: 90%;
+  }
 `;
 
 export const CardContainer = styled.div`
-  min-width: 400px;
   min-height: 50px;
   margin: 15px;
   display: flex;
@@ -106,7 +125,7 @@ export const CardContainer = styled.div`
 `;
 
 export const CardText = styled.p`
-  font-size: 20px;
+  font-size: ${(props) => props.fontSize || "20px"};
   color: ${(props) => props.color || COLORS.black};
   font-weight: bold;
   font-family: Arial;
@@ -115,12 +134,18 @@ export const CardText = styled.p`
 
 export const ContentContainer = styled.div`
   margin: 0 20px 30px 20px;
+  @media (max-width: 420px) {
+    margin: 0 10px 20px 10px;
+  }
 `;
 
 export const Content = styled.p`
-  font-size: ${(props) => props.fontSize || "20px"};
+  font-size: ${(props) => props.fontSize || "15px"};
   color: ${(props) => props.color || COLORS.black};
   font-weight: bold;
   font-family: Arial;
   margin: 15px;
+  @media (max-width: 420px) {
+    margin: 5px;
+  }
 `;

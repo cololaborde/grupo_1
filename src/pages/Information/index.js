@@ -104,7 +104,9 @@ const Information = () => {
                   setCurrentSection(page)
                 )}
               >
-                <CardText>{page.name}</CardText>
+                <CardText fontSize={20 + Number(fontIncrease) + "px"}>
+                  {page.name}
+                </CardText>
               </CardContainer>
             ))}
           </CardsContainer>
@@ -112,7 +114,9 @@ const Information = () => {
           <ContentContainer>
             <Title>{currentSection.name}</Title>
             {currentSection.content.map((line, index) => (
-              <Content key={index}>{line}</Content>
+              <Content key={index} fontSize={15 + Number(fontIncrease) + "px"}>
+                {line}
+              </Content>
             ))}
           </ContentContainer>
         )}

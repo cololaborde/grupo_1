@@ -53,7 +53,7 @@ const Question = () => {
         <BackContainer>
           <BackButton onSubmit={() => dispatch(goToHome)} />
         </BackContainer>
-        <HamburguerMenu />
+        <HamburguerMenu hasHelp="true" />
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) + "px"}>
             {currentQuestion.title}

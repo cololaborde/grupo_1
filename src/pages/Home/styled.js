@@ -71,6 +71,7 @@ export const Container = styled.div`
   height: auto;
   margin: auto;
   margin-top: 10%;
+  margin-bottom: 5%;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
