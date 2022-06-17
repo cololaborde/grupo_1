@@ -2,9 +2,28 @@ import styled from "styled-components";
 import { COLORS } from "../../utils/colors";
 
 export const Wrapper = styled.div`
-  height: 100%;
-  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  min-height: 100vh;
+  width: 100vw;
   background-color: ${COLORS.bg};
+`;
+
+export const Container = styled.div`
+  position: relative;
+  width: auto;
+  max-width: 500px;
+  height: auto;
+  margin: auto;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${COLORS.bg_primary};
 `;
 
 export const TitleContainer = styled.div`
@@ -66,21 +85,6 @@ export const RangeBarContainer = styled.div`
   max-width: 50%;
 `;
 
-export const Container = styled.div`
-  width: auto;
-  max-width: 500px;
-  height: auto;
-  margin: auto;
-  margin-top: 10%;
-  margin-bottom: 5%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 20px;
-  align-items: center;
-  justify-content: center;
-  background-color: ${COLORS.bg_secondary};
-`;
-
 export const InfoButtonContainer = styled.div`
   margin: 10px;
   width: auto;
@@ -98,7 +102,7 @@ export const InfoContainer = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.bg_secondary};
+  background-color: ${COLORS.bg_primary};
 `;
 
 export const ButtonContainer = styled.div`
@@ -108,5 +112,5 @@ export const ButtonContainer = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.bg_secondary};
+  background-color: ${COLORS.bg_primary};
 `;

@@ -2,8 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   restartFontIncrease,
+  restartHighContrast,
   saveFontIncrease,
+  saveHighContrast,
   setFontIncrease,
+  setHighContrast,
   setShowConfigModal,
 } from "../../../store/Home/actions";
 import GenericModal from "../GenericModal";
@@ -20,22 +23,30 @@ import {
 import RangeBar from "../../Inputs/RangeBar";
 import Checkbox from "../../Inputs/Checkbox";
 import GenericButton from "../../Buttons/GenericButton";
-import { selectFontIncrease } from "../../../store/Home/selectors";
+import {
+  selectFontIncrease,
+  selectHighContrast,
+} from "../../../store/Home/selectors";
 import { COLORS } from "../../../utils/colors";
 
 const ConfigModal = (props) => {
   if (!props.show) return null;
+
+  const dispatch = useDispatch();
+  const fontIncrease = useSelector(selectFontIncrease);
+  const highContrast = useSelector(selectHighContrast);
 
   const handleInputChange = (name, value) => {
     switch (name) {
       case "fontSizeRange":
         dispatch(setFontIncrease(value));
         break;
+      case "highContrastCheckbox":
+        dispatch(setHighContrast(value));
+        break;
     }
   };
 
-  const dispatch = useDispatch();
-  const fontIncrease = useSelector(selectFontIncrease);
   return (
     <GenericModal
       title={"Opciones"}
@@ -56,7 +67,7 @@ const ConfigModal = (props) => {
               <RangeBar value={fontIncrease} onChange={handleInputChange} />
             </RangeBarContainer>
             <CheckboxContainer>
-              <Checkbox />
+              <Checkbox value={highContrast} onChange={handleInputChange} />
             </CheckboxContainer>
           </InputsContainer>
         </ConfigContainer>
@@ -67,6 +78,7 @@ const ConfigModal = (props) => {
             onSubmit={() => {
               dispatch(setShowConfigModal(false));
               dispatch(saveFontIncrease(fontIncrease));
+              dispatch(saveHighContrast(highContrast));
             }}
           />
           <GenericButton
@@ -75,12 +87,16 @@ const ConfigModal = (props) => {
             onSubmit={() => {
               dispatch(setShowConfigModal(false));
               dispatch(restartFontIncrease());
+              dispatch(restartHighContrast());
             }}
           />
           <GenericButton
             text={"Restablecer"}
             backgroundColor={COLORS.btn_secondary}
-            onSubmit={() => dispatch(restartFontIncrease())}
+            onSubmit={() => {
+              dispatch(restartFontIncrease());
+              dispatch(restartHighContrast());
+            }}
           />
         </ButtonsContainer>
       </Container>

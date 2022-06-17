@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const Checkbox = () => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleOnChange = () => {
+const Checkbox = (props) => {
+  const [isChecked, setIsChecked] = useState(props.value);
+  const handleOnChange = (event) => {
     setIsChecked(!isChecked);
+    props.onChange(event.target.name, event.target.checked);
   };
 
   return (
@@ -13,7 +13,7 @@ const Checkbox = () => {
         <input
           type="checkbox"
           id="topping"
-          name="topping"
+          name="highContrastCheckbox"
           value="Paneer"
           checked={isChecked}
           onChange={handleOnChange}

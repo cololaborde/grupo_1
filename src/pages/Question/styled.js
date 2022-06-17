@@ -136,7 +136,7 @@ export const ResultButtons = styled.div`
 
 export const CounterContainer = styled.div`
   display: flex;
-  background-color: ${COLORS.white};
+  background-color: ${COLORS.bg_primary};
   border-radius: 10px;
   padding: 5px;
   margin: 0 5px 6px;

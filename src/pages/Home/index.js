@@ -7,7 +7,9 @@ import {
   goToInformation,
   goToQuestion,
   saveFontIncrease,
+  saveHighContrast,
   setFontIncrease,
+  setHighContrast,
 } from "../../store/Home/actions";
 import {
   Wrapper,
@@ -23,20 +25,26 @@ import {
   InfoContainer,
   InfoButtonContainer,
 } from "./styled";
-import { selectFontIncrease } from "../../store/Home/selectors";
+import {
+  selectFontIncrease,
+  selectHighContrast,
+} from "../../store/Home/selectors";
 
 const Home = () => {
   const dispatch = useDispatch();
   const fontIncrease = useSelector(selectFontIncrease);
+  const highContrast = useSelector(selectHighContrast);
 
   const handleInputChange = (name, value) => {
     switch (name) {
       case "fontSizeRange":
         dispatch(setFontIncrease(value));
         break;
+      case "highContrastCheckbox":
+        dispatch(setHighContrast(value));
+        break;
     }
   };
-  console.log(Number(fontIncrease) + 20);
   return (
     <Wrapper>
       <Container>
@@ -59,7 +67,7 @@ const Home = () => {
               {"Contraste alto"}
             </Text>
             <CheckboxContainer>
-              <Checkbox />
+              <Checkbox value={highContrast} onChange={handleInputChange} />
             </CheckboxContainer>
           </LineContainer>
         </ConfigContainer>
@@ -68,6 +76,7 @@ const Home = () => {
             onSubmit={() => {
               dispatch(goToQuestion());
               dispatch(saveFontIncrease(fontIncrease));
+              dispatch(saveHighContrast());
             }}
             text={"Jugar"}
             fontSize={20 + Number(fontIncrease) * 2 + "px"}

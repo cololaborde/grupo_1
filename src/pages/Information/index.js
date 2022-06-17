@@ -8,6 +8,7 @@ import ExitModal from "../../components/Modals/ExitModal";
 import { setShowExitModal, setShowHelpModal } from "../../store/Home/actions";
 import {
   selectFontIncrease,
+  selectHighContrast,
   selectShowConfigModal,
   selectShowExitModal,
 } from "../../store/Home/selectors";
@@ -34,6 +35,7 @@ const Information = () => {
 
   const pages = useSelector(selectInformation);
   const fontIncrease = useSelector(selectFontIncrease);
+  const highContrast = useSelector(selectHighContrast);
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
   function goMain() {
