@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { COLORS } from "../../../utils/colors";
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -11,7 +10,8 @@ export const Button = styled.div`
   border-radius: 10px;
   color: ${(props) => props.textColor || "black"};
   font-weight: bold;
-  background-color: ${(props) => props.backgroundColor || COLORS.bg_secondary};
+  background-color: ${(props) =>
+    props.backgroundColor || props.theme.bg_secondary};
   font-size: ${(props) => props.fontSize || "12px"}
   text-align: center;
   padding: 10px;

@@ -35,7 +35,6 @@ const Information = () => {
 
   const pages = useSelector(selectInformation);
   const fontIncrease = useSelector(selectFontIncrease);
-  const highContrast = useSelector(selectHighContrast);
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
   function goMain() {

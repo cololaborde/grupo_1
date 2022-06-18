@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { COLORS } from "../../utils/colors";
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -8,7 +7,7 @@ export const Wrapper = styled.div`
   height: auto;
   min-height: 100vh;
   width: 100vw;
-  background-color: ${COLORS.bg};
+  background-color: ${(props) => props.theme.bg};
 `;
 
 export const Container = styled.div`
@@ -23,7 +22,7 @@ export const Container = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.bg_primary};
+  background-color: ${(props) => props.theme.bg_primary};
 `;
 
 export const TitleContainer = styled.div`
@@ -37,7 +36,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.p`
   font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || COLORS.text};
+  color: ${(props) => props.theme.text};
   font-weight: bold;
   font-family: Arial;
 `;
@@ -60,7 +59,7 @@ export const Text = styled.p`
   font-size: ${(props) => props.fontSize || "20px"};
   font-weight: bold;
   font-family: Arial;
-  color: ${(props) => props.color || COLORS.text};
+  color: ${(props) => props.theme.text};
   float: left;
   margin-top: auto;
   margin-bottom: auto;
@@ -102,7 +101,7 @@ export const InfoContainer = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.bg_primary};
+  background-color: ${(props) => props.theme.bg_primary};
 `;
 
 export const ButtonContainer = styled.div`
@@ -112,5 +111,5 @@ export const ButtonContainer = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.bg_primary};
+  background-color: ${(props) => props.theme.bg_primary};
 `;

@@ -9,12 +9,13 @@ import HelpModal from "../../components/Modals/HelpModal";
 import { setShowExitModal } from "../../store/Home/actions";
 import {
   selectFontIncrease,
+  selectHighContrast,
   selectShowConfigModal,
   selectShowExitModal,
   selectShowHelpModal,
 } from "../../store/Home/selectors";
 import { selectQuestions } from "../../store/Question/selectors";
-import { COLORS } from "../../utils/colors";
+import { theme } from "../../theme";
 import {
   Wrapper,
   MainContainer,
@@ -33,11 +34,13 @@ import {
   CounterContainer,
 } from "./styled";
 
-const Question = () => {
+const Question = (props) => {
   const dispatch = useDispatch();
 
   const questions = useSelector(selectQuestions);
   const fontIncrease = useSelector(selectFontIncrease);
+  const highContrast = useSelector(selectHighContrast);
+  const current_theme = theme(highContrast);
   const showConfigModal = useSelector(selectShowConfigModal);
   const showHelpModal = useSelector(selectShowHelpModal);
   const showExitModal = useSelector(selectShowExitModal);
@@ -140,8 +143,8 @@ const Question = () => {
               />
               <GenericButton
                 text={"Más información"}
-                textColor={COLORS.text}
-                backgroundColor={COLORS.bg_secondary}
+                textColor={current_theme.text}
+                backgroundColor={current_theme.bg_secondary}
               />
             </ResultButtons>
             <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>

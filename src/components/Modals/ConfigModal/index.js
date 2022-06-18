@@ -27,7 +27,7 @@ import {
   selectFontIncrease,
   selectHighContrast,
 } from "../../../store/Home/selectors";
-import { COLORS } from "../../../utils/colors";
+import { theme } from "../../../theme";
 
 const ConfigModal = (props) => {
   if (!props.show) return null;
@@ -35,6 +35,7 @@ const ConfigModal = (props) => {
   const dispatch = useDispatch();
   const fontIncrease = useSelector(selectFontIncrease);
   const highContrast = useSelector(selectHighContrast);
+  const current_theme = theme(highContrast);
 
   const handleInputChange = (name, value) => {
     switch (name) {
@@ -74,7 +75,7 @@ const ConfigModal = (props) => {
         <ButtonsContainer>
           <GenericButton
             text={"Guardar"}
-            backgroundColor={COLORS.btn_primary}
+            backgroundColor={current_theme.btn_primary}
             onSubmit={() => {
               dispatch(setShowConfigModal(false));
               dispatch(saveFontIncrease(fontIncrease));
@@ -83,7 +84,7 @@ const ConfigModal = (props) => {
           />
           <GenericButton
             text={"Cancelar"}
-            backgroundColor={COLORS.btn_error}
+            backgroundColor={current_theme.btn_error}
             onSubmit={() => {
               dispatch(setShowConfigModal(false));
               dispatch(restartFontIncrease());
@@ -92,7 +93,7 @@ const ConfigModal = (props) => {
           />
           <GenericButton
             text={"Restablecer"}
-            backgroundColor={COLORS.btn_secondary}
+            backgroundColor={current_theme.btn_secondary}
             onSubmit={() => {
               dispatch(restartFontIncrease());
               dispatch(restartHighContrast());

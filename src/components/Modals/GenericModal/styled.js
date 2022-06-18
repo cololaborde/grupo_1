@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Close } from "@material-ui/icons";
-import { COLORS } from "../../../utils/colors";
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -37,7 +36,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  color: ${COLORS.bg_primary};
+  color: ${(props) => props.theme.bg_primary};
 `;
 
 export const ModalBg = styled.div`
@@ -52,7 +51,7 @@ export const TopBar = styled.div`
   width: 100%;
   align-items: center;
   flex-direction: row;
-  background-color: ${COLORS.bg_primary};
+  background-color: ${(props) => props.theme.bg_primary};
 `;
 export const TitleContainer = styled.div`
   padding: 15px;
@@ -70,7 +69,7 @@ export const Title = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${COLORS.text};
+  color: ${(props) => props.theme.text};
 `;
 export const IconContainer = styled.div`
   display: flex;
@@ -82,5 +81,5 @@ export const IconContainer = styled.div`
 `;
 
 export const CloseIcon = styled(Close)`
-  color: ${COLORS.text};
+  color: ${(props) => props.theme.text};
 `;
