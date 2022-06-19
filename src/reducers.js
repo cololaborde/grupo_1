@@ -8,6 +8,7 @@ import history from "./utils/history";
 import homeReducer from "./store/Home/reducer";
 import questionReducer from "./store/Question/reducer";
 import informationReducer from "./store/Information/reducer";
+import introReducer from "./store/Intro/reducer";
 
 /*
 Merges the main reducer with the router state and dynamically injected reducers
@@ -18,6 +19,7 @@ export default function createReducer(injectedReducers = {}) {
     home: homeReducer,
     question: questionReducer,
     information: informationReducer,
+    intro: introReducer,
     router: connectRouter(history),
     ...injectedReducers,
   });

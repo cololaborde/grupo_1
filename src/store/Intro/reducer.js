@@ -2,6 +2,6 @@
 import produce from "immer/dist/immer";
 import { initialState } from "./initialState";
 
-const informationReducer = (state = initialState, action) =>
+const introReducer = (state = initialState, action) =>
   produce(state, (draft) => {});
-export default informationReducer;
+export default introReducer;
