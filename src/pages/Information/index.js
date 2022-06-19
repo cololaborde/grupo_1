@@ -5,7 +5,7 @@ import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
-import { setShowExitModal, setShowHelpModal } from "../../store/Home/actions";
+import { setShowExitModal } from "../../store/Home/actions";
 import {
   selectFontIncrease,
   selectShowConfigModal,
