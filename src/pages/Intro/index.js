@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GenericButton from "../../components/Buttons/GenericButton";
-import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SettingsButton from "../../components/Buttons/SettingsButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import { goToHome, setShowConfigModal } from "../../store/Home/actions";
