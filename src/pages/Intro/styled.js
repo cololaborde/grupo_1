@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { COLORS } from "../../utils/colors";
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -9,7 +8,7 @@ export const Wrapper = styled.div`
   min-height: 100vh;
   max-height: 200vh;
   width: 100vw;
-  background-color: ${COLORS.softWhite};
+  background-color: ${(props) => props.theme.bg};
 `;
 
 export const MainContainer = styled.div`
@@ -26,7 +25,7 @@ export const MainContainer = styled.div`
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  background-color: ${COLORS.lightGray};
+  background-color: ${(props) => props.theme.bg_primary};
 `;
 
 export const TitleContainer = styled.div`
@@ -45,7 +44,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.p`
   font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || props.theme.text};
   font-weight: bold;
   font-family: Arial;
   margin: 15px;
@@ -59,7 +58,7 @@ export const StartButtonContainer = styled.div`
 
 export const Content = styled.p`
   font-size: ${(props) => props.fontSize || "15px"};
-  color: ${(props) => props.color || COLORS.black};
+  color: ${(props) => props.color || props.theme.text};
   font-family: Arial;
   margin: 15px;
   padding: 20px;

@@ -8,7 +8,6 @@ import ExitModal from "../../components/Modals/ExitModal";
 import { setShowExitModal } from "../../store/Home/actions";
 import {
   selectFontIncrease,
-  selectHighContrast,
   selectShowConfigModal,
   selectShowExitModal,
 } from "../../store/Home/selectors";
