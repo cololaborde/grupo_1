@@ -36,7 +36,6 @@ const Home = () => {
         break;
     }
   };
-  console.log(Number(fontIncrease) + 20);
   return (
     <Wrapper>
       <Container>
