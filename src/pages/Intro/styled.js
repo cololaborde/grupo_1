@@ -42,7 +42,7 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const Title = styled.p`
+export const Title = styled.h1`
   font-size: ${(props) => props.fontSize || "40px"};
   color: ${(props) => props.color || props.theme.text};
   font-weight: bold;

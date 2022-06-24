@@ -6,7 +6,11 @@ import { Wrapper } from "./styled";
 const SearchButton = (props) => {
   return (
     <Wrapper>
-      <IconButton onSubmit={props.onSubmit} icon={<Search />} />
+      <IconButton
+        onSubmit={props.onSubmit}
+        icon={<Search />}
+        ariaLabel="Buscar"
+      />
     </Wrapper>
   );
 };

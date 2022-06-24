@@ -59,7 +59,11 @@ const Home = () => {
               {"Tamaño del texto"}
             </Text>
             <RangeBarContainer>
-              <RangeBar value={fontIncrease} onChange={handleInputChange} />
+              <RangeBar
+                value={fontIncrease}
+                onChange={handleInputChange}
+                label="Tamaño del texto"
+              />
             </RangeBarContainer>
           </LineContainer>
           <LineContainer>
@@ -67,7 +71,11 @@ const Home = () => {
               {"Contraste alto"}
             </Text>
             <CheckboxContainer>
-              <Checkbox value={highContrast} onChange={handleInputChange} />
+              <Checkbox
+                value={highContrast}
+                onChange={handleInputChange}
+                label="Contraste Alto"
+              />
             </CheckboxContainer>
           </LineContainer>
         </ConfigContainer>

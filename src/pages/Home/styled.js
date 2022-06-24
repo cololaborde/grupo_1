@@ -34,7 +34,7 @@ export const TitleContainer = styled.div`
   margin-right: 15px;
 `;
 
-export const Title = styled.p`
+export const Title = styled.h1`
   font-size: ${(props) => props.fontSize || "40px"};
   color: ${(props) => props.theme.text};
   font-weight: bold;

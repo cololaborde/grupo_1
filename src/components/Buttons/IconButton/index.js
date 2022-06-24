@@ -8,6 +8,7 @@ const IconButton = (props) => {
         onClick={props.onSubmit}
         textColor={props.textColor}
         backgroundColor={props.backgroundColor}
+        aria-label={props.ariaLabel}
       >
         {props.icon}
       </Button>

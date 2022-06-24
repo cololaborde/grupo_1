@@ -48,7 +48,7 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const Title = styled.p`
+export const Title = styled.h1`
   font-size: ${(props) => props.fontSize || "40px"};
   color: ${(props) => props.color || props.theme.text};
   font-weight: bold;
@@ -66,11 +66,14 @@ export const AnswersContainer = styled.div`
   align-items: center;
 `;
 
-export const Answer = styled.div`
+export const Answer = styled.button`
   text-align: center;
   margin: 0 50px auto;
   height: auto;
   width: 20%;
+  border-style: none;
+  background: none;
+  padding: 0px;
   @media (max-width: 767px) {
     margin: 0 10px auto;
     width: 40%;

@@ -27,6 +27,7 @@ import {
   NavText,
   ContentContainer,
   Content,
+  ContentTitle,
 } from "./styled";
 
 const Information = () => {
@@ -77,7 +78,7 @@ const Information = () => {
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) + "px"}>Información</Title>
         </TitleContainer>
-        <SearchContainer>
+        <SearchContainer role="search">
           <SearchBar type="text" name="searchbar" placeholder="Buscar" />
           <SearchButton />
         </SearchContainer>
@@ -86,7 +87,7 @@ const Information = () => {
             fontSize={15 + Number(fontIncrease) + "px"}
             onClick={() => goMain()}
           >
-            {" > Información"}
+            {" - Información"}
           </NavText>
           {navPages.map((page, index) => (
             <NavText
@@ -94,7 +95,7 @@ const Information = () => {
               fontSize={15 + Number(fontIncrease) + "px"}
               onClick={() => goBack(index)}
             >
-              {" >"} {page}
+              {" -"} {page}
             </NavText>
           ))}
         </NavContainer>
@@ -116,7 +117,7 @@ const Information = () => {
           </CardsContainer>
         ) : (
           <ContentContainer>
-            <Title>{currentSection.name}</Title>
+            <ContentTitle>{currentSection.name}</ContentTitle>
             {currentSection.content.map((line, index) => (
               <Content key={index} fontSize={15 + Number(fontIncrease) + "px"}>
                 {line}

@@ -5,15 +5,18 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   height: 100%;
   border-radius: 30px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
   font-weight: bold;
   pointer-events: ${(props) => (props.disabled ? "none" : "")};
   color: ${(props) => props.textColor || props.theme.btn_text};
   background-color: ${(props) =>
     props.backgroundColor || props.theme.btn_primary};
-  font-size: ${(props) => props.fontSize || "12px"}
+  font-size: ${(props) => props.fontSize || "12px"};
   text-align: center;
   padding: 10px;
   margin: 10px;

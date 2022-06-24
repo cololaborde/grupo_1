@@ -61,7 +61,7 @@ export const TitleContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Title = styled.div`
+export const Title = styled.h1`
   width: 100%;
   font-size: 1.25rem;
   font-weight: bold;
@@ -71,13 +71,15 @@ export const Title = styled.div`
   text-overflow: ellipsis;
   color: ${(props) => props.theme.text};
 `;
-export const IconContainer = styled.div`
+export const IconContainer = styled.button`
   display: flex;
   cursor: pointer;
   right: 0;
   margin-left: auto;
   padding-right: 10px;
   text-align: right;
+  border-style: none;
+  background: none;
 `;
 
 export const CloseIcon = styled(Close)`

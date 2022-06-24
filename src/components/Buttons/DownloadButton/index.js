@@ -6,7 +6,11 @@ import DownloadIcon from "@mui/icons-material/Download";
 const DownloadButton = (props) => {
   return (
     <Wrapper>
-      <IconButton onSubmit={props.onSubmit} icon={<DownloadIcon />} />
+      <IconButton
+        onSubmit={props.onSubmit}
+        icon={<DownloadIcon />}
+        ariaLabel="Descargar"
+      />
     </Wrapper>
   );
 };

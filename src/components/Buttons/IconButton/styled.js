@@ -5,14 +5,17 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   height: 100%;
   border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
   color: ${(props) => props.textColor || "black"};
   font-weight: bold;
   background-color: ${(props) =>
     props.backgroundColor || props.theme.bg_secondary};
-  font-size: ${(props) => props.fontSize || "12px"}
+  font-size: ${(props) => props.fontSize || "12px"};
   text-align: center;
   padding: 10px;
   margin: 5px;

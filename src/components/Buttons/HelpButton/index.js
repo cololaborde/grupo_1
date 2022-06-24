@@ -6,7 +6,11 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 const HelpButton = (props) => {
   return (
     <Wrapper>
-      <IconButton onSubmit={props.onSubmit} icon={<QuestionMarkIcon />} />
+      <IconButton
+        onSubmit={props.onSubmit}
+        icon={<QuestionMarkIcon />}
+        ariaLabel="Ayuda"
+      />
     </Wrapper>
   );
 };

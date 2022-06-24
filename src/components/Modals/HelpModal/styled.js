@@ -12,7 +12,7 @@ export const TitleContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-export const Title = styled.div`
+export const Title = styled.h1`
   font-size: ${(props) => props.fontSize || "24px"};
   color: ${(props) => props.textColor || "black"};
   font-weight: bold;

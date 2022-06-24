@@ -6,7 +6,11 @@ import { Menu } from "@material-ui/icons";
 const MenuButton = (props) => {
   return (
     <Wrapper>
-      <IconButton onSubmit={props.onSubmit} icon={<Menu />} />
+      <IconButton
+        onSubmit={props.onSubmit}
+        icon={<Menu />}
+        ariaLabel="Menu desplegable"
+      />
     </Wrapper>
   );
 };

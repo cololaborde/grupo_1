@@ -20,7 +20,7 @@ const GenericModal = (props) => {
             <TitleContainer>
               <Title>{props.title}</Title>
             </TitleContainer>
-            <IconContainer onClick={props.closeAction}>
+            <IconContainer onClick={props.closeAction} aria-label="Cerrar">
               <CloseIcon />
             </IconContainer>
           </TopBar>

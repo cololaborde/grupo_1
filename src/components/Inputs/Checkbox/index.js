@@ -16,7 +16,10 @@ const Checkbox = (props) => {
           name="highContrastCheckbox"
           value="Paneer"
           checked={isChecked}
+          aria-checked={isChecked}
           onChange={handleOnChange}
+          role="checkbox"
+          aria-label={props.label}
         />
       </div>
     </div>

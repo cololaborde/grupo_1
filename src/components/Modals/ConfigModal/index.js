@@ -56,10 +56,16 @@ const ConfigModal = (props) => {
       <Container>
         <ConfigContainer>
           <TextContainer>
-            <Text fontSize={15 + Number(fontIncrease) + "px"}>
+            <Text
+              fontSize={15 + Number(fontIncrease) + "px"}
+              label="Tamaño del texto"
+            >
               {"Tamaño del texto"}
             </Text>
-            <Text fontSize={15 + Number(fontIncrease) + "px"}>
+            <Text
+              fontSize={15 + Number(fontIncrease) + "px"}
+              label="Contraste alto"
+            >
               {"Contraste alto"}
             </Text>
           </TextContainer>

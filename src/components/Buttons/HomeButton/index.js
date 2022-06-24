@@ -6,7 +6,11 @@ import { Home } from "@material-ui/icons";
 const HomeButton = (props) => {
   return (
     <Wrapper>
-      <IconButton onSubmit={props.onSubmit} icon={<Home />} />
+      <IconButton
+        onSubmit={props.onSubmit}
+        icon={<Home />}
+        ariaLabel="Inicio"
+      />
     </Wrapper>
   );
 };
