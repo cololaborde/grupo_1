@@ -86,6 +86,14 @@ const Question = (props) => {
                   ? setSelectedAnswer(currentQuestion.answers[index])
                   : null
               }
+              selected={
+                selectedAnswer !== null
+                  ? selectedAnswer.title ===
+                    currentQuestion.answers[index].title
+                    ? true
+                    : false
+                  : false
+              }
             >
               <AnswerTitle
                 color={
@@ -96,14 +104,6 @@ const Question = (props) => {
                         : "red"
                       : "black"
                     : "black"
-                }
-                underline={
-                  selectedAnswer !== null
-                    ? selectedAnswer.title ===
-                      currentQuestion.answers[index].title
-                      ? true
-                      : false
-                    : false
                 }
                 fontSize={20 + Number(fontIncrease) * 2 + "px"}
               >
@@ -116,8 +116,6 @@ const Question = (props) => {
         {!answered && (
           <SendButtonContainer>
             <GenericButton
-              textColor={selectedAnswer === null ? "#666666" : ""}
-              backgroundColor={selectedAnswer === null ? "#a0a0a0" : ""}
               disabled={selectedAnswer === null}
               text={"Enviar respuesta"}
               onSubmit={() => setAnswered(true)}

@@ -78,12 +78,13 @@ export const Answer = styled.button`
     margin: 0 10px auto;
     width: 40%;
   }
+  ${(props) => (props.selected ? "border: 5px solid green;" : "")}
   &:hover {
     cursor: pointer;
     transform: translateY(-3px);
   }
   &:focus {
-    border: 2px solid black;
+    border: 3px solid ${(props) => (props.selected ? "green" : "black")};
     outline-style: solid;
     outline-color: white;
     outline-width: medium;
@@ -94,8 +95,6 @@ export const AnswerTitle = styled.div`
   font-size: ${(props) => props.fontSize || "20px"};
   font-family: Arial;
   color: ${(props) => props.color || props.theme.text};
-  text-decoration: ${(props) =>
-    props.underline ? "underline" : "none" || "none"};
 `;
 
 export const AnswerImage = styled.img`

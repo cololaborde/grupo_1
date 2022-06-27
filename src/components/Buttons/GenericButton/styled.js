@@ -37,4 +37,7 @@ export const Button = styled.button`
     outline-color: white;
     outline-width: medium;
   }
+  &:disabled {
+    opacity: 50%;
+  }
 `;
