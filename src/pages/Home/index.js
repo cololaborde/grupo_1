@@ -20,7 +20,7 @@ import {
   ConfigContainer,
   LineContainer,
   Text,
-  RangeBarContainer,
+  SpinbuttonContainer,
   CheckboxContainer,
   InfoContainer,
   InfoButtonContainer,
@@ -29,6 +29,7 @@ import {
   selectFontIncrease,
   selectHighContrast,
 } from "../../store/Home/selectors";
+import Spinbutton from "../../components/Inputs/Spinbutton";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const Home = () => {
 
   const handleInputChange = (name, value) => {
     switch (name) {
-      case "fontSizeRange":
+      case "fontSizeSpinbutton":
         dispatch(setFontIncrease(value));
         break;
       case "highContrastCheckbox":
@@ -58,23 +59,25 @@ const Home = () => {
             <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
               {"Tamaño del texto"}
             </Text>
-            <RangeBarContainer>
-              <RangeBar
+            <SpinbuttonContainer>
+              <Spinbutton
                 value={fontIncrease}
                 onChange={handleInputChange}
                 label="Tamaño del texto"
+                fontSize={20 + Number(fontIncrease) * 2 + "px"}
               />
-            </RangeBarContainer>
+            </SpinbuttonContainer>
           </LineContainer>
           <LineContainer>
             <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
               {"Contraste alto"}
             </Text>
-            <CheckboxContainer>
+            <CheckboxContainer height={26 + Number(fontIncrease) * 2 + "px"}>
               <Checkbox
                 value={highContrast}
                 onChange={handleInputChange}
                 label="Contraste Alto"
+                scale={(15 + Number(fontIncrease) * 2) / 10 + ""}
               />
             </CheckboxContainer>
           </LineContainer>

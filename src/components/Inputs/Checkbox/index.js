@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CheckboxInput, Container } from "./styled";
 
 const Checkbox = (props) => {
   const [isChecked, setIsChecked] = useState(props.value);
@@ -8,21 +9,20 @@ const Checkbox = (props) => {
   };
 
   return (
-    <div className="App">
-      <div className="topping">
-        <input
-          type="checkbox"
-          id="topping"
-          name="highContrastCheckbox"
-          value="Paneer"
-          checked={isChecked}
-          aria-checked={isChecked}
-          onChange={handleOnChange}
-          role="checkbox"
-          aria-label={props.label}
-        />
-      </div>
-    </div>
+    <Container className="topping">
+      <CheckboxInput
+        type="checkbox"
+        id="topping"
+        name="highContrastCheckbox"
+        value="Paneer"
+        checked={isChecked}
+        aria-checked={isChecked}
+        onChange={handleOnChange}
+        role="checkbox"
+        aria-label={props.label}
+        scale={props.scale}
+      />
+    </Container>
   );
 };
 

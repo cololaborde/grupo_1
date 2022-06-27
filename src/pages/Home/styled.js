@@ -61,26 +61,33 @@ export const Text = styled.p`
   font-family: Arial;
   color: ${(props) => props.theme.text};
   float: left;
-  margin-top: auto;
+  margin-top: 3px;
   margin-bottom: auto;
   margin-left: 30px;
   max-width: 50%;
+  height: 100%;
 `;
 
 export const CheckboxContainer = styled.div`
   float: right;
-  margin-top: auto;
+  margin-top: 3px;
   margin-bottom: auto;
   margin-right: 30px;
-  padding-right: 50px;
+  min-width: 80px;
+  display: flex;
+  justify-content: center;
   max-width: 50%;
+  height: ${(props) => props.height || "20px"};
 `;
 
-export const RangeBarContainer = styled.div`
+export const SpinbuttonContainer = styled.div`
   float: right;
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 30px;
+  min-width: 80px;
+  display: flex;
+  justify-content: center;
   max-width: 50%;
 `;
 
@@ -105,7 +112,7 @@ export const InfoContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  margin-top: 10%;
+  margin-top: 4%;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
