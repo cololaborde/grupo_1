@@ -82,6 +82,12 @@ export const Answer = styled.button`
     cursor: pointer;
     transform: translateY(-3px);
   }
+  &:focus {
+    border: 2px solid black;
+    outline-style: solid;
+    outline-color: white;
+    outline-width: medium;
+  }
 `;
 
 export const AnswerTitle = styled.div`

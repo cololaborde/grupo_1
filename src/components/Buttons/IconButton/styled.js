@@ -31,4 +31,10 @@ export const Button = styled.button`
     transform: translateY(-2px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
+  &:focus {
+    border: 2px solid black;
+    outline-style: solid;
+    outline-color: white;
+    outline-width: medium;
+  }
 `;
