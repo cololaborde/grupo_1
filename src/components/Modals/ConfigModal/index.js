@@ -12,15 +12,13 @@ import {
 import GenericModal from "../GenericModal";
 import {
   ConfigContainer,
-  TextContainer,
   Text,
-  InputsContainer,
-  RangeBarContainer,
   CheckboxContainer,
   ButtonsContainer,
   Container,
+  LineContainer,
+  SpinbuttonContainer,
 } from "./styled";
-import RangeBar from "../../Inputs/RangeBar";
 import Checkbox from "../../Inputs/Checkbox";
 import GenericButton from "../../Buttons/GenericButton";
 import {
@@ -28,6 +26,7 @@ import {
   selectHighContrast,
 } from "../../../store/Home/selectors";
 import { theme } from "../../../theme";
+import Spinbutton from "../../Inputs/Spinbutton";
 
 const ConfigModal = (props) => {
   if (!props.show) return null;
@@ -39,7 +38,7 @@ const ConfigModal = (props) => {
 
   const handleInputChange = (name, value) => {
     switch (name) {
-      case "fontSizeRange":
+      case "fontSizeSpinbutton":
         dispatch(setFontIncrease(value));
         break;
       case "highContrastCheckbox":
@@ -55,28 +54,32 @@ const ConfigModal = (props) => {
     >
       <Container>
         <ConfigContainer>
-          <TextContainer>
-            <Text
-              fontSize={15 + Number(fontIncrease) + "px"}
-              label="Tamaño del texto"
-            >
+          <LineContainer>
+            <Text fontSize={15 + Number(fontIncrease) * 2 + "px"}>
               {"Tamaño del texto"}
             </Text>
-            <Text
-              fontSize={15 + Number(fontIncrease) + "px"}
-              label="Contraste alto"
-            >
+            <SpinbuttonContainer>
+              <Spinbutton
+                value={fontIncrease}
+                onChange={handleInputChange}
+                label="Tamaño del texto"
+                fontSize={15 + Number(fontIncrease) * 2 + "px"}
+              />
+            </SpinbuttonContainer>
+          </LineContainer>
+          <LineContainer>
+            <Text fontSize={15 + Number(fontIncrease) * 2 + "px"}>
               {"Contraste alto"}
             </Text>
-          </TextContainer>
-          <InputsContainer>
-            <RangeBarContainer>
-              <RangeBar value={fontIncrease} onChange={handleInputChange} />
-            </RangeBarContainer>
-            <CheckboxContainer>
-              <Checkbox value={highContrast} onChange={handleInputChange} />
+            <CheckboxContainer height={26 + Number(fontIncrease) * 2 + "px"}>
+              <Checkbox
+                value={highContrast}
+                onChange={handleInputChange}
+                label="Contraste Alto"
+                scale={(10 + Number(fontIncrease) * 2) / 10 + ""}
+              />
             </CheckboxContainer>
-          </InputsContainer>
+          </LineContainer>
         </ConfigContainer>
         <ButtonsContainer>
           <GenericButton
