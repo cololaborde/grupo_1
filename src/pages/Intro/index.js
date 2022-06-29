@@ -35,7 +35,13 @@ const Intro = () => {
         </TitleContainer>
         <MenuContainer>
           <SettingsButton
-            onSubmit={() => dispatch(setShowConfigModal(true))}
+            onSubmit={() => {
+              dispatch(setShowConfigModal(true));
+              document
+                .getElementById("option-modal")
+                .querySelector("#close-icon")
+                .focus();
+            }}
             hidden={showConfigModal}
           />
         </MenuContainer>

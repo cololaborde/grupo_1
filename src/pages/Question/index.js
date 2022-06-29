@@ -58,6 +58,11 @@ const Question = (props) => {
     }
   }, [index]);
 
+  const showExitModalConst = () => {
+    dispatch(setShowExitModal(true));
+    document.getElementById("exit-modal").querySelector("#close-icon").focus();
+  };
+
   return (
     <Wrapper>
       <ConfigModal show={showConfigModal} />
@@ -69,7 +74,7 @@ const Question = (props) => {
       <ExitModal show={showExitModal} />
       <MainContainer>
         <BackContainer>
-          <BackButton onSubmit={() => dispatch(setShowExitModal(true))} />
+          <BackButton onSubmit={() => showExitModalConst()} />
         </BackContainer>
         <HamburguerMenu hasHelp="true" />
         <TitleContainer>

@@ -11,13 +11,13 @@ import {
 } from "./styled";
 
 const HelpModal = (props) => {
-  if (!props.show) return null;
-
   const dispatch = useDispatch();
   return (
     <GenericModal
       title={"Ayuda"}
       closeAction={() => dispatch(setShowHelpModal(false))}
+      show={props.show}
+      modalId="help-modal"
     >
       <Container>
         <TitleContainer>

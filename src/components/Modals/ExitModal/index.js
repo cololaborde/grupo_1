@@ -9,7 +9,6 @@ import { theme } from "../../../theme";
 import { selectHighContrast } from "../../../store/Home/selectors";
 
 const ExitModal = (props) => {
-  if (!props.show) return null;
   const dispatch = useDispatch();
   const highContrast = useSelector(selectHighContrast);
   const current_theme = theme(highContrast);
@@ -17,6 +16,8 @@ const ExitModal = (props) => {
     <GenericModal
       title={"Salir"}
       closeAction={() => dispatch(setShowExitModal(false))}
+      show={props.show}
+      modalId="exit-modal"
     >
       <TextContainer>
         <Text>{"¿Desea volver al menú principal?"}</Text>
@@ -30,6 +31,7 @@ const ExitModal = (props) => {
               dispatch(goToHome);
               dispatch(setShowExitModal(false));
             }}
+            hidden={!props.show}
           />
         </ButtonWrapper>
         <ButtonWrapper>
@@ -37,6 +39,7 @@ const ExitModal = (props) => {
             text={"No"}
             backgroundColor={current_theme.btn_error}
             onSubmit={() => dispatch(setShowExitModal(false))}
+            hidden={!props.show}
           />
         </ButtonWrapper>
       </ButtonsContainer>

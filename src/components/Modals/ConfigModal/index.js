@@ -29,8 +29,6 @@ import { theme } from "../../../theme";
 import Spinbutton from "../../Inputs/Spinbutton";
 
 const ConfigModal = (props) => {
-  if (!props.show) return null;
-
   const dispatch = useDispatch();
   const fontIncrease = useSelector(selectFontIncrease);
   const highContrast = useSelector(selectHighContrast);
@@ -51,6 +49,8 @@ const ConfigModal = (props) => {
     <GenericModal
       title={"Opciones"}
       closeAction={() => dispatch(setShowConfigModal(false))}
+      show={props.show}
+      modalId="option-modal"
     >
       <Container>
         <ConfigContainer>
@@ -64,6 +64,7 @@ const ConfigModal = (props) => {
                 onChange={handleInputChange}
                 label="Tamaño del texto"
                 fontSize={15 + Number(fontIncrease) * 2 + "px"}
+                hidden={!props.show}
               />
             </SpinbuttonContainer>
           </LineContainer>
@@ -77,6 +78,7 @@ const ConfigModal = (props) => {
                 onChange={handleInputChange}
                 label="Contraste Alto"
                 scale={(10 + Number(fontIncrease) * 2) / 10 + ""}
+                hidden={!props.show}
               />
             </CheckboxContainer>
           </LineContainer>
@@ -90,6 +92,7 @@ const ConfigModal = (props) => {
               dispatch(saveFontIncrease(fontIncrease));
               dispatch(saveHighContrast(highContrast));
             }}
+            hidden={!props.show}
           />
           <GenericButton
             text={"Cancelar"}
@@ -99,6 +102,7 @@ const ConfigModal = (props) => {
               dispatch(restartFontIncrease());
               dispatch(restartHighContrast());
             }}
+            hidden={!props.show}
           />
           <GenericButton
             text={"Restablecer"}
@@ -107,6 +111,7 @@ const ConfigModal = (props) => {
               dispatch(restartFontIncrease());
               dispatch(restartHighContrast());
             }}
+            hidden={!props.show}
           />
         </ButtonsContainer>
       </Container>

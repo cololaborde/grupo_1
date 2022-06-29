@@ -20,6 +20,8 @@ const Spinbutton = (props) => {
       step="1"
       aria-label={props.label}
       fontSize={props.fontSize}
+      aria-hidden={props.hidden | false}
+      tabIndex={props.hidden ? "-1" : ""}
     />
   );
 };

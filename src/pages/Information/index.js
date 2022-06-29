@@ -37,6 +37,15 @@ const Information = () => {
   const fontIncrease = useSelector(selectFontIncrease);
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
+
+  const showConfigModal = useSelector(selectShowConfigModal);
+  const showExitModal = useSelector(selectShowExitModal);
+
+  const showExitModalConst = () => {
+    dispatch(setShowExitModal(true));
+    document.getElementById("exit-modal").querySelector("#close-icon").focus();
+  };
+
   function goMain() {
     if (navPages.length > 0) {
       setNavPages([]);
@@ -56,8 +65,9 @@ const Information = () => {
       setCurrentSection(newSection);
     }
   }
-  const showConfigModal = useSelector(selectShowConfigModal);
-  const showExitModal = useSelector(selectShowExitModal);
+  function modalOpened() {
+    return showConfigModal || showExitModal;
+  }
   return (
     <Wrapper>
       <MainContainer>
@@ -70,22 +80,31 @@ const Information = () => {
                 ? goBack(navPages.length - 2)
                 : navPages.length == 1
                 ? goMain()
-                : dispatch(setShowExitModal(true))
+                : showExitModalConst()
             }
+            hidden={modalOpened()}
           />
         </BackContainer>
-        <HamburguerMenu />
+        <HamburguerMenu hidden={modalOpened()} />
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) + "px"}>Información</Title>
         </TitleContainer>
         <SearchContainer role="search">
-          <SearchBar type="text" name="searchbar" placeholder="Buscar" />
-          <SearchButton />
+          <SearchBar
+            type="text"
+            name="searchbar"
+            placeholder="Buscar"
+            aria-hidden={modalOpened() | false}
+            tabIndex={modalOpened() ? "-1" : ""}
+          />
+          <SearchButton hidden={modalOpened()} />
         </SearchContainer>
         <NavContainer>
           <NavText
             fontSize={15 + Number(fontIncrease) + "px"}
             onClick={() => goMain()}
+            aria-hidden={modalOpened() | false}
+            tabIndex={modalOpened() ? "-1" : ""}
           >
             {" - Información"}
           </NavText>
@@ -94,6 +113,8 @@ const Information = () => {
               key={index}
               fontSize={15 + Number(fontIncrease) + "px"}
               onClick={() => goBack(index)}
+              aria-hidden={modalOpened() | false}
+              tabIndex={modalOpened() ? "-1" : ""}
             >
               {" -"} {page}
             </NavText>
@@ -108,6 +129,8 @@ const Information = () => {
                   setNavPages(navPages.concat(page.name)),
                   setCurrentSection(page)
                 )}
+                aria-hidden={modalOpened() | false}
+                tabIndex={modalOpened() ? "-1" : ""}
               >
                 <CardText fontSize={20 + Number(fontIncrease) + "px"}>
                   {page.name}
