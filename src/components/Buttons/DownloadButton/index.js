@@ -10,6 +10,7 @@ const DownloadButton = (props) => {
         onSubmit={props.onSubmit}
         icon={<DownloadIcon />}
         ariaLabel="Descargar"
+        hidden={props.hidden}
       />
     </Wrapper>
   );

@@ -9,6 +9,9 @@ const IconButton = (props) => {
         textColor={props.textColor}
         backgroundColor={props.backgroundColor}
         aria-label={props.ariaLabel}
+        aria-hidden={props.hidden | false}
+        tabIndex={props.hidden ? "-1" : "0"}
+        id={props.ariaLabel}
       >
         {props.icon}
       </Button>

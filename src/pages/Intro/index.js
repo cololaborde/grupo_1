@@ -23,6 +23,7 @@ const Intro = () => {
   const fontIncrease = useSelector(selectFontIncrease);
   const showConfigModal = useSelector(selectShowConfigModal);
   const dispatch = useDispatch();
+
   return (
     <Wrapper>
       <ConfigModal show={showConfigModal} />
@@ -33,7 +34,10 @@ const Intro = () => {
           </Title>
         </TitleContainer>
         <MenuContainer>
-          <SettingsButton onSubmit={() => dispatch(setShowConfigModal(true))} />
+          <SettingsButton
+            onSubmit={() => dispatch(setShowConfigModal(true))}
+            hidden={showConfigModal}
+          />
         </MenuContainer>
         <Content fontSize={18 + Number(fontIncrease) + "px"}>
           {CONSTANTS.informationText}
@@ -42,6 +46,7 @@ const Intro = () => {
           <GenericButton
             text={"Comenzar"}
             onSubmit={() => dispatch(goToHome)}
+            hidden={showConfigModal}
           />
         </StartButtonContainer>
       </MainContainer>

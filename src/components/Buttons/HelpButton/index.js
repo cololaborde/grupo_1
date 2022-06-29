@@ -10,6 +10,7 @@ const HelpButton = (props) => {
         onSubmit={props.onSubmit}
         icon={<QuestionMarkIcon />}
         ariaLabel="Ayuda"
+        hidden={props.hidden}
       />
     </Wrapper>
   );

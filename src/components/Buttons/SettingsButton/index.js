@@ -10,6 +10,7 @@ const SettingsButton = (props) => {
         onSubmit={props.onSubmit}
         icon={<Settings />}
         ariaLabel="Opciones"
+        hidden={props.hidden}
       />
     </Wrapper>
   );

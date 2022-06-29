@@ -10,6 +10,7 @@ const MenuButton = (props) => {
         onSubmit={props.onSubmit}
         icon={<Menu />}
         ariaLabel="Menu desplegable"
+        hidden={props.hidden}
       />
     </Wrapper>
   );

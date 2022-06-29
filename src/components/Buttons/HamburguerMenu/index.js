@@ -21,23 +21,32 @@ const HamburguerMenu = (props) => {
   let custom_button;
   if (props.hasHelp) {
     custom_button = (
-      <HelpButton onSubmit={() => dispatch(setShowHelpModal(true))} />
+      <HelpButton
+        onSubmit={() => dispatch(setShowHelpModal(true))}
+        hidden={props.hidden}
+      />
     );
   } else {
-    custom_button = <DownloadButton onSubmit={props.onSubmit} />;
+    custom_button = (
+      <DownloadButton onSubmit={props.onSubmit} hidden={props.hidden} />
+    );
   }
   let menu;
   if (window.innerWidth < 1024) {
     menu = (
       <MenuContainer>
-        <MenuButton onSubmit={handleToggle} />
+        <MenuButton onSubmit={handleToggle} hidden={props.hidden} />
         {menuOpen ? (
           <HiddenContainer>
             {custom_button}
             <SettingsButton
               onSubmit={() => dispatch(setShowConfigModal(true))}
+              hidden={props.hidden}
             />
-            <HomeButton onSubmit={() => dispatch(setShowExitModal(true))} />
+            <HomeButton
+              onSubmit={() => dispatch(setShowExitModal(true))}
+              hidden={props.hidden}
+            />
           </HiddenContainer>
         ) : (
           ""
@@ -48,8 +57,14 @@ const HamburguerMenu = (props) => {
     menu = (
       <MenuContainer>
         {custom_button}
-        <SettingsButton onSubmit={() => dispatch(setShowConfigModal(true))} />
-        <HomeButton onSubmit={() => dispatch(setShowExitModal(true))} />
+        <SettingsButton
+          onSubmit={() => dispatch(setShowConfigModal(true))}
+          hidden={props.hidden}
+        />
+        <HomeButton
+          onSubmit={() => dispatch(setShowExitModal(true))}
+          hidden={props.hidden}
+        />
       </MenuContainer>
     );
   }

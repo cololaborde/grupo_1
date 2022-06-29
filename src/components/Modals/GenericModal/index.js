@@ -14,7 +14,7 @@ import {
 const GenericModal = (props) => {
   return (
     <Wrapper>
-      <Box>
+      <Box role="dialog" aria-modal="true" aria-label={props.title}>
         <Container>
           <TopBar>
             <TitleContainer>

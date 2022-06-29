@@ -10,6 +10,8 @@ const GenericButton = (props) => {
         fontSize={props.fontSize}
         backgroundColor={props.backgroundColor}
         onClick={props.onSubmit}
+        aria-hidden={props.hidden | false}
+        tabIndex={props.hidden ? "-1" : ""}
       >
         {" "}
         {props.text}

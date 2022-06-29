@@ -10,6 +10,7 @@ const HomeButton = (props) => {
         onSubmit={props.onSubmit}
         icon={<Home />}
         ariaLabel="Inicio"
+        hidden={props.hidden}
       />
     </Wrapper>
   );

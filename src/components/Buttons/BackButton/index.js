@@ -10,6 +10,7 @@ const BackButton = (props) => {
         onSubmit={props.onSubmit}
         icon={<ArrowBack />}
         ariaLabel="Retroceder"
+        hidden={props.hidden}
       />
     </Wrapper>
   );

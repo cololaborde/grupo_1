@@ -10,6 +10,7 @@ const SearchButton = (props) => {
         onSubmit={props.onSubmit}
         icon={<Search />}
         ariaLabel="Buscar"
+        hidden={props.hidden}
       />
     </Wrapper>
   );
