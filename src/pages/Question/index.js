@@ -40,6 +40,7 @@ import {
   CounterContainer,
   Text,
   ButtonsContainer,
+  FinalTextContainer,
 } from "./styled";
 
 const Question = () => {
@@ -148,13 +149,31 @@ const Question = () => {
           </AnswersContainer>
         ) : (
           <>
-            <Text fontSize={20 + Number(fontIncrease) + "px"}>
-              {"Resultado: " +
-                wellAnswered +
-                " correctas y  " +
-                (questions.length - wellAnswered) +
-                " incorrectas"}
-            </Text>
+            <FinalTextContainer>
+              <Text fontSize={20 + Number(fontIncrease) + "px"}>
+                {"Resultado: " + wellAnswered}
+              </Text>
+              <div style={{ marginLeft: "5px", marginRight: "5px" }}>
+                <Text
+                  color={"#1bd802"}
+                  fontSize={20 + Number(fontIncrease) + "px"}
+                >
+                  {" correctas "}
+                </Text>
+              </div>
+              <Text fontSize={20 + Number(fontIncrease) + "px"}>
+                {questions.length - wellAnswered}
+              </Text>
+              <div style={{ marginLeft: "5px", marginRight: "5px" }}>
+                <Text
+                  color={"#ff0000"}
+                  fontSize={20 + Number(fontIncrease) + "px"}
+                >
+                  {" incorrectas"}
+                </Text>
+              </div>
+            </FinalTextContainer>
+
             <ButtonsContainer>
               <GenericButton
                 text={"Inicio"}

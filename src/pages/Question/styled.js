@@ -155,7 +155,7 @@ export const CounterContainer = styled.div`
 export const Text = styled.p`
   font-size: ${(props) => props.fontSize || "20px"};
   font-family: Arial;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.color};
   margin-top: 3px;
   max-width: 50%;
   height: 100%;
@@ -166,4 +166,9 @@ export const ButtonsContainer = styled.div`
   flex-direction: row;
   bottom: 0;
   position: absolute;
+`;
+
+export const FinalTextContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
