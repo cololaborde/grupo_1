@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GenericButton from "../../components/Buttons/GenericButton";
 import SettingsButton from "../../components/Buttons/SettingsButton";
@@ -23,6 +23,21 @@ const Intro = () => {
   const fontIncrease = useSelector(selectFontIncrease);
   const showConfigModal = useSelector(selectShowConfigModal);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const keyDownHandler = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        dispatch(setShowConfigModal(false));
+      }
+    };
+
+    document.addEventListener("keydown", keyDownHandler);
+
+    return () => {
+      document.removeEventListener("keydown", keyDownHandler);
+    };
+  }, []);
 
   return (
     <Wrapper>

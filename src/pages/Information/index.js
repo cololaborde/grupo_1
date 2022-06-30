@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../../components/Buttons/BackButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
-import { setShowExitModal } from "../../store/Home/actions";
+import {
+  setShowConfigModal,
+  setShowExitModal,
+  setShowHelpModal,
+} from "../../store/Home/actions";
 import {
   selectFontIncrease,
   selectShowConfigModal,
@@ -68,6 +72,24 @@ const Information = () => {
   function modalOpened() {
     return showConfigModal || showExitModal;
   }
+
+  useEffect(() => {
+    const keyDownHandler = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        dispatch(setShowHelpModal(false));
+        dispatch(setShowExitModal(false));
+        dispatch(setShowConfigModal(false));
+      }
+    };
+
+    document.addEventListener("keydown", keyDownHandler);
+
+    return () => {
+      document.removeEventListener("keydown", keyDownHandler);
+    };
+  }, []);
+
   return (
     <Wrapper>
       <MainContainer>

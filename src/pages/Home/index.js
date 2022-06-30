@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GenericButton from "../../components/Buttons/GenericButton";
 import Checkbox from "../../components/Inputs/Checkbox";
-import RangeBar from "../../components/Inputs/RangeBar";
 import {
   goToInformation,
   goToQuestion,

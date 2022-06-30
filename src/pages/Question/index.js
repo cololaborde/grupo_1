@@ -6,7 +6,11 @@ import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
 import HelpModal from "../../components/Modals/HelpModal";
-import { setShowExitModal } from "../../store/Home/actions";
+import {
+  setShowConfigModal,
+  setShowExitModal,
+  setShowHelpModal,
+} from "../../store/Home/actions";
 import {
   selectFontIncrease,
   selectHighContrast,
@@ -34,7 +38,7 @@ import {
   CounterContainer,
 } from "./styled";
 
-const Question = (props) => {
+const Question = () => {
   const dispatch = useDispatch();
 
   const questions = useSelector(selectQuestions);
@@ -57,6 +61,23 @@ const Question = (props) => {
       setAnswered(false);
     }
   }, [index]);
+
+  useEffect(() => {
+    const keyDownHandler = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        dispatch(setShowHelpModal(false));
+        dispatch(setShowExitModal(false));
+        dispatch(setShowConfigModal(false));
+      }
+    };
+
+    document.addEventListener("keydown", keyDownHandler);
+
+    return () => {
+      document.removeEventListener("keydown", keyDownHandler);
+    };
+  }, []);
 
   const showExitModalConst = () => {
     dispatch(setShowExitModal(true));
