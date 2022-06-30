@@ -7,6 +7,8 @@ import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
 import HelpModal from "../../components/Modals/HelpModal";
 import {
+  goToHome,
+  goToInformation,
   setShowConfigModal,
   setShowExitModal,
   setShowHelpModal,
@@ -36,6 +38,8 @@ import {
   AnswerTitle,
   AnswerImage,
   CounterContainer,
+  Text,
+  ButtonsContainer,
 } from "./styled";
 
 const Question = () => {
@@ -53,6 +57,8 @@ const Question = () => {
   const [currentQuestion, setCurrentQuestion] = useState(questions[index]);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [answered, setAnswered] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const [wellAnswered, setWellAnswered] = useState(0);
 
   useEffect(() => {
     if (index < questions.length) {
@@ -100,58 +106,86 @@ const Question = () => {
         <HamburguerMenu hasHelp="true" />
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) + "px"}>
-            {currentQuestion.title}
+            {!finished ? currentQuestion.title : "Has llegado al final"}
           </Title>
         </TitleContainer>
-        <AnswersContainer>
-          {currentQuestion.answers.map((answ, index) => (
-            <Answer
-              key={index}
-              onClick={() =>
-                !answered
-                  ? setSelectedAnswer(currentQuestion.answers[index])
-                  : null
-              }
-              selected={
-                selectedAnswer !== null
-                  ? selectedAnswer.title ===
-                    currentQuestion.answers[index].title
-                    ? true
-                    : false
-                  : false
-              }
-            >
-              <AnswerTitle
-                color={
-                  answered
-                    ? selectedAnswer !== null
-                      ? answ.correct
-                        ? "green"
-                        : "red"
-                      : "black"
-                    : "black"
+        {!finished ? (
+          <AnswersContainer>
+            {currentQuestion.answers.map((answ, index) => (
+              <Answer
+                key={index}
+                onClick={() =>
+                  !answered
+                    ? setSelectedAnswer(currentQuestion.answers[index])
+                    : null
                 }
-                fontSize={20 + Number(fontIncrease) * 2 + "px"}
+                selected={
+                  selectedAnswer !== null
+                    ? selectedAnswer.title ===
+                      currentQuestion.answers[index].title
+                      ? true
+                      : false
+                    : false
+                }
               >
-                {answ.title}
-              </AnswerTitle>
-              <AnswerImage src={answ.img} />
-            </Answer>
-          ))}
-        </AnswersContainer>
-        {!answered && (
+                <AnswerTitle
+                  color={
+                    answered
+                      ? selectedAnswer !== null
+                        ? answ.correct
+                          ? "green"
+                          : "red"
+                        : "black"
+                      : "black"
+                  }
+                  fontSize={20 + Number(fontIncrease) * 2 + "px"}
+                >
+                  {answ.title}
+                </AnswerTitle>
+                <AnswerImage src={answ.img} />
+              </Answer>
+            ))}
+          </AnswersContainer>
+        ) : (
+          <>
+            <Text fontSize={20 + Number(fontIncrease) + "px"}>
+              {"Resultado: " +
+                wellAnswered +
+                " correctas y  " +
+                (questions.length - wellAnswered) +
+                " incorrectas"}
+            </Text>
+            <ButtonsContainer>
+              <GenericButton
+                text={"Inicio"}
+                onSubmit={() => dispatch(goToHome)}
+              />
+
+              <GenericButton
+                text={"Información"}
+                onSubmit={() => dispatch(goToInformation)}
+              />
+            </ButtonsContainer>
+          </>
+        )}
+        {!answered && !finished && (
           <SendButtonContainer>
             <GenericButton
               disabled={selectedAnswer === null}
               text={"Enviar respuesta"}
-              onSubmit={() => setAnswered(true)}
+              onSubmit={() => {
+                if (selectedAnswer.correct) setWellAnswered(wellAnswered + 1);
+                setAnswered(true);
+              }}
             />
           </SendButtonContainer>
         )}
-        <CounterContainer>
-          {"Pregunta: " + (Number(index) + 1) + "/" + questions.length}
-        </CounterContainer>
-        {answered && (
+        {!finished && (
+          <CounterContainer>
+            {"Pregunta: " + (Number(index) + 1) + "/" + questions.length}
+          </CounterContainer>
+        )}
+        {answered && !finished && (
           <ResultContainer>
             <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>
               {selectedAnswer.correct ? "Correcto" : "Incorrecto"}
@@ -162,7 +196,7 @@ const Question = () => {
                 onSubmit={() =>
                   index < questions.length - 1
                     ? setIndex(index + 1)
-                    : setIndex(index)
+                    : setFinished(true)
                 }
               />
               <GenericButton

@@ -151,3 +151,19 @@ export const CounterContainer = styled.div`
   bottom: 0;
   right: 0;
 `;
+
+export const Text = styled.p`
+  font-size: ${(props) => props.fontSize || "20px"};
+  font-family: Arial;
+  color: ${(props) => props.theme.text};
+  margin-top: 3px;
+  max-width: 50%;
+  height: 100%;
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  position: absolute;
+`;
