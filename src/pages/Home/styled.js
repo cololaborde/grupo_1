@@ -92,6 +92,8 @@ export const SpinbuttonContainer = styled.div`
 `;
 
 export const InfoButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
   margin: 10px;
   width: auto;
   min-width: 150px;

@@ -13,6 +13,10 @@ export const goToQuestion = () => {
   history.push("/pregunta");
 };
 
+export const goToIntro = () => {
+  history.push("/intro");
+};
+
 export const setFontIncrease = (increase) => {
   return {
     type: types.CHANGE_FONT_INCREASE,
