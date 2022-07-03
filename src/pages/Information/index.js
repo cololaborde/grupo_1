@@ -47,7 +47,9 @@ const Information = () => {
   const [navPages, setNavPages] = useState([]);
   const initialCheckState = () => {
     let checks = {};
-    for (let i = 0; i < currentSection.pages.length; i++) checks[i] = false;
+    if (currentSection.pages) {
+      for (let i = 0; i < currentSection.pages.length; i++) checks[i] = false;
+    }
     return checks;
   };
   const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
@@ -113,6 +115,12 @@ const Information = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (currentSection.pages) {
+      setDownloadIndex(initialCheckState());
+    }
+  }, [currentSection]);
+  console.log(downloadIndex);
   return (
     <Wrapper>
       <MainContainer>
@@ -188,7 +196,9 @@ const Information = () => {
                 </CardContainer>
                 {download && (
                   <Checkbox
+                    aria-label={"Seleccionar" + page.name}
                     color={"default"}
+                    checked={downloadIndex[index]}
                     onClick={() => {
                       setDownloadIndex({
                         ...downloadIndex,
@@ -210,9 +220,10 @@ const Information = () => {
             ))}
           </ContentContainer>
         )}
-        {download && (
+        {download && currentSection.pages && (
           <ButtonContainer>
             <GenericButton
+              label={"Comenzar descarga"}
               onSubmit={() => {
                 getDownloadData();
                 setDownloadIndex(initialCheckState());
