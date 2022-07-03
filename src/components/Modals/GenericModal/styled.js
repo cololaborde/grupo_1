@@ -54,7 +54,7 @@ export const TopBar = styled.div`
   background-color: ${(props) => props.theme.bg_primary};
 `;
 export const TitleContainer = styled.div`
-  padding: 15px;
+  padding: 5px 15px;
   display: flex;
   width: auto;
   align-items: center;
