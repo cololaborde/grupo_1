@@ -87,13 +87,18 @@ const Information = () => {
   };
 
   const getDownloadData = () => {
-    const pagesCopy = [...currentSection.pages];
     let toDownload = [];
-    pagesCopy.map((item, index) => {
-      if (downloadIndex[index]) {
-        toDownload.push(item);
-      }
-    });
+    if (currentSection.pages) {
+      const pagesCopy = [...currentSection.pages];
+      pagesCopy.map((item, index) => {
+        if (downloadIndex[index]) {
+          toDownload.push(item);
+        }
+      });
+    } else {
+      toDownload = currentSection;
+    }
+
     console.log(toDownload);
     return toDownload;
   };
@@ -120,7 +125,6 @@ const Information = () => {
       setDownloadIndex(initialCheckState());
     }
   }, [currentSection]);
-  console.log(downloadIndex);
   return (
     <Wrapper>
       <MainContainer>
@@ -220,7 +224,7 @@ const Information = () => {
             ))}
           </ContentContainer>
         )}
-        {download && currentSection.pages && (
+        {download && (
           <ButtonContainer>
             <GenericButton
               label={"Comenzar descarga"}
