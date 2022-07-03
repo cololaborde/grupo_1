@@ -110,6 +110,11 @@ export const NavText = styled.button`
   }
 `;
 
+export const CheckBoxContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const CardsContainer = styled.div`
   margin-bottom: 30px;
   min-width: 50%;
@@ -180,4 +185,8 @@ export const Content = styled.p`
   @media (max-width: 420px) {
     margin: 5px;
   }
+`;
+
+export const ButtonContainer = styled.div`
+  margin-bottom: 15px;
 `;

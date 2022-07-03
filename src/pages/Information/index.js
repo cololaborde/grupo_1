@@ -1,6 +1,8 @@
+import { Checkbox } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../../components/Buttons/BackButton";
+import GenericButton from "../../components/Buttons/GenericButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
@@ -32,6 +34,8 @@ import {
   ContentContainer,
   Content,
   ContentTitle,
+  CheckBoxContainer,
+  ButtonContainer,
 } from "./styled";
 
 const Information = () => {
@@ -41,6 +45,13 @@ const Information = () => {
   const fontIncrease = useSelector(selectFontIncrease);
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
+  const initialCheckState = () => {
+    let checks = {};
+    for (let i = 0; i < currentSection.pages.length; i++) checks[i] = false;
+    return checks;
+  };
+  const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
+  const [download, setDownload] = useState(false);
 
   const showConfigModal = useSelector(selectShowConfigModal);
   const showExitModal = useSelector(selectShowExitModal);
@@ -50,14 +61,14 @@ const Information = () => {
     document.getElementById("exit-modal").querySelector("#close-icon").focus();
   };
 
-  function goMain() {
+  const goMain = () => {
     if (navPages.length > 0) {
       setNavPages([]);
       setCurrentSection(pages);
     }
-  }
+  };
 
-  function goBack(index = -1) {
+  const goBack = (index = -1) => {
     if (index < navPages.length - 1) {
       let newSection = pages;
       for (var i = 0; i <= index; i++) {
@@ -68,10 +79,22 @@ const Information = () => {
       }
       setCurrentSection(newSection);
     }
-  }
-  function modalOpened() {
+  };
+  const modalOpened = () => {
     return showConfigModal || showExitModal;
-  }
+  };
+
+  const getDownloadData = () => {
+    const pagesCopy = [...currentSection.pages];
+    let toDownload = [];
+    pagesCopy.map((item, index) => {
+      if (downloadIndex[index]) {
+        toDownload.push(item);
+      }
+    });
+    console.log(toDownload);
+    return toDownload;
+  };
 
   useEffect(() => {
     const keyDownHandler = (event) => {
@@ -107,7 +130,10 @@ const Information = () => {
             hidden={modalOpened()}
           />
         </BackContainer>
-        <HamburguerMenu hidden={modalOpened()} />
+        <HamburguerMenu
+          onSubmit={() => setDownload(!download)}
+          hidden={modalOpened()}
+        />
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) + "px"}>Información</Title>
         </TitleContainer>
@@ -145,19 +171,33 @@ const Information = () => {
         {currentSection.type === "Section" ? (
           <CardsContainer>
             {currentSection.pages.map((page, index) => (
-              <CardContainer
-                key={index}
-                onClick={() => (
-                  setNavPages(navPages.concat(page.name)),
-                  setCurrentSection(page)
+              // eslint-disable-next-line react/jsx-key
+              <CheckBoxContainer>
+                <CardContainer
+                  key={index}
+                  onClick={() => (
+                    setNavPages(navPages.concat(page.name)),
+                    setCurrentSection(page)
+                  )}
+                  aria-hidden={modalOpened() | false}
+                  tabIndex={modalOpened() ? "-1" : ""}
+                >
+                  <CardText fontSize={20 + Number(fontIncrease) + "px"}>
+                    {page.name}
+                  </CardText>
+                </CardContainer>
+                {download && (
+                  <Checkbox
+                    color={"default"}
+                    onClick={() => {
+                      setDownloadIndex({
+                        ...downloadIndex,
+                        [index]: !downloadIndex[index],
+                      });
+                    }}
+                  />
                 )}
-                aria-hidden={modalOpened() | false}
-                tabIndex={modalOpened() ? "-1" : ""}
-              >
-                <CardText fontSize={20 + Number(fontIncrease) + "px"}>
-                  {page.name}
-                </CardText>
-              </CardContainer>
+              </CheckBoxContainer>
             ))}
           </CardsContainer>
         ) : (
@@ -169,6 +209,18 @@ const Information = () => {
               </Content>
             ))}
           </ContentContainer>
+        )}
+        {download && (
+          <ButtonContainer>
+            <GenericButton
+              onSubmit={() => {
+                getDownloadData();
+                setDownloadIndex(initialCheckState());
+              }}
+              hidden={!download}
+              text={"Descargar"}
+            />
+          </ButtonContainer>
         )}
       </MainContainer>
     </Wrapper>
