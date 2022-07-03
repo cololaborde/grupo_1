@@ -221,7 +221,10 @@ const Information = () => {
         {download && (
           <ButtonContainer>
             <GenericButton
-              disabled={!Object.values(downloadIndex).includes(true)}
+              disabled={
+                !Object.values(downloadIndex).includes(true) &&
+                currentSection.pages
+              }
               label={"Comenzar descarga"}
               onSubmit={() => {
                 getDownloadData();
