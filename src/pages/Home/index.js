@@ -4,6 +4,7 @@ import GenericButton from "../../components/Buttons/GenericButton";
 import Checkbox from "../../components/Inputs/Checkbox";
 import {
   goToInformation,
+  goToIntro,
   goToQuestion,
   saveFontIncrease,
   saveHighContrast,
@@ -95,6 +96,11 @@ const Home = () => {
       </Container>
       <InfoContainer>
         <InfoButtonContainer>
+          <GenericButton
+            onSubmit={() => dispatch(goToIntro)}
+            text={"Ayuda"}
+            fontSize={20 + Number(fontIncrease) * 2 + "px"}
+          />
           <GenericButton
             onSubmit={() => dispatch(goToInformation)}
             text={"Información"}
