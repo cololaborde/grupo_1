@@ -91,13 +91,9 @@ const Information = () => {
     if (currentSection.pages) {
       const pagesCopy = [...currentSection.pages];
       pagesCopy.map((item, index) => {
-        if (downloadIndex[index]) {
-          toDownload.push(item);
-        }
+        if (downloadIndex[index]) toDownload.push(item);
       });
-    } else {
-      toDownload = currentSection;
-    }
+    } else toDownload = currentSection;
 
     console.log(toDownload);
     return toDownload;
@@ -121,9 +117,7 @@ const Information = () => {
   }, []);
 
   useEffect(() => {
-    if (currentSection.pages) {
-      setDownloadIndex(initialCheckState());
-    }
+    if (currentSection.pages) setDownloadIndex(initialCheckState());
   }, [currentSection]);
   return (
     <Wrapper>
@@ -227,6 +221,7 @@ const Information = () => {
         {download && (
           <ButtonContainer>
             <GenericButton
+              disabled={!Object.values(downloadIndex).includes(true)}
               label={"Comenzar descarga"}
               onSubmit={() => {
                 getDownloadData();
