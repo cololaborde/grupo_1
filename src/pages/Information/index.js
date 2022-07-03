@@ -198,7 +198,7 @@ const Information = () => {
                   <Checkbox
                     aria-label={"Seleccionar" + page.name}
                     color={"default"}
-                    checked={downloadIndex[index]}
+                    checked={!!downloadIndex[index]}
                     onClick={() => {
                       setDownloadIndex({
                         ...downloadIndex,
