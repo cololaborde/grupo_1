@@ -9,7 +9,6 @@ export const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
 `;
 
 export const Title = styled.h1`
@@ -21,7 +20,7 @@ export const Title = styled.h1`
 
 export const TextContainer = styled.div`
   display: flex;
-  padding: 10px;
+  padding: 5px;
 `;
 
 export const Text = styled.div`
