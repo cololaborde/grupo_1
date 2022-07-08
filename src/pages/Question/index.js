@@ -106,7 +106,7 @@ const Question = () => {
         </BackContainer>
         <HamburguerMenu hasHelp="true" />
         <TitleContainer>
-          <Title fontSize={40 + Number(fontIncrease) + "px"}>
+          <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
             {!finished ? currentQuestion.title : "Has llegado al final"}
           </Title>
         </TitleContainer>
