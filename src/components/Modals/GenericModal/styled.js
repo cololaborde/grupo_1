@@ -29,6 +29,9 @@ export const Box = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 20px 0 rgba(10, 27, 45, 0.15);
   background: #f3f4f5;
+  @media (max-width: 320px) {
+    max-height: 300px;
+  }
 `;
 
 export const Container = styled.div`
