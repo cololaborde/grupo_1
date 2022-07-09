@@ -134,8 +134,8 @@ const Question = () => {
                     answered
                       ? selectedAnswer !== null
                         ? answ.correct
-                          ? "green"
-                          : "red"
+                          ? current_theme.correct
+                          : current_theme.incorrect
                         : "black"
                       : "black"
                   }
