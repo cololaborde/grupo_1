@@ -130,14 +130,14 @@ const Question = () => {
                 }
               >
                 <AnswerTitle
-                  color={
+                  backgroundColor={
                     answered
                       ? selectedAnswer !== null
                         ? answ.correct
                           ? current_theme.correct
                           : current_theme.incorrect
-                        : "black"
-                      : "black"
+                        : "none"
+                      : "none"
                   }
                   fontSize={20 + Number(fontIncrease) * 2 + "px"}
                 >

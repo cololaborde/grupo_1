@@ -92,6 +92,7 @@ export const AnswerTitle = styled.div`
   font-size: ${(props) => props.fontSize || "20px"};
   font-family: Arial;
   color: ${(props) => props.color || props.theme.text};
+  background-color: ${(props) => props.backgroundColor || "none"};
 `;
 
 export const AnswerImage = styled.img`
@@ -153,7 +154,7 @@ export const CounterContainer = styled.div`
 export const Text = styled.p`
   font-size: ${(props) => props.fontSize || "20px"};
   font-family: Arial;
-  color: ${(props) => props.color};
+  color: ${(props) => props.color || props.theme.text};
   margin-top: 3px;
   max-width: 50%;
   height: 100%;

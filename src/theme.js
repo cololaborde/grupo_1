@@ -8,15 +8,15 @@ export const theme = (highContrast = false) => {
       error: "#F56666",
       link: "#37cae6",
       text: "#000000",
-      bg_primary: "#DAE1F2",
-      bg_secondary: "#E3E7EF",
-      bg: "#BAA4E0",
-      btn_primary: "#9D63CC",
-      btn_secondary: "#AF9FE9",
-      btn_error: "#F56666",
+      bg_primary: "#E7ECF3",
+      bg_secondary: "#F5FBFF",
+      bg: "#99BEE5",
+      btn_primary: "#76CCD5",
+      btn_secondary: "#AFCBE9",
+      btn_error: "#ED7D7D",
       btn_text: "#000000",
-      correct: "#51BA51",
-      incorrect: "#D13C3C",
+      correct: "#65C365",
+      incorrect: "#ED7D7D",
     };
   } else {
     // Default Theme
@@ -35,7 +35,7 @@ export const theme = (highContrast = false) => {
       btn_error: "#F56666",
       btn_text: "#000000",
       correct: "#51BA51",
-      incorrect: "#D13C3C",
+      incorrect: "#F56666",
     };
   }
 };
