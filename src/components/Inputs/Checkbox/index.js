@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { CheckboxInput, Container } from "./styled";
 
 const Checkbox = (props) => {
-  const [isChecked, setIsChecked] = useState(props.value);
   const handleOnChange = (event) => {
-    setIsChecked(!isChecked);
     props.onChange(event.target.name, event.target.checked);
   };
 
@@ -15,8 +13,8 @@ const Checkbox = (props) => {
         id="topping"
         name="highContrastCheckbox"
         value="Paneer"
-        checked={isChecked}
-        aria-checked={isChecked}
+        checked={props.value}
+        aria-checked={props.value}
         onChange={handleOnChange}
         role="checkbox"
         aria-label={props.label}
