@@ -15,15 +15,27 @@ const DocumentViewer = () => {
       margin: 10,
       padding: 10,
     },
+    sectionTitle: {
+      textAlign: "center",
+      color: "#005eff",
+      fontWeight: "bold",
+      fontSize: "22px",
+      marginBottom: 20,
+    },
+    pageTitle: {
+      textDecoration: "underline",
+      color: "red",
+      marginBottom: 15,
+    },
   });
 
   const getFromContent = (elem) => (
-    <View>
-      <Text>{elem.name}</Text>
+    <View style={{ marginBottom: 20 }}>
+      <Text style={styles.pageTitle}>{elem.name}</Text>
       {elem.content
         ? elem.content.map((content, index) => {
             return (
-              <View key={index}>
+              <View key={index} style={{ marginBottom: 10 }}>
                 <Text>{content}</Text>
               </View>
             );
@@ -37,8 +49,8 @@ const DocumentViewer = () => {
     switch (elem.type) {
       case "Section":
         return (
-          <View>
-            <Text>{elem.name}</Text>
+          <View style={{ padding: 15 }}>
+            <Text style={styles.sectionTitle}>{elem.name}</Text>
             {elem.pages.map((page, index) => {
               return <View key={index}>{getFromContent(page)}</View>;
             })}
