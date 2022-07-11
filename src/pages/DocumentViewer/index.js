@@ -17,29 +17,33 @@ const DocumentViewer = () => {
     },
   });
 
-  const getFromContent = (elem) =>
-    elem.content
-      ? elem.content.map((content, index) => {
-          return (
-            <View key={index}>
-              <Text>{content}</Text>
-            </View>
-          );
-        })
-      : null;
+  const getFromContent = (elem) => (
+    <View>
+      <Text>{elem.name}</Text>
+      {elem.content
+        ? elem.content.map((content, index) => {
+            return (
+              <View key={index}>
+                <Text>{content}</Text>
+              </View>
+            );
+          })
+        : null}
+    </View>
+  );
 
   console.log(data);
   const content = data.map((elem) => {
     switch (elem.type) {
       case "Section":
-        return elem.pages.map((page, index) => {
-          return (
-            <View key={index}>
-              <Text>{page.name}</Text>
-              {getFromContent(page)}
-            </View>
-          );
-        });
+        return (
+          <View>
+            <Text>{elem.name}</Text>
+            {elem.pages.map((page, index) => {
+              return <View key={index}>{getFromContent(page)}</View>;
+            })}
+          </View>
+        );
       case "Page":
         return getFromContent(elem);
     }
