@@ -7,7 +7,9 @@ import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
+import { setDataArray } from "../../store/DocumentViewer/actions";
 import {
+  goToPreview,
   setShowConfigModal,
   setShowExitModal,
   setShowHelpModal,
@@ -95,8 +97,14 @@ const Information = () => {
       });
     } else toDownload = currentSection;
 
-    console.log(toDownload);
     return toDownload;
+  };
+
+  const downloadSetup = () => {
+    const data = getDownloadData();
+    dispatch(setDataArray(data));
+    setDownloadIndex(initialCheckState());
+    dispatch(goToPreview());
   };
 
   useEffect(() => {
@@ -227,8 +235,7 @@ const Information = () => {
               }
               label={"Comenzar descarga"}
               onSubmit={() => {
-                getDownloadData();
-                setDownloadIndex(initialCheckState());
+                downloadSetup();
               }}
               hidden={!download}
               text={"Descargar"}

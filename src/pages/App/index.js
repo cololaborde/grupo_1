@@ -11,6 +11,7 @@ import { selectHighContrast } from "../../store/Home/selectors";
 /* import PrivateRoute from 'components/commons/PrivateRoute';
  */
 import Intro from "../Intro";
+import DocumentViewer from "../DocumentViewer";
 export const Container = styled.div`
   height: 97vh;
 `;
@@ -29,6 +30,11 @@ const App = () => {
             <Route exact path="/home" component={withRouter(Home)} />
             <Route exact path="/info" component={withRouter(Information)} />
             <Route exact path="/pregunta" component={withRouter(Question)} />
+            <Route
+              exact
+              path={"/preview"}
+              component={withRouter(DocumentViewer)}
+            />
           </Switch>
         </Router>
       </Container>
