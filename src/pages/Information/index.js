@@ -95,7 +95,7 @@ const Information = () => {
       pagesCopy.map((item, index) => {
         if (downloadIndex[index]) toDownload.push(item);
       });
-    } else toDownload = currentSection;
+    } else toDownload = [currentSection];
 
     return toDownload;
   };

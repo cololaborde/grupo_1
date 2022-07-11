@@ -4,7 +4,6 @@ import * as types from "./types";
 
 const documentViewerReducer = (state = initialState, action) =>
   produce(state, (draft) => {
-    console.log(action.dataArray);
     switch (action.type) {
       case types.SET_DATA_ARRAY:
         draft.dataArray = action.dataArray;
