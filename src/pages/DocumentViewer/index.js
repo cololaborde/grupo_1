@@ -16,6 +16,18 @@ const DocumentViewer = () => {
       padding: 10,
     },
   });
+
+  const getFromContent = (elem) =>
+    elem.content
+      ? elem.content.map((content, index) => {
+          return (
+            <View key={index}>
+              <Text>{content}</Text>
+            </View>
+          );
+        })
+      : null;
+
   console.log(data);
   const content = data.map((elem) => {
     switch (elem.type) {
@@ -24,28 +36,12 @@ const DocumentViewer = () => {
           return (
             <View key={index}>
               <Text>{page.name}</Text>
-              {page.content
-                ? page.content.map((content, index) => {
-                    return (
-                      <View key={index}>
-                        <Text>{content}</Text>
-                      </View>
-                    );
-                  })
-                : null}
+              {getFromContent(page)}
             </View>
           );
         });
       case "Page":
-        return elem.content
-          ? elem.content.map((content, index) => {
-              return (
-                <View key={index}>
-                  <Text>{content}</Text>
-                </View>
-              );
-            })
-          : null;
+        return getFromContent(elem);
     }
   });
 
