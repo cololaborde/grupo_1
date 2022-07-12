@@ -38,6 +38,10 @@ import {
   ContentTitle,
   CheckBoxContainer,
   ButtonContainer,
+  SecondContentTitle,
+  ThirdContentTitle,
+  ContentText,
+  ContentList,
 } from "./styled";
 
 const Information = () => {
@@ -131,7 +135,10 @@ const Information = () => {
     <Wrapper>
       <MainContainer>
         <ConfigModal show={showConfigModal} />
-        <ExitModal show={showExitModal} />
+        <ExitModal
+          show={showExitModal}
+          fontSize={15 + Number(fontIncrease) * 2 + "px"}
+        />
         <BackContainer>
           <BackButton
             onSubmit={() =>
@@ -149,7 +156,9 @@ const Information = () => {
           hidden={modalOpened()}
         />
         <TitleContainer>
-          <Title fontSize={40 + Number(fontIncrease) + "px"}>Información</Title>
+          <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
+            Información
+          </Title>
         </TitleContainer>
         <SearchContainer role="search">
           <SearchBar
@@ -163,7 +172,7 @@ const Information = () => {
         </SearchContainer>
         <NavContainer>
           <NavText
-            fontSize={15 + Number(fontIncrease) + "px"}
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
             onClick={() => goMain()}
             aria-hidden={modalOpened() | false}
             tabIndex={modalOpened() ? "-1" : ""}
@@ -173,7 +182,7 @@ const Information = () => {
           {navPages.map((page, index) => (
             <NavText
               key={index}
-              fontSize={15 + Number(fontIncrease) + "px"}
+              fontSize={15 + Number(fontIncrease) * 2 + "px"}
               onClick={() => goBack(index)}
               aria-hidden={modalOpened() | false}
               tabIndex={modalOpened() ? "-1" : ""}
@@ -182,6 +191,24 @@ const Information = () => {
             </NavText>
           ))}
         </NavContainer>
+        {download && (
+          <ButtonContainer>
+            <GenericButton
+              fontSize={15 + Number(fontIncrease) * 2 + "px"}
+              disabled={
+                !Object.values(downloadIndex).includes(true) &&
+                currentSection.pages
+              }
+              label={"Comenzar descarga"}
+              onSubmit={() => {
+                getDownloadData();
+                setDownloadIndex(initialCheckState());
+              }}
+              hidden={!download}
+              text={"Descargar"}
+            />
+          </ButtonContainer>
+        )}
         {currentSection.type === "Section" ? (
           <CardsContainer>
             {currentSection.pages.map((page, index) => (
@@ -196,7 +223,7 @@ const Information = () => {
                   aria-hidden={modalOpened() | false}
                   tabIndex={modalOpened() ? "-1" : ""}
                 >
-                  <CardText fontSize={20 + Number(fontIncrease) + "px"}>
+                  <CardText fontSize={20 + Number(fontIncrease) * 2 + "px"}>
                     {page.name}
                   </CardText>
                 </CardContainer>
@@ -220,8 +247,41 @@ const Information = () => {
           <ContentContainer>
             <ContentTitle>{currentSection.name}</ContentTitle>
             {currentSection.content.map((line, index) => (
-              <Content key={index} fontSize={15 + Number(fontIncrease) + "px"}>
-                {line}
+              <Content key={index}>
+                {typeof line === "string" ? (
+                  line[0] == "&" ? (
+                    line[1] == "1" ? (
+                      <SecondContentTitle
+                        fontSize={25 + Number(fontIncrease) * 2 + "px"}
+                      >
+                        {line.substring(2)}
+                      </SecondContentTitle>
+                    ) : (
+                      <ThirdContentTitle
+                        fontSize={20 + Number(fontIncrease) * 2 + "px"}
+                      >
+                        {line.substring(2)}
+                      </ThirdContentTitle>
+                    )
+                  ) : (
+                    <ContentText
+                      fontSize={15 + Number(fontIncrease) * 2 + "px"}
+                    >
+                      {line}
+                    </ContentText>
+                  )
+                ) : (
+                  <ul>
+                    {line.map((item, i) => (
+                      <ContentList
+                        key={i}
+                        fontSize={15 + Number(fontIncrease) * 2 + "px"}
+                      >
+                        {item}
+                      </ContentList>
+                    ))}
+                  </ul>
+                )}
               </Content>
             ))}
           </ContentContainer>

@@ -58,6 +58,6 @@ export const SpinbuttonContainer = styled.div`
 
 export const ButtonsContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
 `;

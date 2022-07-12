@@ -44,7 +44,7 @@ const Intro = () => {
       <ConfigModal show={showConfigModal} />
       <MainContainer>
         <TitleContainer>
-          <Title fontSize={40 + Number(fontIncrease) + "px"}>
+          <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
             {"Juego de preguntas"}
           </Title>
         </TitleContainer>
@@ -60,7 +60,7 @@ const Intro = () => {
             hidden={showConfigModal}
           />
         </MenuContainer>
-        <Content fontSize={18 + Number(fontIncrease) + "px"}>
+        <Content fontSize={18 + Number(fontIncrease) * 2 + "px"}>
           {CONSTANTS.informationText}
         </Content>
         <StartButtonContainer>

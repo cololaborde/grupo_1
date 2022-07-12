@@ -85,6 +85,7 @@ const ConfigModal = (props) => {
         </ConfigContainer>
         <ButtonsContainer>
           <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
             text={"Guardar"}
             backgroundColor={current_theme.btn_primary}
             onSubmit={() => {
@@ -95,6 +96,7 @@ const ConfigModal = (props) => {
             hidden={!props.show}
           />
           <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
             text={"Cancelar"}
             backgroundColor={current_theme.btn_error}
             onSubmit={() => {
@@ -104,15 +106,15 @@ const ConfigModal = (props) => {
             }}
             hidden={!props.show}
           />
-          <GenericButton
-            text={"Restablecer"}
+          {/* <GenericButton
+            text={"Por defecto"}
             backgroundColor={current_theme.btn_secondary}
             onSubmit={() => {
-              dispatch(restartFontIncrease());
-              dispatch(restartHighContrast());
+              dispatch(setFontIncrease(0));
+              dispatch(setHighContrast(false));
             }}
             hidden={!props.show}
-          />
+          /> */}
         </ButtonsContainer>
       </Container>
     </GenericModal>

@@ -91,6 +91,10 @@ const Question = () => {
     document.getElementById("exit-modal").querySelector("#close-icon").focus();
   };
 
+  const modalOpened = () => {
+    return showConfigModal || showExitModal || showHelpModal;
+  };
+
   return (
     <Wrapper>
       <ConfigModal show={showConfigModal} />
@@ -99,12 +103,18 @@ const Question = () => {
         title={currentQuestion.information.title}
         text={currentQuestion.information.text}
       />
-      <ExitModal show={showExitModal} />
+      <ExitModal
+        show={showExitModal}
+        fontSize={15 + Number(fontIncrease) * 2 + "px"}
+      />
       <MainContainer>
         <BackContainer>
-          <BackButton onSubmit={() => showExitModalConst()} />
+          <BackButton
+            onSubmit={() => showExitModalConst()}
+            hidden={modalOpened()}
+          />
         </BackContainer>
-        <HamburguerMenu hasHelp="true" />
+        <HamburguerMenu hasHelp="true" hidden={modalOpened()} />
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
             {!finished ? currentQuestion.title : "Has llegado al final"}
@@ -128,16 +138,18 @@ const Question = () => {
                       : false
                     : false
                 }
+                aria-hidden={modalOpened() | false}
+                tabIndex={modalOpened() ? "-1" : ""}
               >
                 <AnswerTitle
-                  color={
+                  backgroundColor={
                     answered
                       ? selectedAnswer !== null
                         ? answ.correct
-                          ? "green"
-                          : "red"
-                        : "black"
-                      : "black"
+                          ? current_theme.correct
+                          : current_theme.incorrect
+                        : "none"
+                      : "none"
                   }
                   fontSize={20 + Number(fontIncrease) * 2 + "px"}
                 >
@@ -150,24 +162,24 @@ const Question = () => {
         ) : (
           <>
             <FinalTextContainer>
-              <Text fontSize={20 + Number(fontIncrease) + "px"}>
+              <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
                 {"Resultado: " + wellAnswered}
               </Text>
               <div style={{ marginLeft: "5px", marginRight: "5px" }}>
                 <Text
                   color={"#1bd802"}
-                  fontSize={20 + Number(fontIncrease) + "px"}
+                  fontSize={20 + Number(fontIncrease) * 2 + "px"}
                 >
                   {" correctas "}
                 </Text>
               </div>
-              <Text fontSize={20 + Number(fontIncrease) + "px"}>
+              <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
                 {questions.length - wellAnswered}
               </Text>
               <div style={{ marginLeft: "5px", marginRight: "5px" }}>
                 <Text
                   color={"#ff0000"}
-                  fontSize={20 + Number(fontIncrease) + "px"}
+                  fontSize={20 + Number(fontIncrease) * 2 + "px"}
                 >
                   {" incorrectas"}
                 </Text>
@@ -178,11 +190,13 @@ const Question = () => {
               <GenericButton
                 text={"Inicio"}
                 onSubmit={() => dispatch(goToHome)}
+                hidden={modalOpened()}
               />
 
               <GenericButton
                 text={"Información"}
                 onSubmit={() => dispatch(goToInformation)}
+                hidden={modalOpened()}
               />
             </ButtonsContainer>
           </>
@@ -196,6 +210,7 @@ const Question = () => {
                 if (selectedAnswer.correct) setWellAnswered(wellAnswered + 1);
                 setAnswered(true);
               }}
+              hidden={modalOpened()}
             />
           </SendButtonContainer>
         )}
@@ -206,7 +221,7 @@ const Question = () => {
         )}
         {answered && !finished && (
           <ResultContainer>
-            <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>
+            <ResultTitle fontSize={40 + Number(fontIncrease) * 2 + "px"}>
               {selectedAnswer.correct ? "Correcto" : "Incorrecto"}
             </ResultTitle>
             <ResultButtons>
@@ -217,14 +232,16 @@ const Question = () => {
                     ? setIndex(index + 1)
                     : setFinished(true)
                 }
+                hidden={modalOpened()}
               />
               <GenericButton
                 text={"Más información"}
                 textColor={current_theme.text}
                 backgroundColor={current_theme.bg_secondary}
+                hidden={modalOpened()}
               />
             </ResultButtons>
-            <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>
+            <ResultTip fontSize={20 + Number(fontIncrease) * 2 + "px"}>
               {selectedAnswer.tip}
             </ResultTip>
           </ResultContainer>
