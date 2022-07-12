@@ -46,6 +46,7 @@ const Home = () => {
         break;
     }
   };
+  console.log(highContrast);
   return (
     <Wrapper>
       <Container>
@@ -85,9 +86,9 @@ const Home = () => {
         <ButtonContainer>
           <GenericButton
             onSubmit={() => {
-              dispatch(goToQuestion());
               dispatch(saveFontIncrease(fontIncrease));
               dispatch(saveHighContrast(highContrast));
+              dispatch(goToQuestion());
             }}
             text={"Jugar"}
             fontSize={20 + Number(fontIncrease) * 2 + "px"}
@@ -98,18 +99,18 @@ const Home = () => {
         <InfoButtonContainer>
           <GenericButton
             onSubmit={() => {
-              dispatch(goToIntro);
               dispatch(saveFontIncrease(fontIncrease));
               dispatch(saveHighContrast(highContrast));
+              dispatch(goToIntro);
             }}
             text={"Ayuda"}
             fontSize={20 + Number(fontIncrease) * 2 + "px"}
           />
           <GenericButton
             onSubmit={() => {
-              dispatch(goToInformation);
               dispatch(saveFontIncrease(fontIncrease));
               dispatch(saveHighContrast(highContrast));
+              dispatch(goToInformation);
             }}
             text={"Información"}
             fontSize={20 + Number(fontIncrease) * 2 + "px"}
