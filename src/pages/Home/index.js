@@ -46,7 +46,7 @@ const Home = () => {
         break;
     }
   };
-  console.log(highContrast);
+
   return (
     <Wrapper>
       <Container>
