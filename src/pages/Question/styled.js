@@ -62,9 +62,9 @@ export const AnswersContainer = styled.div`
 
 export const Answer = styled.button`
   text-align: center;
-  margin: 0 50px auto;
+  margin: 0 30px auto;
   height: auto;
-  width: 20%;
+  width: 25%;
   background: none;
   padding: 0px;
   @media (max-width: 767px) {
@@ -145,10 +145,17 @@ export const CounterContainer = styled.div`
   background-color: ${(props) => props.theme.bg_primary};
   border-radius: 10px;
   padding: 5px;
-  margin: 0 5px 6px;
+  margin-top: 30px;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  top: 0;
+`;
+
+export const CounterText = styled.p`
+  font-size: ${(props) => props.fontSize || "20px"};
+  font-family: Arial;
+  font-weight: bold;
+  color: ${(props) => props.color || props.theme.text};
+  margin: 0;
 `;
 
 export const Text = styled.p`

@@ -41,6 +41,7 @@ import {
   Text,
   ButtonsContainer,
   FinalTextContainer,
+  CounterText,
 } from "./styled";
 
 const Question = () => {
@@ -111,6 +112,13 @@ const Question = () => {
             hidden={modalOpened()}
           />
         </BackContainer>
+        {!finished && (
+          <CounterContainer>
+            <CounterText fontSize={15 + Number(fontIncrease) * 2 + "px"}>
+              {"Pregunta: " + (Number(index) + 1) + "/" + questions.length}
+            </CounterText>
+          </CounterContainer>
+        )}
         <HamburguerMenu hasHelp="true" hidden={modalOpened()} />
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
@@ -185,12 +193,14 @@ const Question = () => {
 
             <ButtonsContainer>
               <GenericButton
+                fontSize={15 + Number(fontIncrease) * 2 + "px"}
                 text={"Inicio"}
                 onSubmit={() => dispatch(goToHome)}
                 hidden={modalOpened()}
               />
 
               <GenericButton
+                fontSize={15 + Number(fontIncrease) * 2 + "px"}
                 text={"Información"}
                 onSubmit={() => dispatch(goToInformation)}
                 hidden={modalOpened()}
@@ -201,6 +211,7 @@ const Question = () => {
         {!answered && !finished && (
           <SendButtonContainer>
             <GenericButton
+              fontSize={15 + Number(fontIncrease) * 2 + "px"}
               disabled={selectedAnswer === null}
               text={"Enviar respuesta"}
               onSubmit={() => {
@@ -211,11 +222,6 @@ const Question = () => {
             />
           </SendButtonContainer>
         )}
-        {!finished && (
-          <CounterContainer>
-            {"Pregunta: " + (Number(index) + 1) + "/" + questions.length}
-          </CounterContainer>
-        )}
         {answered && !finished && (
           <ResultContainer>
             <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>
@@ -223,6 +229,7 @@ const Question = () => {
             </ResultTitle>
             <ResultButtons>
               <GenericButton
+                fontSize={15 + Number(fontIncrease) * 2 + "px"}
                 text={"Siguiente"}
                 onSubmit={() =>
                   index < questions.length - 1
@@ -232,6 +239,7 @@ const Question = () => {
                 hidden={modalOpened()}
               />
               <GenericButton
+                fontSize={15 + Number(fontIncrease) * 2 + "px"}
                 text={"Más información"}
                 textColor={current_theme.text}
                 backgroundColor={current_theme.bg_secondary}
