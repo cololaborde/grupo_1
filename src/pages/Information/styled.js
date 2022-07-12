@@ -86,6 +86,7 @@ export const SearchBar = styled.input`
 export const NavContainer = styled.nav`
   width: 100%;
   text-align: center;
+  margin-bottom: 10px;
 `;
 
 export const NavText = styled.button`
@@ -130,7 +131,8 @@ export const CardsContainer = styled.div`
 export const CardContainer = styled.button`
   min-height: 50px;
   width: 100%;
-  margin: 15px 0px;
+  margin: 0px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -220,6 +222,4 @@ export const ContentList = styled.li`
   }
 `;
 
-export const ButtonContainer = styled.div`
-  margin-bottom: 15px;
-`;
+export const ButtonContainer = styled.div``;

@@ -180,6 +180,23 @@ const Information = () => {
             </NavText>
           ))}
         </NavContainer>
+        {download && (
+          <ButtonContainer>
+            <GenericButton
+              disabled={
+                !Object.values(downloadIndex).includes(true) &&
+                currentSection.pages
+              }
+              label={"Comenzar descarga"}
+              onSubmit={() => {
+                getDownloadData();
+                setDownloadIndex(initialCheckState());
+              }}
+              hidden={!download}
+              text={"Descargar"}
+            />
+          </ButtonContainer>
+        )}
         {currentSection.type === "Section" ? (
           <CardsContainer>
             {currentSection.pages.map((page, index) => (
@@ -256,23 +273,6 @@ const Information = () => {
               </Content>
             ))}
           </ContentContainer>
-        )}
-        {download && (
-          <ButtonContainer>
-            <GenericButton
-              disabled={
-                !Object.values(downloadIndex).includes(true) &&
-                currentSection.pages
-              }
-              label={"Comenzar descarga"}
-              onSubmit={() => {
-                getDownloadData();
-                setDownloadIndex(initialCheckState());
-              }}
-              hidden={!download}
-              text={"Descargar"}
-            />
-          </ButtonContainer>
         )}
       </MainContainer>
     </Wrapper>
