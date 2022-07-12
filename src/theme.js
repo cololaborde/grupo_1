@@ -5,7 +5,7 @@ export const theme = (highContrast = false) => {
       white: "#ffffff",
       primary: "",
       secondary: "",
-      error: "#F56666",
+      error: "#ED7D7D",
       link: "#37cae6",
       text: "#000000",
       bg_primary: "#E7ECF3",
