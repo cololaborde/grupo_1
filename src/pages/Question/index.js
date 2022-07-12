@@ -91,6 +91,10 @@ const Question = () => {
     document.getElementById("exit-modal").querySelector("#close-icon").focus();
   };
 
+  const modalOpened = () => {
+    return showConfigModal || showExitModal || showHelpModal;
+  };
+
   return (
     <Wrapper>
       <ConfigModal show={showConfigModal} />
@@ -102,9 +106,12 @@ const Question = () => {
       <ExitModal show={showExitModal} />
       <MainContainer>
         <BackContainer>
-          <BackButton onSubmit={() => showExitModalConst()} />
+          <BackButton
+            onSubmit={() => showExitModalConst()}
+            hidden={modalOpened()}
+          />
         </BackContainer>
-        <HamburguerMenu hasHelp="true" />
+        <HamburguerMenu hasHelp="true" hidden={modalOpened()} />
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
             {!finished ? currentQuestion.title : "Has llegado al final"}
@@ -128,6 +135,8 @@ const Question = () => {
                       : false
                     : false
                 }
+                aria-hidden={modalOpened() | false}
+                tabIndex={modalOpened() ? "-1" : ""}
               >
                 <AnswerTitle
                   backgroundColor={
@@ -178,11 +187,13 @@ const Question = () => {
               <GenericButton
                 text={"Inicio"}
                 onSubmit={() => dispatch(goToHome)}
+                hidden={modalOpened()}
               />
 
               <GenericButton
                 text={"Información"}
                 onSubmit={() => dispatch(goToInformation)}
+                hidden={modalOpened()}
               />
             </ButtonsContainer>
           </>
@@ -196,6 +207,7 @@ const Question = () => {
                 if (selectedAnswer.correct) setWellAnswered(wellAnswered + 1);
                 setAnswered(true);
               }}
+              hidden={modalOpened()}
             />
           </SendButtonContainer>
         )}
@@ -217,11 +229,13 @@ const Question = () => {
                     ? setIndex(index + 1)
                     : setFinished(true)
                 }
+                hidden={modalOpened()}
               />
               <GenericButton
                 text={"Más información"}
                 textColor={current_theme.text}
                 backgroundColor={current_theme.bg_secondary}
+                hidden={modalOpened()}
               />
             </ResultButtons>
             <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>
