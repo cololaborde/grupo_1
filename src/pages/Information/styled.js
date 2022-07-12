@@ -73,9 +73,10 @@ export const SearchBar = styled.input`
   border-radius: 10px;
   border-width: 2px;
   border-style: solid;
-  border-color: black;
+  border-color: ${(props) => props.theme.btn_primary};
+  background-color: ${(props) => props.theme.bg_secondary};
   &:focus {
-    border: 2px solid black;
+    border: 2px solid ${(props) => props.theme.btn_primary};
     outline-style: solid;
     outline-color: white;
     outline-width: medium;
@@ -99,11 +100,10 @@ export const NavText = styled.button`
   padding: 2px;
   &:hover {
     cursor: pointer;
-    border-style: solid;
-    border-width: 2px;
+    border: 2px solid ${(props) => props.theme.bg_secondary};
   }
   &:focus {
-    border: 2px solid black;
+    border: 2px solid ${(props) => props.theme.bg_secondary};
     outline-style: solid;
     outline-color: white;
     outline-width: medium;
@@ -136,7 +136,7 @@ export const CardContainer = styled.button`
   border-radius: 8px;
   border-width: 2px;
   border-style: solid;
-  border-color: black;
+  border-color: ${(props) => props.theme.btn_primary};
   align-items: center;
   justify-content: center;
   background-color: ${(props) => props.theme.bg_secondary};
@@ -146,7 +146,7 @@ export const CardContainer = styled.button`
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
   &:focus {
-    border: 2px solid black;
+    border: 2px solid ${(props) => props.theme.btn_primary};
     outline-style: solid;
     outline-color: white;
     outline-width: medium;
@@ -176,10 +176,43 @@ export const ContentTitle = styled.h2`
   margin: 15px;
 `;
 
-export const Content = styled.p`
-  font-size: ${(props) => props.fontSize || "15px"};
+export const SecondContentTitle = styled.h3`
+  font-size: ${(props) => props.fontSize || "30px"};
   color: ${(props) => props.color || props.theme.text};
   font-weight: bold;
+  font-family: Arial;
+  margin: 15px;
+  @media (max-width: 420px) {
+    margin: 5px;
+  }
+`;
+
+export const ThirdContentTitle = styled.h4`
+  font-size: ${(props) => props.fontSize || "20px"};
+  color: ${(props) => props.color || props.theme.text};
+  font-weight: bold;
+  font-family: Arial;
+  margin: 15px;
+  @media (max-width: 420px) {
+    margin: 5px;
+  }
+`;
+
+export const Content = styled.div``;
+
+export const ContentText = styled.p`
+  font-size: ${(props) => props.fontSize || "15px"};
+  color: ${(props) => props.color || props.theme.text};
+  font-family: Arial;
+  margin: 15px;
+  @media (max-width: 420px) {
+    margin: 5px;
+  }
+`;
+
+export const ContentList = styled.li`
+  font-size: ${(props) => props.fontSize || "15px"};
+  color: ${(props) => props.color || props.theme.text};
   font-family: Arial;
   margin: 15px;
   @media (max-width: 420px) {

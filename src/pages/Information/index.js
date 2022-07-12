@@ -36,6 +36,10 @@ import {
   ContentTitle,
   CheckBoxContainer,
   ButtonContainer,
+  SecondContentTitle,
+  ThirdContentTitle,
+  ContentText,
+  ContentList,
 } from "./styled";
 
 const Information = () => {
@@ -141,7 +145,9 @@ const Information = () => {
           hidden={modalOpened()}
         />
         <TitleContainer>
-          <Title fontSize={40 + Number(fontIncrease) + "px"}>Información</Title>
+          <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
+            Información
+          </Title>
         </TitleContainer>
         <SearchContainer role="search">
           <SearchBar
@@ -212,8 +218,41 @@ const Information = () => {
           <ContentContainer>
             <ContentTitle>{currentSection.name}</ContentTitle>
             {currentSection.content.map((line, index) => (
-              <Content key={index} fontSize={15 + Number(fontIncrease) + "px"}>
-                {line}
+              <Content key={index}>
+                {typeof line === "string" ? (
+                  line[0] == "&" ? (
+                    line[1] == "1" ? (
+                      <SecondContentTitle
+                        fontSize={25 + Number(fontIncrease) * 2 + "px"}
+                      >
+                        {line.substring(2)}
+                      </SecondContentTitle>
+                    ) : (
+                      <ThirdContentTitle
+                        fontSize={20 + Number(fontIncrease) * 2 + "px"}
+                      >
+                        {line.substring(2)}
+                      </ThirdContentTitle>
+                    )
+                  ) : (
+                    <ContentText
+                      fontSize={15 + Number(fontIncrease) * 2 + "px"}
+                    >
+                      {line}
+                    </ContentText>
+                  )
+                ) : (
+                  <ul>
+                    {line.map((item, i) => (
+                      <ContentList
+                        key={i}
+                        fontSize={15 + Number(fontIncrease) * 2 + "px"}
+                      >
+                        {item}
+                      </ContentList>
+                    ))}
+                  </ul>
+                )}
               </Content>
             ))}
           </ContentContainer>

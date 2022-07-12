@@ -10,8 +10,8 @@ export const Button = styled.button`
   border-radius: 10px;
   border-width: 2px;
   border-style: solid;
-  border-color: black;
-  color: ${(props) => props.textColor || "black"};
+  border-color: ${(props) => props.theme.btn_primary};
+  color: ${(props) => props.theme.btn_primary};
   font-weight: bold;
   background-color: ${(props) =>
     props.backgroundColor || props.theme.bg_secondary};
@@ -32,7 +32,7 @@ export const Button = styled.button`
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
   &:focus {
-    border: 2px solid black;
+    border: 2px solid ${(props) => props.theme.btn_primary};
     outline-style: solid;
     outline-color: white;
     outline-width: medium;

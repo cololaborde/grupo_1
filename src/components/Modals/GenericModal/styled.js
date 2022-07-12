@@ -83,6 +83,11 @@ export const IconContainer = styled.button`
   text-align: right;
   border-style: none;
   background: none;
+  &:focus {
+    border: 2px solid ${(props) => props.theme.btn_primary};
+    outline-style: solid;
+    outline-color: white;
+    outline-width: medium;
 `;
 
 export const CloseIcon = styled(Close)`
