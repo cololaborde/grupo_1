@@ -22,25 +22,17 @@ import {
 } from "../../store/Home/selectors";
 import { selectQuestions } from "../../store/Question/selectors";
 import { theme } from "../../theme";
+import Answers from "./Components/Answers";
+import QuestionFooter from "./Components/QuestionFooter";
 import {
   Wrapper,
   MainContainer,
   BackContainer,
   TitleContainer,
   Title,
-  AnswersContainer,
-  Answer,
-  SendButtonContainer,
-  ResultContainer,
-  ResultTitle,
-  ResultTip,
-  ResultButtons,
-  AnswerTitle,
-  AnswerImage,
   CounterContainer,
   Text,
   ButtonsContainer,
-  FinalTextContainer,
   CounterText,
 } from "./styled";
 
@@ -50,7 +42,7 @@ const Question = () => {
   const questions = useSelector(selectQuestions);
   const fontIncrease = useSelector(selectFontIncrease);
   const highContrast = useSelector(selectHighContrast);
-  const current_theme = theme(highContrast);
+  const currentTheme = theme(highContrast);
   const showConfigModal = useSelector(selectShowConfigModal);
   const showHelpModal = useSelector(selectShowHelpModal);
   const showExitModal = useSelector(selectShowExitModal);
@@ -98,6 +90,7 @@ const Question = () => {
 
   return (
     <Wrapper>
+      {/* Modals */}
       <ConfigModal show={showConfigModal} />
       <HelpModal
         show={showHelpModal}
@@ -105,7 +98,10 @@ const Question = () => {
         text={currentQuestion.information.text}
       />
       <ExitModal show={showExitModal} />
+
+      {/* Main Container */}
       <MainContainer>
+        {/* Top Bar */}
         <BackContainer>
           <BackButton
             onSubmit={() => showExitModalConst()}
@@ -120,76 +116,53 @@ const Question = () => {
           </CounterContainer>
         )}
         <HamburguerMenu hasHelp="true" hidden={modalOpened()} />
+
+        {/* Question Title and Final Text Title*/}
         <TitleContainer>
           <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
             {!finished ? currentQuestion.title : "Has llegado al final"}
           </Title>
         </TitleContainer>
         {!finished ? (
-          <AnswersContainer>
-            {currentQuestion.answers.map((answ, index) => (
-              <Answer
-                key={index}
-                onClick={() =>
-                  !answered
-                    ? setSelectedAnswer(currentQuestion.answers[index])
-                    : null
-                }
-                selected={
-                  selectedAnswer !== null
-                    ? selectedAnswer.title ===
-                      currentQuestion.answers[index].title
-                      ? true
-                      : false
-                    : false
-                }
-                aria-hidden={modalOpened() | false}
-                tabIndex={modalOpened() ? "-1" : ""}
-              >
-                <AnswerTitle
-                  backgroundColor={
-                    answered
-                      ? selectedAnswer !== null
-                        ? answ.correct
-                          ? current_theme.correct
-                          : current_theme.incorrect
-                        : "none"
-                      : "none"
-                  }
-                  fontSize={20 + Number(fontIncrease) * 2 + "px"}
-                >
-                  {answ.title}
-                </AnswerTitle>
-                <AnswerImage src={answ.img} />
-              </Answer>
-            ))}
-          </AnswersContainer>
-        ) : (
           <>
-            <FinalTextContainer>
-              <Text fontSize={20 + Number(fontIncrease) + "px"}>
-                {"Resultado: " + wellAnswered}
-              </Text>
-              <div style={{ marginLeft: "5px", marginRight: "5px" }}>
-                <Text
-                  color={"#1bd802"}
-                  fontSize={20 + Number(fontIncrease) + "px"}
-                >
-                  {" correctas "}
-                </Text>
-              </div>
-              <Text fontSize={20 + Number(fontIncrease) + "px"}>
-                {questions.length - wellAnswered}
-              </Text>
-              <div style={{ marginLeft: "5px", marginRight: "5px" }}>
-                <Text
-                  color={"#ff0000"}
-                  fontSize={20 + Number(fontIncrease) + "px"}
-                >
-                  {" incorrectas"}
-                </Text>
-              </div>
-            </FinalTextContainer>
+            <Answers
+              question={currentQuestion}
+              selectedAnswer={selectedAnswer}
+              answered={answered}
+              modalOpened={modalOpened()}
+              currentTheme={currentTheme}
+              fontIncrease={fontIncrease}
+              selectAnswer={(i) =>
+                !answered ? setSelectedAnswer(currentQuestion.answers[i]) : null
+              }
+            />
+            <QuestionFooter
+              selectedAnswer={selectedAnswer}
+              answered={answered}
+              modalOpened={modalOpened()}
+              currentTheme={currentTheme}
+              fontIncrease={fontIncrease}
+              sendAnswer={() => {
+                if (selectedAnswer.correct) setWellAnswered(wellAnswered + 1);
+                setAnswered(true);
+              }}
+              nextQuestion={() =>
+                index < questions.length - 1
+                  ? setIndex(index + 1)
+                  : setFinished(true)
+              }
+            />
+          </>
+        ) : (
+          // Final Screen
+          <>
+            <Text fontSize={20 + Number(fontIncrease) + "px"}>
+              {"Resultado: " +
+                wellAnswered +
+                " correctas " +
+                (questions.length - wellAnswered) +
+                " incorrectas"}
+            </Text>
 
             <ButtonsContainer>
               <GenericButton
@@ -207,49 +180,6 @@ const Question = () => {
               />
             </ButtonsContainer>
           </>
-        )}
-        {!answered && !finished && (
-          <SendButtonContainer>
-            <GenericButton
-              fontSize={15 + Number(fontIncrease) * 2 + "px"}
-              disabled={selectedAnswer === null}
-              text={"Enviar respuesta"}
-              onSubmit={() => {
-                if (selectedAnswer.correct) setWellAnswered(wellAnswered + 1);
-                setAnswered(true);
-              }}
-              hidden={modalOpened()}
-            />
-          </SendButtonContainer>
-        )}
-        {answered && !finished && (
-          <ResultContainer>
-            <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>
-              {selectedAnswer.correct ? "Correcto" : "Incorrecto"}
-            </ResultTitle>
-            <ResultButtons>
-              <GenericButton
-                fontSize={15 + Number(fontIncrease) * 2 + "px"}
-                text={"Siguiente"}
-                onSubmit={() =>
-                  index < questions.length - 1
-                    ? setIndex(index + 1)
-                    : setFinished(true)
-                }
-                hidden={modalOpened()}
-              />
-              <GenericButton
-                fontSize={15 + Number(fontIncrease) * 2 + "px"}
-                text={"Más información"}
-                textColor={current_theme.text}
-                backgroundColor={current_theme.bg_secondary}
-                hidden={modalOpened()}
-              />
-            </ResultButtons>
-            <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>
-              {selectedAnswer.tip}
-            </ResultTip>
-          </ResultContainer>
         )}
       </MainContainer>
     </Wrapper>
