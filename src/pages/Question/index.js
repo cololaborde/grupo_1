@@ -103,7 +103,10 @@ const Question = () => {
         title={currentQuestion.information.title}
         text={currentQuestion.information.text}
       />
-      <ExitModal show={showExitModal} />
+      <ExitModal
+        show={showExitModal}
+        fontSize={15 + Number(fontIncrease) * 2 + "px"}
+      />
       <MainContainer>
         <BackContainer>
           <BackButton
@@ -159,24 +162,24 @@ const Question = () => {
         ) : (
           <>
             <FinalTextContainer>
-              <Text fontSize={20 + Number(fontIncrease) + "px"}>
+              <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
                 {"Resultado: " + wellAnswered}
               </Text>
               <div style={{ marginLeft: "5px", marginRight: "5px" }}>
                 <Text
                   color={"#1bd802"}
-                  fontSize={20 + Number(fontIncrease) + "px"}
+                  fontSize={20 + Number(fontIncrease) * 2 + "px"}
                 >
                   {" correctas "}
                 </Text>
               </div>
-              <Text fontSize={20 + Number(fontIncrease) + "px"}>
+              <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
                 {questions.length - wellAnswered}
               </Text>
               <div style={{ marginLeft: "5px", marginRight: "5px" }}>
                 <Text
                   color={"#ff0000"}
-                  fontSize={20 + Number(fontIncrease) + "px"}
+                  fontSize={20 + Number(fontIncrease) * 2 + "px"}
                 >
                   {" incorrectas"}
                 </Text>
@@ -218,7 +221,7 @@ const Question = () => {
         )}
         {answered && !finished && (
           <ResultContainer>
-            <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>
+            <ResultTitle fontSize={40 + Number(fontIncrease) * 2 + "px"}>
               {selectedAnswer.correct ? "Correcto" : "Incorrecto"}
             </ResultTitle>
             <ResultButtons>
@@ -238,7 +241,7 @@ const Question = () => {
                 hidden={modalOpened()}
               />
             </ResultButtons>
-            <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>
+            <ResultTip fontSize={20 + Number(fontIncrease) * 2 + "px"}>
               {selectedAnswer.tip}
             </ResultTip>
           </ResultContainer>

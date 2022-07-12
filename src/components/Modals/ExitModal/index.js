@@ -25,6 +25,7 @@ const ExitModal = (props) => {
       <ButtonsContainer>
         <ButtonWrapper>
           <GenericButton
+            fontSize={props.fontSize}
             text={"Si"}
             backgroundColor={current_theme.btn_primary}
             onSubmit={() => {
@@ -36,6 +37,7 @@ const ExitModal = (props) => {
         </ButtonWrapper>
         <ButtonWrapper>
           <GenericButton
+            fontSize={props.fontSize}
             text={"No"}
             backgroundColor={current_theme.btn_error}
             onSubmit={() => dispatch(setShowExitModal(false))}

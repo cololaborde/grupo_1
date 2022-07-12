@@ -127,7 +127,10 @@ const Information = () => {
     <Wrapper>
       <MainContainer>
         <ConfigModal show={showConfigModal} />
-        <ExitModal show={showExitModal} />
+        <ExitModal
+          show={showExitModal}
+          fontSize={15 + Number(fontIncrease) * 2 + "px"}
+        />
         <BackContainer>
           <BackButton
             onSubmit={() =>
@@ -161,7 +164,7 @@ const Information = () => {
         </SearchContainer>
         <NavContainer>
           <NavText
-            fontSize={15 + Number(fontIncrease) + "px"}
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
             onClick={() => goMain()}
             aria-hidden={modalOpened() | false}
             tabIndex={modalOpened() ? "-1" : ""}
@@ -171,7 +174,7 @@ const Information = () => {
           {navPages.map((page, index) => (
             <NavText
               key={index}
-              fontSize={15 + Number(fontIncrease) + "px"}
+              fontSize={15 + Number(fontIncrease) * 2 + "px"}
               onClick={() => goBack(index)}
               aria-hidden={modalOpened() | false}
               tabIndex={modalOpened() ? "-1" : ""}
@@ -183,6 +186,7 @@ const Information = () => {
         {download && (
           <ButtonContainer>
             <GenericButton
+              fontSize={15 + Number(fontIncrease) * 2 + "px"}
               disabled={
                 !Object.values(downloadIndex).includes(true) &&
                 currentSection.pages
@@ -211,7 +215,7 @@ const Information = () => {
                   aria-hidden={modalOpened() | false}
                   tabIndex={modalOpened() ? "-1" : ""}
                 >
-                  <CardText fontSize={20 + Number(fontIncrease) + "px"}>
+                  <CardText fontSize={20 + Number(fontIncrease) * 2 + "px"}>
                     {page.name}
                   </CardText>
                 </CardContainer>

@@ -85,6 +85,7 @@ const ConfigModal = (props) => {
         </ConfigContainer>
         <ButtonsContainer>
           <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
             text={"Guardar"}
             backgroundColor={current_theme.btn_primary}
             onSubmit={() => {
@@ -95,6 +96,7 @@ const ConfigModal = (props) => {
             hidden={!props.show}
           />
           <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
             text={"Cancelar"}
             backgroundColor={current_theme.btn_error}
             onSubmit={() => {
