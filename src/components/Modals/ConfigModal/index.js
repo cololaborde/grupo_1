@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  restartFontIncrease,
+  restartHighContrast,
   saveFontIncrease,
   saveHighContrast,
   setFontIncrease,
@@ -97,8 +99,8 @@ const ConfigModal = (props) => {
             backgroundColor={current_theme.btn_error}
             onSubmit={() => {
               dispatch(setShowConfigModal(false));
-              //dispatch(restartFontIncrease());
-              //dispatch(restartHighContrast());
+              dispatch(restartFontIncrease());
+              dispatch(restartHighContrast());
             }}
             hidden={!props.show}
           />
