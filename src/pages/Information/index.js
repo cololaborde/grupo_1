@@ -1,9 +1,7 @@
-import { Checkbox } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import BackButton from "../../components/Buttons/BackButton";
-import GenericButton from "../../components/Buttons/GenericButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
@@ -19,6 +17,8 @@ import {
   selectShowExitModal,
 } from "../../store/Home/selectors";
 import { selectInformation } from "../../store/Information/selectors";
+import Cards from "./Components/Cards";
+import Content from "./Components/Content";
 import {
   Wrapper,
   MainContainer,
@@ -26,21 +26,9 @@ import {
   TitleContainer,
   Title,
   SearchContainer,
-  CardsContainer,
-  CardContainer,
-  CardText,
   SearchBar,
   NavContainer,
   NavText,
-  ContentContainer,
-  Content,
-  ContentTitle,
-  CheckBoxContainer,
-  ButtonContainer,
-  SecondContentTitle,
-  ThirdContentTitle,
-  ContentText,
-  ContentList,
 } from "./styled";
 
 const Information = () => {
@@ -144,7 +132,7 @@ const Information = () => {
       });
       if (newSection != null) {
         setCurrentSection(newSection);
-        setNavPages([...navPages, ...path.split("-")]);
+        setNavPages(path.split("-"));
       }
     }
   }, []);
@@ -206,99 +194,33 @@ const Information = () => {
             </NavText>
           ))}
         </NavContainer>
-        {download && (
-          <ButtonContainer>
-            <GenericButton
-              disabled={
-                !Object.values(downloadIndex).includes(true) &&
-                currentSection.pages
-              }
-              label={"Comenzar descarga"}
-              onSubmit={() => {
-                getDownloadData();
-                setDownloadIndex(initialCheckState());
-              }}
-              hidden={!download}
-              text={"Descargar"}
-            />
-          </ButtonContainer>
-        )}
         {currentSection.type === "Section" ? (
-          <CardsContainer>
-            {currentSection.pages.map((page, index) => (
-              // eslint-disable-next-line react/jsx-key
-              <CheckBoxContainer>
-                <CardContainer
-                  key={index}
-                  onClick={() => (
-                    setNavPages(navPages.concat(page.name)),
-                    setCurrentSection(page)
-                  )}
-                  aria-hidden={modalOpened() | false}
-                  tabIndex={modalOpened() ? "-1" : ""}
-                >
-                  <CardText fontSize={20 + Number(fontIncrease) + "px"}>
-                    {page.name}
-                  </CardText>
-                </CardContainer>
-                {download && (
-                  <Checkbox
-                    aria-label={"Seleccionar" + page.name}
-                    color={"default"}
-                    checked={!!downloadIndex[index]}
-                    onClick={() => {
-                      setDownloadIndex({
-                        ...downloadIndex,
-                        [index]: !downloadIndex[index],
-                      });
-                    }}
-                  />
-                )}
-              </CheckBoxContainer>
-            ))}
-          </CardsContainer>
+          <Cards
+            download={download}
+            downloadIndex={downloadIndex}
+            currentSection={currentSection}
+            fontIncrease={fontIncrease}
+            modalOpened={modalOpened}
+            startDownload={() => {
+              getDownloadData();
+              setDownloadIndex(initialCheckState());
+            }}
+            goToSection={(page) => {
+              setNavPages(navPages.concat(page.name));
+              setCurrentSection(page);
+            }}
+            checkSection={(index) => {
+              setDownloadIndex({
+                ...downloadIndex,
+                [index]: !downloadIndex[index],
+              });
+            }}
+          />
         ) : (
-          <ContentContainer>
-            <ContentTitle>{currentSection.name}</ContentTitle>
-            {currentSection.content.map((line, index) => (
-              <Content key={index}>
-                {typeof line === "string" ? (
-                  line[0] == "&" ? (
-                    line[1] == "1" ? (
-                      <SecondContentTitle
-                        fontSize={25 + Number(fontIncrease) * 2 + "px"}
-                      >
-                        {line.substring(2)}
-                      </SecondContentTitle>
-                    ) : (
-                      <ThirdContentTitle
-                        fontSize={20 + Number(fontIncrease) * 2 + "px"}
-                      >
-                        {line.substring(2)}
-                      </ThirdContentTitle>
-                    )
-                  ) : (
-                    <ContentText
-                      fontSize={15 + Number(fontIncrease) * 2 + "px"}
-                    >
-                      {line}
-                    </ContentText>
-                  )
-                ) : (
-                  <ul>
-                    {line.map((item, i) => (
-                      <ContentList
-                        key={i}
-                        fontSize={15 + Number(fontIncrease) * 2 + "px"}
-                      >
-                        {item}
-                      </ContentList>
-                    ))}
-                  </ul>
-                )}
-              </Content>
-            ))}
-          </ContentContainer>
+          <Content
+            currentSection={currentSection}
+            fontIncrease={fontIncrease}
+          />
         )}
       </MainContainer>
     </Wrapper>
