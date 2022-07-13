@@ -1,6 +1,7 @@
 import { Checkbox } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import BackButton from "../../components/Buttons/BackButton";
 import GenericButton from "../../components/Buttons/GenericButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
@@ -123,6 +124,31 @@ const Information = () => {
   useEffect(() => {
     if (currentSection.pages) setDownloadIndex(initialCheckState());
   }, [currentSection]);
+
+  const { path } = useParams();
+  useEffect(() => {
+    if (path != null) {
+      let newSection = pages;
+      path.split("-").forEach((sectionName) => {
+        let auxSection = null;
+        if (newSection == null) return;
+        if (newSection.type == "Page") return;
+        auxSection = newSection.pages.find((s) => {
+          return s.name === sectionName;
+        });
+        if (newSection != null) {
+          newSection = auxSection;
+        } else {
+          newSection = null;
+        }
+      });
+      if (newSection != null) {
+        setCurrentSection(newSection);
+        setNavPages([...navPages, ...path.split("-")]);
+      }
+    }
+  }, []);
+
   return (
     <Wrapper>
       <MainContainer>
