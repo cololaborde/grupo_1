@@ -34,6 +34,7 @@ import {
   Text,
   ButtonsContainer,
   CounterText,
+  HighlightedText,
 } from "./styled";
 
 const Question = () => {
@@ -157,11 +158,13 @@ const Question = () => {
           // Final Screen
           <>
             <Text fontSize={20 + Number(fontIncrease) + "px"}>
-              {"Resultado: " +
-                wellAnswered +
-                " correctas " +
-                (questions.length - wellAnswered) +
-                " incorrectas"}
+              {"Resultado: "}
+              <HighlightedText backgroundColor={currentTheme.correct}>
+                {wellAnswered + " correctas"}
+              </HighlightedText>{" "}
+              <HighlightedText backgroundColor={currentTheme.incorrect}>
+                {questions.length - wellAnswered + " incorrectas"}
+              </HighlightedText>
             </Text>
 
             <ButtonsContainer>

@@ -167,14 +167,13 @@ export const Text = styled.p`
   height: 100%;
 `;
 
+export const HighlightedText = styled.span`
+  background-color: ${(props) => props.backgroundColor};
+`;
+
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
   bottom: 0;
   position: absolute;
-`;
-
-export const FinalTextContainer = styled.div`
-  display: flex;
-  flex-direction: row;
 `;
