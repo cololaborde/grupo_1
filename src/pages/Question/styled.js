@@ -34,23 +34,6 @@ export const BackContainer = styled.div`
   top: 15px;
 `;
 
-export const TitleContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 100%;
-  margin-top: 60px;
-`;
-
-export const Title = styled.h1`
-  font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || props.theme.text};
-  font-weight: bold;
-  font-family: Arial;
-  margin: 15px;
-  text-align: center;
-`;
-
 export const AnswersContainer = styled.div`
   width: 100%;
   margin-top: 40px;
@@ -165,15 +148,4 @@ export const Text = styled.p`
   margin-top: 3px;
   max-width: 50%;
   height: 100%;
-`;
-
-export const HighlightedText = styled.span`
-  background-color: ${(props) => props.backgroundColor};
-`;
-
-export const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  bottom: 0;
-  position: absolute;
 `;

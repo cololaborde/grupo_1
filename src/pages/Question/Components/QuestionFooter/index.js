@@ -1,4 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
+import {
+  selectFontIncrease,
+  selectHighContrast,
+  selectOpenModal,
+} from "../../../../store/Home/selectors";
+import { theme } from "../../../../theme";
 import GenericButton from "../../../../components/Buttons/GenericButton";
 import {
   ResultButtons,
@@ -8,47 +16,68 @@ import {
   Wrapper,
 } from "./styled";
 
-const QuestionFooter = (props) => {
+const QuestionFooter = ({
+  answered,
+  selectedAnswer,
+  sendAnswer,
+  nextQuestion,
+}) => {
+  const fontIncrease = useSelector(selectFontIncrease);
+  const highContrast = useSelector(selectHighContrast);
+  const currentTheme = theme(highContrast);
+  const modalOpened = useSelector(selectOpenModal);
   return (
     <Wrapper>
-      {!props.answered ? (
+      {!answered ? (
         <GenericButton
-          fontSize={15 + Number(props.fontIncrease) * 2 + "px"}
-          disabled={props.selectedAnswer === null}
+          fontSize={15 + Number(fontIncrease) * 2 + "px"}
+          disabled={selectedAnswer === null}
           text={"Enviar respuesta"}
           onSubmit={() => {
-            props.sendAnswer();
+            sendAnswer();
           }}
-          hidden={props.modalOpened}
+          hidden={modalOpened}
         />
       ) : (
         <ResultContainer>
-          <ResultTitle fontSize={40 + Number(props.fontIncrease) + "px"}>
-            {props.selectedAnswer.correct ? "Correcto" : "Incorrecto"}
+          <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>
+            {selectedAnswer.correct ? "Correcto" : "Incorrecto"}
           </ResultTitle>
           <ResultButtons>
             <GenericButton
-              fontSize={15 + Number(props.fontIncrease) * 2 + "px"}
+              fontSize={15 + Number(fontIncrease) * 2 + "px"}
               text={"Siguiente"}
               onSubmit={() => {
-                props.nextQuestion();
+                nextQuestion();
               }}
-              hidden={props.modalOpened}
+              hidden={modalOpened}
             />
             <GenericButton
-              fontSize={15 + Number(props.fontIncrease) * 2 + "px"}
+              fontSize={15 + Number(fontIncrease) * 2 + "px"}
               text={"Más información"}
-              backgroundColor={props.currentTheme.bg_secondary}
-              hidden={props.modalOpened}
+              backgroundColor={currentTheme.bg_secondary}
+              hidden={modalOpened}
             />
           </ResultButtons>
-          <ResultTip fontSize={20 + Number(props.fontIncrease) + "px"}>
-            {props.selectedAnswer.tip}
+          <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>
+            {selectedAnswer.tip}
           </ResultTip>
         </ResultContainer>
       )}
     </Wrapper>
   );
+};
+
+QuestionFooter.propTypes = {
+  answered: PropTypes.bool,
+  selectedAnswer: PropTypes.shape({
+    title: PropTypes.string,
+    img: PropTypes.string,
+    correct: PropTypes.bool,
+    tip: PropTypes.string,
+  }),
+  sendAnswer: PropTypes.func,
+  nextQuestion: PropTypes.func,
 };
 
 export default QuestionFooter;

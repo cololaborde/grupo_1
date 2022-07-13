@@ -9,3 +9,7 @@ export const selectShowConfigModal = (state) =>
   get(state, "home.showConfigModal", false);
 export const selectShowHelpModal = (state) =>
   get(state, "home.showHelpModal", false);
+export const selectOpenModal = (state) =>
+  get(state, "home.showExitModal", false) |
+  get(state, "home.showConfigModal", false) |
+  get(state, "home.showHelpModal", false);
