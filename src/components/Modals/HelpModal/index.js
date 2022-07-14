@@ -1,6 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setShowHelpModal } from "../../../store/Home/actions";
+import { selectShowHelpModal } from "../../../store/Home/selectors";
 import GenericModal from "../GenericModal";
 import {
   Container,
@@ -12,11 +13,12 @@ import {
 
 const HelpModal = (props) => {
   const dispatch = useDispatch();
+  const showHelpModal = useSelector(selectShowHelpModal);
   return (
     <GenericModal
       title={"Ayuda"}
       closeAction={() => dispatch(setShowHelpModal(false))}
-      show={props.show}
+      show={showHelpModal}
       modalId="help-modal"
     >
       <Container>

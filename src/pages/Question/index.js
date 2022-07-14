@@ -3,11 +3,6 @@ import { useSelector } from "react-redux";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
 import HelpModal from "../../components/Modals/HelpModal";
-import {
-  selectShowConfigModal,
-  selectShowExitModal,
-  selectShowHelpModal,
-} from "../../store/Home/selectors";
 import { selectQuestions } from "../../store/Question/selectors";
 import Answers from "./Components/Answers";
 import FinalScreen from "./Components/FinalScreen";
@@ -18,9 +13,6 @@ import { Wrapper, MainContainer } from "./styled";
 
 const Question = () => {
   const questions = useSelector(selectQuestions);
-  const showConfigModal = useSelector(selectShowConfigModal);
-  const showHelpModal = useSelector(selectShowHelpModal);
-  const showExitModal = useSelector(selectShowExitModal);
 
   const [index, setIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(questions[index]);
@@ -28,6 +20,17 @@ const Question = () => {
   const [answered, setAnswered] = useState(false);
   const [finished, setFinished] = useState(false);
   const [wellAnswered, setWellAnswered] = useState(0);
+
+  const sendAnswer = () => {
+    if (selectedAnswer.correct) setWellAnswered(wellAnswered + 1);
+    setAnswered(true);
+  };
+
+  const nextQuestion = () =>
+    index < questions.length - 1 ? setIndex(index + 1) : setFinished(true);
+
+  const selectAnswer = (i) =>
+    !answered ? setSelectedAnswer(currentQuestion.answers[i]) : null;
 
   useEffect(() => {
     if (index < questions.length) {
@@ -40,17 +43,15 @@ const Question = () => {
   return (
     <Wrapper>
       {/* Modals */}
-      <ConfigModal show={showConfigModal} />
+      <ConfigModal />
       <HelpModal
-        show={showHelpModal}
         title={currentQuestion.information.title}
         text={currentQuestion.information.text}
       />
-      <ExitModal show={showExitModal} />
+      <ExitModal />
 
       {/* Main Container */}
       <MainContainer>
-        {/* Top Bar */}
         <TopBar
           finished={finished}
           counterText={
@@ -58,7 +59,6 @@ const Question = () => {
           }
         />
 
-        {/* Question Title and Final Text Title*/}
         <Title
           text={!finished ? currentQuestion.title : "Has llegado al final"}
         />
@@ -68,26 +68,16 @@ const Question = () => {
               question={currentQuestion}
               selectedAnswer={selectedAnswer}
               answered={answered}
-              selectAnswer={(i) =>
-                !answered ? setSelectedAnswer(currentQuestion.answers[i]) : null
-              }
+              selectAnswer={selectAnswer}
             />
             <QuestionFooter
               selectedAnswer={selectedAnswer}
               answered={answered}
-              sendAnswer={() => {
-                if (selectedAnswer.correct) setWellAnswered(wellAnswered + 1);
-                setAnswered(true);
-              }}
-              nextQuestion={() =>
-                index < questions.length - 1
-                  ? setIndex(index + 1)
-                  : setFinished(true)
-              }
+              sendAnswer={sendAnswer}
+              nextQuestion={nextQuestion}
             />
           </>
         ) : (
-          // Final Screen
           <FinalScreen
             rightAnswers={wellAnswered}
             wrongAnswers={questions.length - wellAnswered}

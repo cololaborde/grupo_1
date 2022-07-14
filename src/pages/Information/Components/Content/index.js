@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectFontIncrease } from "../../../../store/Home/selectors";
 import {
   ContentContainer,
   ContentLine,
@@ -9,31 +11,30 @@ import {
   ThirdContentTitle,
 } from "./styled";
 
-const Content = (props) => {
+const Content = ({ currentSection }) => {
+  const fontIncrease = useSelector(selectFontIncrease);
   return (
     <ContentContainer>
-      <ContentTitle>{props.currentSection.name}</ContentTitle>
-      {props.currentSection.content.map((line, index) => (
+      <ContentTitle>{currentSection.name}</ContentTitle>
+      {currentSection.content.map((line, index) => (
         <ContentLine key={index}>
           {typeof line === "string" ? (
             line[0] == "&" ? (
               line[1] == "1" ? (
                 <SecondContentTitle
-                  fontSize={25 + Number(props.fontIncrease) * 2 + "px"}
+                  fontSize={25 + Number(fontIncrease) * 2 + "px"}
                 >
                   {line.substring(2)}
                 </SecondContentTitle>
               ) : (
                 <ThirdContentTitle
-                  fontSize={20 + Number(props.fontIncrease) * 2 + "px"}
+                  fontSize={20 + Number(fontIncrease) * 2 + "px"}
                 >
                   {line.substring(2)}
                 </ThirdContentTitle>
               )
             ) : (
-              <ContentText
-                fontSize={15 + Number(props.fontIncrease) * 2 + "px"}
-              >
+              <ContentText fontSize={15 + Number(fontIncrease) * 2 + "px"}>
                 {line}
               </ContentText>
             )
@@ -42,7 +43,7 @@ const Content = (props) => {
               {line.map((item, i) => (
                 <ContentList
                   key={i}
-                  fontSize={15 + Number(props.fontIncrease) * 2 + "px"}
+                  fontSize={15 + Number(fontIncrease) * 2 + "px"}
                 >
                   {item}
                 </ContentList>

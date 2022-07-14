@@ -6,17 +6,21 @@ import { goToHome } from "../../../store/Home/actions";
 import GenericModal from "../GenericModal";
 import GenericButton from "../../Buttons/GenericButton";
 import { theme } from "../../../theme";
-import { selectHighContrast } from "../../../store/Home/selectors";
+import {
+  selectHighContrast,
+  selectShowExitModal,
+} from "../../../store/Home/selectors";
 
-const ExitModal = (props) => {
+const ExitModal = () => {
   const dispatch = useDispatch();
   const highContrast = useSelector(selectHighContrast);
   const current_theme = theme(highContrast);
+  const showExitModal = useSelector(selectShowExitModal);
   return (
     <GenericModal
       title={"Salir"}
       closeAction={() => dispatch(setShowExitModal(false))}
-      show={props.show}
+      show={showExitModal}
       modalId="exit-modal"
     >
       <TextContainer>
@@ -31,7 +35,7 @@ const ExitModal = (props) => {
               dispatch(goToHome);
               dispatch(setShowExitModal(false));
             }}
-            hidden={!props.show}
+            hidden={!showExitModal}
           />
         </ButtonWrapper>
         <ButtonWrapper>
@@ -39,7 +43,7 @@ const ExitModal = (props) => {
             text={"No"}
             backgroundColor={current_theme.btn_error}
             onSubmit={() => dispatch(setShowExitModal(false))}
-            hidden={!props.show}
+            hidden={!showExitModal}
           />
         </ButtonWrapper>
       </ButtonsContainer>

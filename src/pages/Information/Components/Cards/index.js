@@ -1,6 +1,11 @@
 import { Checkbox } from "@material-ui/core";
 import React from "react";
+import { useSelector } from "react-redux";
 import GenericButton from "../../../../components/Buttons/GenericButton";
+import {
+  selectFontIncrease,
+  selectOpenModal,
+} from "../../../../store/Home/selectors";
 import {
   DownloadButtonContainer,
   CardContainer,
@@ -10,6 +15,8 @@ import {
 } from "./styled";
 
 const Cards = (props) => {
+  const fontIncrease = useSelector(selectFontIncrease);
+  const modalOpened = useSelector(selectOpenModal);
   return (
     <CardsContainer>
       {props.download && (
@@ -33,10 +40,10 @@ const Cards = (props) => {
           <CardContainer
             key={index}
             onClick={() => props.goToSection(page)}
-            aria-hidden={props.modalOpened() | false}
-            tabIndex={props.modalOpened() ? "-1" : ""}
+            aria-hidden={modalOpened | false}
+            tabIndex={modalOpened ? "-1" : ""}
           >
-            <CardText fontSize={20 + Number(props.fontIncrease) + "px"}>
+            <CardText fontSize={20 + Number(fontIncrease) + "px"}>
               {page.name}
             </CardText>
           </CardContainer>

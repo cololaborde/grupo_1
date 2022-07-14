@@ -24,15 +24,17 @@ import GenericButton from "../../Buttons/GenericButton";
 import {
   selectFontIncrease,
   selectHighContrast,
+  selectShowConfigModal,
 } from "../../../store/Home/selectors";
 import { theme } from "../../../theme";
 import Spinbutton from "../../Inputs/Spinbutton";
 
-const ConfigModal = (props) => {
+const ConfigModal = () => {
   const dispatch = useDispatch();
   const fontIncrease = useSelector(selectFontIncrease);
   const highContrast = useSelector(selectHighContrast);
   const current_theme = theme(highContrast);
+  const showConfigModal = useSelector(selectShowConfigModal);
 
   const handleInputChange = (name, value) => {
     switch (name) {
@@ -49,7 +51,7 @@ const ConfigModal = (props) => {
     <GenericModal
       title={"Opciones"}
       closeAction={() => dispatch(setShowConfigModal(false))}
-      show={props.show}
+      show={showConfigModal}
       modalId="option-modal"
     >
       <Container>
@@ -64,7 +66,7 @@ const ConfigModal = (props) => {
                 onChange={handleInputChange}
                 label="Tamaño del texto"
                 fontSize={15 + Number(fontIncrease) * 2 + "px"}
-                hidden={!props.show}
+                hidden={!showConfigModal}
               />
             </SpinbuttonContainer>
           </LineContainer>
@@ -78,7 +80,7 @@ const ConfigModal = (props) => {
                 onChange={handleInputChange}
                 label="Contraste Alto"
                 scale={(10 + Number(fontIncrease) * 2) / 10 + ""}
-                hidden={!props.show}
+                hidden={!showConfigModal}
               />
             </CheckboxContainer>
           </LineContainer>
@@ -92,7 +94,7 @@ const ConfigModal = (props) => {
               dispatch(saveFontIncrease(fontIncrease));
               dispatch(saveHighContrast(highContrast));
             }}
-            hidden={!props.show}
+            hidden={!showConfigModal}
           />
           <GenericButton
             text={"Cancelar"}
@@ -102,7 +104,7 @@ const ConfigModal = (props) => {
               dispatch(restartFontIncrease());
               dispatch(restartHighContrast());
             }}
-            hidden={!props.show}
+            hidden={!showConfigModal}
           />
           {/* <GenericButton
             text={"Por defecto"}
@@ -111,7 +113,7 @@ const ConfigModal = (props) => {
               dispatch(setFontIncrease(0));
               dispatch(setHighContrast(false));
             }}
-            hidden={!props.show}
+            hidden={!showConfigModal}
           /> */}
         </ButtonsContainer>
       </Container>

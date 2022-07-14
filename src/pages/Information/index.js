@@ -1,41 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import BackButton from "../../components/Buttons/BackButton";
-import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
-import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
-import {
-  setShowConfigModal,
-  setShowExitModal,
-  setShowHelpModal,
-} from "../../store/Home/actions";
-import {
-  selectFontIncrease,
-  selectShowConfigModal,
-  selectShowExitModal,
-} from "../../store/Home/selectors";
+import { setShowExitModal } from "../../store/Home/actions";
 import { selectInformation } from "../../store/Information/selectors";
 import Cards from "./Components/Cards";
 import Content from "./Components/Content";
-import {
-  Wrapper,
-  MainContainer,
-  BackContainer,
-  TitleContainer,
-  Title,
-  SearchContainer,
-  SearchBar,
-  NavContainer,
-  NavText,
-} from "./styled";
+import NavBar from "./Components/NavBar";
+import Search from "./Components/Search";
+import Title from "./Components/Title";
+import TopBar from "./Components/TopBar";
+import { Wrapper, MainContainer } from "./styled";
 
 const Information = () => {
   const dispatch = useDispatch();
 
   const pages = useSelector(selectInformation);
-  const fontIncrease = useSelector(selectFontIncrease);
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
   const initialCheckState = () => {
@@ -47,9 +28,6 @@ const Information = () => {
   };
   const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
   const [download, setDownload] = useState(false);
-
-  const showConfigModal = useSelector(selectShowConfigModal);
-  const showExitModal = useSelector(selectShowExitModal);
 
   const showExitModalConst = () => {
     dispatch(setShowExitModal(true));
@@ -75,9 +53,13 @@ const Information = () => {
       setCurrentSection(newSection);
     }
   };
-  const modalOpened = () => {
-    return showConfigModal || showExitModal;
-  };
+
+  const goBackButton = () =>
+    navPages.length > 1
+      ? goBack(navPages.length - 2)
+      : navPages.length == 1
+      ? goMain()
+      : showExitModalConst();
 
   const getDownloadData = () => {
     let toDownload = [];
@@ -93,23 +75,6 @@ const Information = () => {
   };
 
   useEffect(() => {
-    const keyDownHandler = (event) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        dispatch(setShowHelpModal(false));
-        dispatch(setShowExitModal(false));
-        dispatch(setShowConfigModal(false));
-      }
-    };
-
-    document.addEventListener("keydown", keyDownHandler);
-
-    return () => {
-      document.removeEventListener("keydown", keyDownHandler);
-    };
-  }, []);
-
-  useEffect(() => {
     if (currentSection.pages) setDownloadIndex(initialCheckState());
   }, [currentSection]);
 
@@ -118,17 +83,12 @@ const Information = () => {
     if (path != null) {
       let newSection = pages;
       path.split("-").forEach((sectionName) => {
+        if ((newSection == null) | (newSection.type == "Page")) return;
         let auxSection = null;
-        if (newSection == null) return;
-        if (newSection.type == "Page") return;
         auxSection = newSection.pages.find((s) => {
           return s.name === sectionName;
         });
-        if (newSection != null) {
-          newSection = auxSection;
-        } else {
-          newSection = null;
-        }
+        newSection = auxSection;
       });
       if (newSection != null) {
         setCurrentSection(newSection);
@@ -139,68 +99,22 @@ const Information = () => {
 
   return (
     <Wrapper>
+      <ConfigModal />
+      <ExitModal />
+
       <MainContainer>
-        <ConfigModal show={showConfigModal} />
-        <ExitModal show={showExitModal} />
-        <BackContainer>
-          <BackButton
-            onSubmit={() =>
-              navPages.length > 1
-                ? goBack(navPages.length - 2)
-                : navPages.length == 1
-                ? goMain()
-                : showExitModalConst()
-            }
-            hidden={modalOpened()}
-          />
-        </BackContainer>
-        <HamburguerMenu
-          onSubmit={() => setDownload(!download)}
-          hidden={modalOpened()}
+        <TopBar
+          goBack={goBackButton}
+          setDownload={() => setDownload(!download)}
         />
-        <TitleContainer>
-          <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
-            Información
-          </Title>
-        </TitleContainer>
-        <SearchContainer role="search">
-          <SearchBar
-            type="text"
-            name="searchbar"
-            placeholder="Buscar"
-            aria-hidden={modalOpened() | false}
-            tabIndex={modalOpened() ? "-1" : ""}
-          />
-          <SearchButton hidden={modalOpened()} />
-        </SearchContainer>
-        <NavContainer>
-          <NavText
-            fontSize={15 + Number(fontIncrease) + "px"}
-            onClick={() => goMain()}
-            aria-hidden={modalOpened() | false}
-            tabIndex={modalOpened() ? "-1" : ""}
-          >
-            {" - Información"}
-          </NavText>
-          {navPages.map((page, index) => (
-            <NavText
-              key={index}
-              fontSize={15 + Number(fontIncrease) + "px"}
-              onClick={() => goBack(index)}
-              aria-hidden={modalOpened() | false}
-              tabIndex={modalOpened() ? "-1" : ""}
-            >
-              {" -"} {page}
-            </NavText>
-          ))}
-        </NavContainer>
+        <Title text="Información" />
+        <Search />
+        <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
         {currentSection.type === "Section" ? (
           <Cards
             download={download}
             downloadIndex={downloadIndex}
             currentSection={currentSection}
-            fontIncrease={fontIncrease}
-            modalOpened={modalOpened}
             startDownload={() => {
               getDownloadData();
               setDownloadIndex(initialCheckState());
@@ -217,10 +131,7 @@ const Information = () => {
             }}
           />
         ) : (
-          <Content
-            currentSection={currentSection}
-            fontIncrease={fontIncrease}
-          />
+          <Content currentSection={currentSection} />
         )}
       </MainContainer>
     </Wrapper>
