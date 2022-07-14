@@ -11,10 +11,10 @@ export const TextContainer = styled.div`
   margin-bottom: 10px;
   flex-wrap: wrap;
 `;
-export const Text = styled.div`
+export const Text = styled.p`
   margin: 0 10px;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: ${(props) => props.fontSize || "20px"};
   font-weight: bold;
   font-family: Arial;
   text-align: center;

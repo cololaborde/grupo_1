@@ -7,12 +7,14 @@ import GenericModal from "../GenericModal";
 import GenericButton from "../../Buttons/GenericButton";
 import { theme } from "../../../theme";
 import {
+  selectFontIncrease,
   selectHighContrast,
   selectShowExitModal,
 } from "../../../store/Home/selectors";
 
 const ExitModal = () => {
   const dispatch = useDispatch();
+  const fontIncrease = useSelector(selectFontIncrease);
   const highContrast = useSelector(selectHighContrast);
   const current_theme = theme(highContrast);
   const showExitModal = useSelector(selectShowExitModal);
@@ -24,7 +26,9 @@ const ExitModal = () => {
       modalId="exit-modal"
     >
       <TextContainer>
-        <Text>{"¿Desea volver al menú principal?"}</Text>
+        <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
+          {"¿Desea volver al menú principal?"}
+        </Text>
       </TextContainer>
       <ButtonsContainer>
         <ButtonWrapper>
@@ -36,6 +40,7 @@ const ExitModal = () => {
               dispatch(setShowExitModal(false));
             }}
             hidden={!showExitModal}
+            fontSize={20 + Number(fontIncrease) * 2 + "px"}
           />
         </ButtonWrapper>
         <ButtonWrapper>
@@ -44,6 +49,7 @@ const ExitModal = () => {
             backgroundColor={current_theme.btn_error}
             onSubmit={() => dispatch(setShowExitModal(false))}
             hidden={!showExitModal}
+            fontSize={20 + Number(fontIncrease) * 2 + "px"}
           />
         </ButtonWrapper>
       </ButtonsContainer>
