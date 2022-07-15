@@ -11,6 +11,7 @@ import NavBar from "./Components/NavBar";
 import Search from "./Components/Search";
 import Title from "./Components/Title";
 import TopBar from "./Components/TopBar";
+import PDFDownloadButton from "./Components/PDFDownloadButton";
 import { Wrapper, MainContainer } from "./styled";
 
 const Information = () => {
@@ -26,8 +27,10 @@ const Information = () => {
     }
     return checks;
   };
+
   const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
   const [download, setDownload] = useState(false);
+  const [data, setData] = useState([]);
 
   const showExitModalConst = () => {
     dispatch(setShowExitModal(true));
@@ -68,11 +71,14 @@ const Information = () => {
       pagesCopy.map((item, index) => {
         if (downloadIndex[index]) toDownload.push(item);
       });
-    } else toDownload = currentSection;
+    } else toDownload = [currentSection];
 
-    console.log(toDownload);
     return toDownload;
   };
+
+  useEffect(() => {
+    setData(getDownloadData());
+  }, [downloadIndex]);
 
   useEffect(() => {
     if (currentSection.pages) setDownloadIndex(initialCheckState());
@@ -110,6 +116,18 @@ const Information = () => {
         <Title text="Información" />
         <Search />
         <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
+        {download && currentSection.type === "Section" && (
+          <PDFDownloadButton
+            downloadIndex={downloadIndex}
+            currentSection={currentSection}
+            data={data}
+            onClick={() => {
+              setDownloadIndex(initialCheckState());
+              setData([]);
+            }}
+            download={download}
+          />
+        )}
         {currentSection.type === "Section" ? (
           <Cards
             download={download}

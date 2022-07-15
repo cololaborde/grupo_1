@@ -8,8 +8,6 @@ import Question from "../Question";
 import { theme } from "../../theme";
 import { useSelector } from "react-redux";
 import { selectHighContrast } from "../../store/Home/selectors";
-/* import PrivateRoute from 'components/commons/PrivateRoute';
- */
 import Intro from "../Intro";
 export const Container = styled.div`
   height: 97vh;
