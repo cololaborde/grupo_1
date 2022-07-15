@@ -1,7 +1,4 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectDataArray } from "../../store/DocumentViewer/selectors";
-import { goToInformation } from "../../store/Home/actions";
 import { View, Text, StyleSheet, Document, Page } from "@react-pdf/renderer";
 
 const DocumentViewer = (props) => {

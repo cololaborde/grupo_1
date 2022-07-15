@@ -1,5 +1,5 @@
 import { Checkbox } from "@material-ui/core";
-import { PDFDownloadLink, Text } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../../components/Buttons/BackButton";
@@ -216,6 +216,7 @@ const Information = () => {
                     onSubmit={() => {
                       setData(getDownloadData());
                       setDownloadIndex(initialCheckState());
+                      setData([]);
                     }}
                     hidden={!download}
                     text={"Descargar"}
