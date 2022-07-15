@@ -1,9 +1,7 @@
 import { Checkbox } from "@material-ui/core";
-import { PDFDownloadLink } from "@react-pdf/renderer";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../../components/Buttons/BackButton";
-import GenericButton from "../../components/Buttons/GenericButton";
 import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
@@ -19,7 +17,7 @@ import {
   selectShowExitModal,
 } from "../../store/Home/selectors";
 import { selectInformation } from "../../store/Information/selectors";
-import DocumentViewer from "../DocumentViewer";
+import PDFDownloadButton from "./Components/PDFDownloadButton";
 import {
   Wrapper,
   MainContainer,
@@ -37,7 +35,6 @@ import {
   Content,
   ContentTitle,
   CheckBoxContainer,
-  ButtonContainer,
   SecondContentTitle,
   ThirdContentTitle,
   ContentText,
@@ -45,12 +42,6 @@ import {
 } from "./styled";
 
 const Information = () => {
-  const dispatch = useDispatch();
-
-  const pages = useSelector(selectInformation);
-  const fontIncrease = useSelector(selectFontIncrease);
-  const [currentSection, setCurrentSection] = useState(pages);
-  const [navPages, setNavPages] = useState([]);
   const initialCheckState = () => {
     let checks = {};
     if (currentSection.pages) {
@@ -58,12 +49,18 @@ const Information = () => {
     }
     return checks;
   };
-  const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
-  const [download, setDownload] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const pages = useSelector(selectInformation);
+  const fontIncrease = useSelector(selectFontIncrease);
   const showConfigModal = useSelector(selectShowConfigModal);
   const showExitModal = useSelector(selectShowExitModal);
 
+  const [currentSection, setCurrentSection] = useState(pages);
+  const [navPages, setNavPages] = useState([]);
+  const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
+  const [download, setDownload] = useState(false);
   const [data, setData] = useState([]);
 
   const showExitModalConst = () => {
@@ -106,11 +103,10 @@ const Information = () => {
     return toDownload;
   };
 
-  /*   useEffect(() => {
+  useEffect(() => {
     setData(getDownloadData());
-  }, [downloadIndex]); */
+  }, [downloadIndex]);
 
-  console.log(data);
   useEffect(() => {
     const keyDownHandler = (event) => {
       if (event.key === "Escape") {
@@ -120,9 +116,7 @@ const Information = () => {
         dispatch(setShowConfigModal(false));
       }
     };
-
     document.addEventListener("keydown", keyDownHandler);
-
     return () => {
       document.removeEventListener("keydown", keyDownHandler);
     };
@@ -131,6 +125,7 @@ const Information = () => {
   useEffect(() => {
     if (currentSection.pages) setDownloadIndex(initialCheckState());
   }, [currentSection]);
+
   return (
     <Wrapper>
       <MainContainer>
@@ -191,40 +186,17 @@ const Information = () => {
             </NavText>
           ))}
         </NavContainer>
-        {download && (
-          <ButtonContainer
-            disabled={
-              !Object.values(downloadIndex).includes(true) &&
-              currentSection.pages
-            }
-          >
-            <PDFDownloadLink
-              document={<DocumentViewer data={data} />}
-              fileName="informacion.pdf"
-            >
-              {({ blob, url, loading, error }) =>
-                loading ? (
-                  "Loading document..."
-                ) : (
-                  <GenericButton
-                    fontSize={15 + Number(fontIncrease) * 2 + "px"}
-                    disabled={
-                      !Object.values(downloadIndex).includes(true) &&
-                      currentSection.pages
-                    }
-                    label={"Comenzar descarga"}
-                    onSubmit={() => {
-                      setData(getDownloadData());
-                      setDownloadIndex(initialCheckState());
-                      setData([]);
-                    }}
-                    hidden={!download}
-                    text={"Descargar"}
-                  />
-                )
-              }
-            </PDFDownloadLink>
-          </ButtonContainer>
+        {download && currentSection.type === "Section" && (
+          <PDFDownloadButton
+            downloadIndex={downloadIndex}
+            currentSection={currentSection}
+            data={data}
+            onClick={() => {
+              setDownloadIndex(initialCheckState());
+              setData([]);
+            }}
+            download={download}
+          />
         )}
         {currentSection.type === "Section" ? (
           <CardsContainer>

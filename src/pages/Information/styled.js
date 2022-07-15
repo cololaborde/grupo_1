@@ -221,7 +221,3 @@ export const ContentList = styled.li`
     margin: 5px;
   }
 `;
-
-export const ButtonContainer = styled.div`
-  pointer-events: ${(props) => (props.disabled ? "none" : "")};
-`;
