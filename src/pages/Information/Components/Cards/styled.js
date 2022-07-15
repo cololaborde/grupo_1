@@ -12,8 +12,6 @@ export const CardsContainer = styled.div`
   }
 `;
 
-export const DownloadButtonContainer = styled.div``;
-
 export const CheckBoxContainer = styled.div`
   display: flex;
   flex-direction: row;
