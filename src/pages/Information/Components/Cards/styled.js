@@ -12,9 +12,14 @@ export const CardsContainer = styled.div`
   }
 `;
 
-export const CheckBoxContainer = styled.div`
+export const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+export const CheckBoxContainer = styled.div`
+  margin-top: ${(props) => props.marginTop || "20px"};
+  margin-left: ${(props) => props.marginLeft || "10px"};
 `;
 
 export const CardContainer = styled.button`
