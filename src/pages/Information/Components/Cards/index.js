@@ -19,21 +19,6 @@ const Cards = (props) => {
   const modalOpened = useSelector(selectOpenModal);
   return (
     <CardsContainer>
-      {props.download && (
-        <DownloadButtonContainer>
-          <GenericButton
-            disabled={
-              !Object.values(props.downloadIndex).includes(true) &&
-              props.currentSection.pages
-            }
-            label={"Comenzar descarga"}
-            onSubmit={() => props.startDownload()}
-            hidden={!props.download}
-            aria-hidden={!props.download}
-            text={"Descargar"}
-          />
-        </DownloadButtonContainer>
-      )}
       {props.currentSection.pages.map((page, index) => (
         // eslint-disable-next-line react/jsx-key
         <CheckBoxContainer>

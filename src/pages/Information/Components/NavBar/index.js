@@ -14,7 +14,7 @@ const NavBar = ({ navPages, goMain, goBack }) => {
     <NavContainer>
       <NavText
         fontSize={15 + Number(fontIncrease) + "px"}
-        onClick={goMain()}
+        onClick={() => goMain()}
         aria-hidden={modalOpened | false}
         tabIndex={modalOpened ? "-1" : ""}
       >
@@ -24,7 +24,7 @@ const NavBar = ({ navPages, goMain, goBack }) => {
         <NavText
           key={index}
           fontSize={15 + Number(fontIncrease) + "px"}
-          onClick={goBack(index)}
+          onClick={() => goBack(index)}
           aria-hidden={modalOpened | false}
           tabIndex={modalOpened ? "-1" : ""}
         >

@@ -96,7 +96,6 @@ const ConfigModal = () => {
               dispatch(saveHighContrast(highContrast));
             }}
             hidden={!showConfigModal}
-            fontSize={15 + Number(fontIncrease) * 2 + "px"}
           />
           <GenericButton
             fontSize={15 + Number(fontIncrease) * 2 + "px"}
@@ -108,7 +107,6 @@ const ConfigModal = () => {
               dispatch(restartHighContrast());
             }}
             hidden={!showConfigModal}
-            fontSize={15 + Number(fontIncrease) * 2 + "px"}
           />
           {/* <GenericButton
             text={"Por defecto"}

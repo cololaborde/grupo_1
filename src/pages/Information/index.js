@@ -116,38 +116,36 @@ const Information = () => {
         <Title text="Información" />
         <Search />
         <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
-        {download && currentSection.type === "Section" && (
-          <PDFDownloadButton
-            downloadIndex={downloadIndex}
-            currentSection={currentSection}
-            data={data}
-            onClick={() => {
-              setDownloadIndex(initialCheckState());
-              setData([]);
-            }}
-            download={download}
-          />
-        )}
         {currentSection.type === "Section" ? (
-          <Cards
-            download={download}
-            downloadIndex={downloadIndex}
-            currentSection={currentSection}
-            startDownload={() => {
-              getDownloadData();
-              setDownloadIndex(initialCheckState());
-            }}
-            goToSection={(page) => {
-              setNavPages(navPages.concat(page.name));
-              setCurrentSection(page);
-            }}
-            checkSection={(index) => {
-              setDownloadIndex({
-                ...downloadIndex,
-                [index]: !downloadIndex[index],
-              });
-            }}
-          />
+          <>
+            {download && (
+              <PDFDownloadButton
+                downloadIndex={downloadIndex}
+                currentSection={currentSection}
+                data={data}
+                onClick={() => {
+                  setDownloadIndex(initialCheckState());
+                  setData([]);
+                }}
+                download={download}
+              />
+            )}
+            <Cards
+              download={download}
+              downloadIndex={downloadIndex}
+              currentSection={currentSection}
+              goToSection={(page) => {
+                setNavPages(navPages.concat(page.name));
+                setCurrentSection(page);
+              }}
+              checkSection={(index) => {
+                setDownloadIndex({
+                  ...downloadIndex,
+                  [index]: !downloadIndex[index],
+                });
+              }}
+            />
+          </>
         ) : (
           <Content currentSection={currentSection} />
         )}
