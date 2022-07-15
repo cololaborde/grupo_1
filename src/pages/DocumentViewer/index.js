@@ -1,15 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BasicDocument from "../../components/PDF";
 import { selectDataArray } from "../../store/DocumentViewer/selectors";
 import { goToInformation } from "../../store/Home/actions";
-import { View, Text, StyleSheet } from "@react-pdf/renderer";
+import { View, Text, StyleSheet, Document, Page } from "@react-pdf/renderer";
 
-const DocumentViewer = () => {
-  const data = useSelector(selectDataArray);
-  const dispatch = useDispatch();
-  if (!data || data.length == 0) dispatch(goToInformation);
-
+const DocumentViewer = (props) => {
   const styles = StyleSheet.create({
     section: {
       margin: 10,
@@ -29,6 +24,8 @@ const DocumentViewer = () => {
     },
   });
 
+  console.log(props.data);
+
   const getFromContent = (elem) => (
     <View style={{ marginBottom: 20 }}>
       <Text style={styles.pageTitle}>{elem.name}</Text>
@@ -44,8 +41,7 @@ const DocumentViewer = () => {
     </View>
   );
 
-  console.log(data);
-  const content = data.map((elem) => {
+  const content = props.data.map((elem) => {
     switch (elem.type) {
       case "Section":
         return (
@@ -62,9 +58,12 @@ const DocumentViewer = () => {
   });
 
   return (
-    <div>
-      <BasicDocument data={content} />
-    </div>
+    <Document>
+      {/*render a single page*/}
+      <Page size="A4" style={styles.page}>
+        {content}
+      </Page>
+    </Document>
   );
 };
 

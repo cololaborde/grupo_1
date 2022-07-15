@@ -1,4 +1,5 @@
 import { Checkbox } from "@material-ui/core";
+import { PDFDownloadLink, Text } from "@react-pdf/renderer";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../../components/Buttons/BackButton";
@@ -7,9 +8,7 @@ import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
 import SearchButton from "../../components/Buttons/SearchButton";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
-import { setDataArray } from "../../store/DocumentViewer/actions";
 import {
-  goToPreview,
   setShowConfigModal,
   setShowExitModal,
   setShowHelpModal,
@@ -20,6 +19,7 @@ import {
   selectShowExitModal,
 } from "../../store/Home/selectors";
 import { selectInformation } from "../../store/Information/selectors";
+import DocumentViewer from "../DocumentViewer";
 import {
   Wrapper,
   MainContainer,
@@ -64,6 +64,8 @@ const Information = () => {
   const showConfigModal = useSelector(selectShowConfigModal);
   const showExitModal = useSelector(selectShowExitModal);
 
+  const [data, setData] = useState([]);
+
   const showExitModalConst = () => {
     dispatch(setShowExitModal(true));
     document.getElementById("exit-modal").querySelector("#close-icon").focus();
@@ -104,13 +106,11 @@ const Information = () => {
     return toDownload;
   };
 
-  const downloadSetup = () => {
-    const data = getDownloadData();
-    dispatch(setDataArray(data));
-    setDownloadIndex(initialCheckState());
-    dispatch(goToPreview());
-  };
+  /*   useEffect(() => {
+    setData(getDownloadData());
+  }, [downloadIndex]); */
 
+  console.log(data);
   useEffect(() => {
     const keyDownHandler = (event) => {
       if (event.key === "Escape") {
@@ -192,21 +192,37 @@ const Information = () => {
           ))}
         </NavContainer>
         {download && (
-          <ButtonContainer>
-            <GenericButton
-              fontSize={15 + Number(fontIncrease) * 2 + "px"}
-              disabled={
-                !Object.values(downloadIndex).includes(true) &&
-                currentSection.pages
+          <ButtonContainer
+            disabled={
+              !Object.values(downloadIndex).includes(true) &&
+              currentSection.pages
+            }
+          >
+            <PDFDownloadLink
+              document={<DocumentViewer data={data} />}
+              fileName="informacion.pdf"
+            >
+              {({ blob, url, loading, error }) =>
+                loading ? (
+                  "Loading document..."
+                ) : (
+                  <GenericButton
+                    fontSize={15 + Number(fontIncrease) * 2 + "px"}
+                    disabled={
+                      !Object.values(downloadIndex).includes(true) &&
+                      currentSection.pages
+                    }
+                    label={"Comenzar descarga"}
+                    onSubmit={() => {
+                      setData(getDownloadData());
+                      setDownloadIndex(initialCheckState());
+                    }}
+                    hidden={!download}
+                    text={"Descargar"}
+                  />
+                )
               }
-              label={"Comenzar descarga"}
-              onSubmit={() => {
-                getDownloadData();
-                setDownloadIndex(initialCheckState());
-              }}
-              hidden={!download}
-              text={"Descargar"}
-            />
+            </PDFDownloadLink>
           </ButtonContainer>
         )}
         {currentSection.type === "Section" ? (
@@ -285,22 +301,6 @@ const Information = () => {
               </Content>
             ))}
           </ContentContainer>
-        )}
-        {download && (
-          <ButtonContainer>
-            <GenericButton
-              disabled={
-                !Object.values(downloadIndex).includes(true) &&
-                currentSection.pages
-              }
-              label={"Comenzar descarga"}
-              onSubmit={() => {
-                downloadSetup();
-              }}
-              hidden={!download}
-              text={"Descargar"}
-            />
-          </ButtonContainer>
         )}
       </MainContainer>
     </Wrapper>

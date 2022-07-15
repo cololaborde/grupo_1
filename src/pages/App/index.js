@@ -30,11 +30,6 @@ const App = () => {
             <Route exact path="/home" component={withRouter(Home)} />
             <Route exact path="/info" component={withRouter(Information)} />
             <Route exact path="/pregunta" component={withRouter(Question)} />
-            <Route
-              exact
-              path={"/preview"}
-              component={withRouter(DocumentViewer)}
-            />
           </Switch>
         </Router>
       </Container>

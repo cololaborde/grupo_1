@@ -222,4 +222,6 @@ export const ContentList = styled.li`
   }
 `;
 
-export const ButtonContainer = styled.div``;
+export const ButtonContainer = styled.div`
+  pointer-events: ${(props) => (props.disabled ? "none" : "")};
+`;

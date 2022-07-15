@@ -17,10 +17,6 @@ export const goToIntro = () => {
   history.push("/intro");
 };
 
-export const goToPreview = () => {
-  history.push("/preview");
-};
-
 export const setFontIncrease = (increase) => {
   return {
     type: types.CHANGE_FONT_INCREASE,
