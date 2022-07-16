@@ -31,6 +31,7 @@ const Information = () => {
   const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
   const [download, setDownload] = useState(false);
   const [data, setData] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   const showExitModalConst = () => {
     dispatch(setShowExitModal(true));
@@ -76,10 +77,11 @@ const Information = () => {
     return toDownload;
   };
 
+  console.log(searchInput);
   const handleInputChange = (name, value) => {
     switch (name) {
       case "searchbar":
-        console.log(name, value);
+        setSearchInput(value);
         break;
     }
   };
