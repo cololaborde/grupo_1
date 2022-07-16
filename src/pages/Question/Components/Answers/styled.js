@@ -34,7 +34,7 @@ export const AnswersContainer = styled.div`
 export const Answer = styled.button`
   text-align: center;
   margin: 0 30px auto;
-  height: auto;
+  height: 300px;
   width: 25%;
   background: none;
   padding: 0px;
@@ -68,13 +68,15 @@ export const AnswerTitle = styled.div`
 
 export const AnswerImageContainer = styled.div`
   width: 100%;
-  height: 200px;
+  height: auto;
   position: relative;
 `;
 
 export const AnswerImage = styled.img`
   width: auto;
+  max-width: 100%;
   height: auto;
+  max-height: 100%;
 `;
 
 export const Cross = styled.svg`
