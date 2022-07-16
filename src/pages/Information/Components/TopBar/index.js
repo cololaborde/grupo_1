@@ -6,14 +6,18 @@ import BackButton from "../../../../components/Buttons/BackButton";
 import HamburguerMenu from "../../../../components/Buttons/HamburguerMenu";
 import { BackContainer } from "./styled";
 
-const TopBar = ({ goBack, setDownload }) => {
+const TopBar = ({ goBack, setDownload, downloadPressed }) => {
   const modalOpened = useSelector(selectOpenModal);
   return (
     <>
       <BackContainer>
         <BackButton onSubmit={goBack} hidden={modalOpened} />
       </BackContainer>
-      <HamburguerMenu onSubmit={setDownload} hidden={modalOpened} />
+      <HamburguerMenu
+        downloadPressed={downloadPressed}
+        onSubmit={setDownload}
+        hidden={modalOpened}
+      />
     </>
   );
 };

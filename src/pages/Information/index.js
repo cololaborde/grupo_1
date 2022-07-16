@@ -110,6 +110,7 @@ const Information = () => {
 
       <MainContainer>
         <TopBar
+          downloadPressed={download}
           goBack={goBackButton}
           setDownload={() => setDownload(!download)}
         />
