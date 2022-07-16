@@ -66,9 +66,25 @@ export const AnswerTitle = styled.div`
   background-color: ${(props) => props.backgroundColor || "none"};
 `;
 
-export const AnswerImage = styled.img`
+export const AnswerImageContainer = styled.div`
   width: 100%;
   height: 200px;
+  position: relative;
+`;
+
+export const AnswerImage = styled.img`
+  width: auto;
+  height: auto;
+`;
+
+export const Cross = styled.svg`
+  height: auto;
+  width: auto;
+  max-height: 96%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 2%;
 `;
 
 export const ResultContainer = styled.div`

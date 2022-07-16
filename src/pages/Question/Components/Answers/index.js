@@ -10,8 +10,10 @@ import { theme } from "../../../../theme";
 import {
   Answer,
   AnswerImage,
+  AnswerImageContainer,
   AnswersContainer,
   AnswerTitle,
+  Cross,
   Wrapper,
 } from "./styled";
 
@@ -51,7 +53,29 @@ const Answers = ({ question, selectedAnswer, answered, selectAnswer }) => {
             >
               {answ.title}
             </AnswerTitle>
-            <AnswerImage src={answ.img} />
+            <AnswerImageContainer>
+              <AnswerImage src={answ.img} />
+              {answered && selectedAnswer !== null && !answ.correct && (
+                <Cross viewBox="0 0 100 100">
+                  <line
+                    x1="0"
+                    y1="0"
+                    x2="100"
+                    y2="100"
+                    stroke={currentTheme.incorrect}
+                    strokeWidth={10}
+                  />
+                  <line
+                    x1="100"
+                    y1="0"
+                    x2="0"
+                    y2="100"
+                    stroke={currentTheme.incorrect}
+                    strokeWidth={10}
+                  />
+                </Cross>
+              )}
+            </AnswerImageContainer>
           </Answer>
         ))}
       </AnswersContainer>
