@@ -76,6 +76,14 @@ const Information = () => {
     return toDownload;
   };
 
+  const handleInputChange = (name, value) => {
+    switch (name) {
+      case "searchbar":
+        console.log(name, value);
+        break;
+    }
+  };
+
   useEffect(() => {
     setData(getDownloadData());
   }, [downloadIndex]);
@@ -115,7 +123,7 @@ const Information = () => {
           setDownload={() => setDownload(!download)}
         />
         <Title text="Información" />
-        <Search />
+        <Search onChange={handleInputChange} />
         <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
         {currentSection.type === "Section" ? (
           <>
