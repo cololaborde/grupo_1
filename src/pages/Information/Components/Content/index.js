@@ -9,6 +9,7 @@ import {
   ContentTitle,
   SecondContentTitle,
   ThirdContentTitle,
+  UnorderedList,
 } from "./styled";
 
 const Content = ({ currentSection }) => {
@@ -39,7 +40,7 @@ const Content = ({ currentSection }) => {
               </ContentText>
             )
           ) : (
-            <ul>
+            <UnorderedList>
               {line.map((item, i) => (
                 <ContentList
                   key={i}
@@ -48,7 +49,7 @@ const Content = ({ currentSection }) => {
                   {item}
                 </ContentList>
               ))}
-            </ul>
+            </UnorderedList>
           )}
         </ContentLine>
       ))}

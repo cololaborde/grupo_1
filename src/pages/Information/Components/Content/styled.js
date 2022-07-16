@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const ContentContainer = styled.div`
-  margin: 0 20px 30px 20px;
-  @media (max-width: 420px) {
-    margin: 0 10px 20px 10px;
-  }
+  margin: 0 2% 4% 2%;
+  width: 96%;
 `;
 
 export const ContentTitle = styled.h2`
@@ -47,6 +45,10 @@ export const ContentText = styled.p`
   @media (max-width: 420px) {
     margin: 5px;
   }
+`;
+
+export const UnorderedList = styled.ul`
+  padding-left: 5%;
 `;
 
 export const ContentList = styled.li`

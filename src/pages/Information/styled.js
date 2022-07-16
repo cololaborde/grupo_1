@@ -12,8 +12,8 @@ export const Wrapper = styled.div`
 
 export const MainContainer = styled.div`
   position: relative;
-  width: auto;
-  max-width: 800px;
+  width: 90%;
+  max-width: 1000px;
   height: auto;
   margin: auto;
   margin-top: 5%;
@@ -24,4 +24,8 @@ export const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${(props) => props.theme.bg_primary};
+  @media (max-width: 820px) {
+    width: auto;
+    max-width: 740px;
+  }
 `;
