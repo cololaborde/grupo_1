@@ -1,13 +1,11 @@
 import { Checkbox } from "@material-ui/core";
 import React from "react";
 import { useSelector } from "react-redux";
-import GenericButton from "../../../../components/Buttons/GenericButton";
 import {
   selectFontIncrease,
   selectOpenModal,
 } from "../../../../store/Home/selectors";
 import {
-  DownloadButtonContainer,
   CardContainer,
   CardsContainer,
   CardText,
