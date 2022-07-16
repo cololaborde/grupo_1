@@ -1,10 +1,4 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import {
-  setShowConfigModal,
-  setShowExitModal,
-  setShowHelpModal,
-} from "../../../store/Home/actions";
 import {
   CloseIcon,
   IconContainer,
@@ -18,14 +12,11 @@ import {
 } from "./styled";
 
 const GenericModal = (props) => {
-  const dispatch = useDispatch();
   useEffect(() => {
     const keyDownHandler = (event) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        dispatch(setShowHelpModal(false));
-        dispatch(setShowExitModal(false));
-        dispatch(setShowConfigModal(false));
+        props.closeAction();
       }
     };
 

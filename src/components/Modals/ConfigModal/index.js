@@ -50,9 +50,13 @@ const ConfigModal = () => {
   return (
     <GenericModal
       title={"Opciones"}
-      closeAction={() => dispatch(setShowConfigModal(false))}
       show={showConfigModal}
       modalId="option-modal"
+      closeAction={() => {
+        dispatch(setShowConfigModal(false));
+        dispatch(restartFontIncrease());
+        dispatch(restartHighContrast());
+      }}
     >
       <Container>
         <ConfigContainer>
