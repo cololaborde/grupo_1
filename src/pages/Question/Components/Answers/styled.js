@@ -79,16 +79,6 @@ export const AnswerImage = styled.img`
   max-height: 100%;
 `;
 
-export const Cross = styled.svg`
-  height: auto;
-  width: auto;
-  max-height: 96%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 2%;
-`;
-
 export const ResultContainer = styled.div`
   display: flex;
   flex-direction: column;

@@ -13,9 +13,9 @@ import {
   AnswerImageContainer,
   AnswersContainer,
   AnswerTitle,
-  Cross,
   Wrapper,
 } from "./styled";
+import Cross from "../../../../components/Svgs/Cross";
 
 const Answers = ({ question, selectedAnswer, answered, selectAnswer }) => {
   const fontIncrease = useSelector(selectFontIncrease);
@@ -56,24 +56,7 @@ const Answers = ({ question, selectedAnswer, answered, selectAnswer }) => {
             <AnswerImageContainer>
               <AnswerImage src={answ.img} />
               {answered && selectedAnswer !== null && !answ.correct && (
-                <Cross viewBox="0 0 100 100">
-                  <line
-                    x1="0"
-                    y1="0"
-                    x2="100"
-                    y2="100"
-                    stroke={currentTheme.incorrect}
-                    strokeWidth={10}
-                  />
-                  <line
-                    x1="100"
-                    y1="0"
-                    x2="0"
-                    y2="100"
-                    stroke={currentTheme.incorrect}
-                    strokeWidth={10}
-                  />
-                </Cross>
+                <Cross />
               )}
             </AnswerImageContainer>
           </Answer>

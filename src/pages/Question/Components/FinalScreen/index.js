@@ -9,7 +9,15 @@ import {
 } from "../../../../store/Home/selectors";
 import { theme } from "../../../../theme";
 import GenericButton from "../../../../components/Buttons/GenericButton";
-import { ButtonsContainer, HighlightedText, Text } from "./styled";
+import {
+  ButtonsContainer,
+  HighlightedText,
+  LineContainer,
+  SvgContainer,
+  Text,
+} from "./styled";
+import Check from "../../../../components/Svgs/Check";
+import Cross from "../../../../components/Svgs/Cross";
 
 const FinalScreen = ({ rightAnswers, wrongAnswers }) => {
   const dispatch = useDispatch();
@@ -19,29 +27,49 @@ const FinalScreen = ({ rightAnswers, wrongAnswers }) => {
   const modalOpened = useSelector(selectOpenModal);
   return (
     <>
-      <Text fontSize={20 + Number(fontIncrease) + "px"}>
+      <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
         {"Resultado: "}
-        <HighlightedText backgroundColor={currentTheme.correct}>
-          {rightAnswers + " correctas"}
-        </HighlightedText>{" "}
-        <HighlightedText backgroundColor={currentTheme.incorrect}>
-          {wrongAnswers + " incorrectas"}
-        </HighlightedText>
       </Text>
+      <LineContainer>
+        <SvgContainer
+          lineSize={(20 + Number(fontIncrease) * 2) * 1.15 + 6 + "px"}
+        >
+          <Check />
+        </SvgContainer>
+        <HighlightedText
+          fontSize={20 + Number(fontIncrease) * 2 + "px"}
+          backgroundColor={currentTheme.correct}
+        >
+          {rightAnswers + " correctas "}
+        </HighlightedText>
+      </LineContainer>
+      <LineContainer>
+        <SvgContainer
+          lineSize={(20 + Number(fontIncrease) * 2) * 1.15 + 6 + "px"}
+        >
+          <Cross />
+        </SvgContainer>
+        <HighlightedText
+          fontSize={20 + Number(fontIncrease) * 2 + "px"}
+          backgroundColor={currentTheme.incorrect}
+        >
+          {wrongAnswers + " incorrectas "}
+        </HighlightedText>
+      </LineContainer>
 
       <ButtonsContainer>
         <GenericButton
           fontSize={15 + Number(fontIncrease) * 2 + "px"}
           text={"Inicio"}
           onSubmit={() => dispatch(goToHome)}
-          hidden={() => modalOpened()}
+          hidden={modalOpened}
         />
 
         <GenericButton
           fontSize={15 + Number(fontIncrease) * 2 + "px"}
           text={"Información"}
           onSubmit={() => dispatch(goToInformation)}
-          hidden={() => modalOpened()}
+          hidden={modalOpened}
         />
       </ButtonsContainer>
     </>
