@@ -15,11 +15,6 @@ import PDFDownloadButton from "./Components/PDFDownloadButton";
 import { Wrapper, MainContainer } from "./styled";
 
 const Information = () => {
-  const dispatch = useDispatch();
-
-  const pages = useSelector(selectInformation);
-  const [currentSection, setCurrentSection] = useState(pages);
-  const [navPages, setNavPages] = useState([]);
   const initialCheckState = () => {
     let checks = {};
     if (currentSection.pages) {
@@ -28,6 +23,12 @@ const Information = () => {
     return checks;
   };
 
+  const dispatch = useDispatch();
+
+  const pages = useSelector(selectInformation);
+
+  const [currentSection, setCurrentSection] = useState(pages);
+  const [navPages, setNavPages] = useState([]);
   const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
   const [download, setDownload] = useState(false);
   const [data, setData] = useState([]);
@@ -77,7 +78,28 @@ const Information = () => {
     return toDownload;
   };
 
-  console.log(searchInput);
+  const searchIn = (object, matches) => {
+    if (
+      object.name &&
+      object.name.toLowerCase().includes(searchInput.toLowerCase())
+    )
+      matches.push(object);
+    if (object.pages) {
+      for (let index in object.pages) {
+        searchIn(object.pages[index], matches);
+      }
+    }
+  };
+
+  const handleSearchOnClick = () => {
+    if (searchInput.trim().length === 0) setCurrentSection(pages);
+    else {
+      const matches = [];
+      if (pages) searchIn(pages, matches);
+      setCurrentSection({ type: "Section", pages: matches });
+    }
+  };
+
   const handleInputChange = (name, value) => {
     switch (name) {
       case "searchbar":
@@ -125,7 +147,10 @@ const Information = () => {
           setDownload={() => setDownload(!download)}
         />
         <Title text="Información" />
-        <Search onChange={handleInputChange} />
+        <Search
+          onChange={handleInputChange}
+          onClick={() => handleSearchOnClick()}
+        />
         <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
         {currentSection.type === "Section" ? (
           <>

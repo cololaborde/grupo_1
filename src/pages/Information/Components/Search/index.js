@@ -4,7 +4,7 @@ import SearchButton from "../../../../components/Buttons/SearchButton";
 import { selectOpenModal } from "../../../../store/Home/selectors";
 import { SearchBar, SearchContainer } from "./styled";
 
-const Search = ({ onChange }) => {
+const Search = ({ onChange, onClick }) => {
   const modalOpened = useSelector(selectOpenModal);
   const handleChange = (event) => {
     onChange(event.target.name, event.target.value);
@@ -19,7 +19,7 @@ const Search = ({ onChange }) => {
         aria-hidden={modalOpened | false}
         tabIndex={modalOpened ? "-1" : ""}
       />
-      <SearchButton hidden={modalOpened} />
+      <SearchButton hidden={modalOpened} onSubmit={onClick} />
     </SearchContainer>
   );
 };
