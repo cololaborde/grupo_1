@@ -33,6 +33,7 @@ const GenericModal = (props) => {
         aria-modal="true"
         aria-label={props.title}
         id={props.modalId}
+        aria-hidden={!props.show}
       >
         <Container>
           <TopBar>

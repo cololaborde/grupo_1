@@ -12,7 +12,7 @@ const Search = () => {
         type="text"
         name="searchbar"
         placeholder="Buscar"
-        aria-hidden={modalOpened | false}
+        aria-hidden={modalOpened ? "true" : "false"}
         tabIndex={modalOpened ? "-1" : ""}
       />
       <SearchButton hidden={modalOpened} />

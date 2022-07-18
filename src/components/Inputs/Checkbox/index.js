@@ -19,7 +19,7 @@ const Checkbox = (props) => {
         role="checkbox"
         aria-label={props.label}
         scale={props.scale}
-        aria-hidden={props.hidden | false}
+        aria-hidden={props.hidden}
         tabIndex={props.hidden ? "-1" : ""}
       />
     </Container>

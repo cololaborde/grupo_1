@@ -36,7 +36,7 @@ const Answers = ({ question, selectedAnswer, answered, selectAnswer }) => {
                   : false
                 : false
             }
-            aria-hidden={modalOpened | false}
+            aria-hidden={modalOpened ? "true" : "false"}
             tabIndex={modalOpened ? "-1" : ""}
           >
             <AnswerTitle

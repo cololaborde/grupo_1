@@ -15,7 +15,7 @@ const NavBar = ({ navPages, goMain, goBack }) => {
       <NavText
         fontSize={15 + Number(fontIncrease) + "px"}
         onClick={() => goMain()}
-        aria-hidden={modalOpened | false}
+        aria-hidden={modalOpened ? "true" : "false"}
         tabIndex={modalOpened ? "-1" : ""}
       >
         {" - Información"}
@@ -25,7 +25,7 @@ const NavBar = ({ navPages, goMain, goBack }) => {
           key={index}
           fontSize={15 + Number(fontIncrease) + "px"}
           onClick={() => goBack(index)}
-          aria-hidden={modalOpened | false}
+          aria-hidden={modalOpened ? "true" : "false"}
           tabIndex={modalOpened ? "-1" : ""}
         >
           {" -"} {page}

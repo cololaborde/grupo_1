@@ -31,7 +31,7 @@ const Cards = ({
           <CardContainer
             key={index}
             onClick={() => goToSection(page)}
-            aria-hidden={modalOpened | false}
+            aria-hidden={modalOpened ? "true" : "false"}
             tabIndex={modalOpened ? "-1" : ""}
           >
             <CardText fontSize={20 + Number(fontIncrease) + "px"}>
