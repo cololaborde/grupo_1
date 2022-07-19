@@ -95,10 +95,8 @@ const Information = () => {
   };
 
   const handleSearchOnClick = () => {
-    setNavPages([]);
-    if (searchInput.trim().length === 0) {
-      setCurrentSection(pages);
-    } else {
+    if (searchInput.trim().length > 0) {
+      setNavPages([]);
       const matches = [];
       const currentPath = [];
       if (pages) searchIn(pages, matches, currentPath);
@@ -156,8 +154,14 @@ const Information = () => {
         />
         <Title text="Información" />
         <Search
+          searchInput={searchInput}
           onChange={handleInputChange}
           onClick={() => handleSearchOnClick()}
+          showTrash={searchInput !== ""}
+          onTrashClick={() => {
+            setSearchInput("");
+            setCurrentSection(pages);
+          }}
         />
         <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
         {currentSection.type === "Section" ? (
