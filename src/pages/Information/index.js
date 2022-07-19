@@ -78,24 +78,30 @@ const Information = () => {
     return toDownload;
   };
 
-  const searchIn = (object, matches) => {
-    if (
-      object.name &&
-      object.name.toLowerCase().includes(searchInput.toLowerCase())
-    )
-      matches.push(object);
-    if (object.pages) {
-      for (let index in object.pages) {
-        searchIn(object.pages[index], matches);
+  const searchIn = (object, matches, currentPath) => {
+    if (object.name) {
+      currentPath.push(object.name);
+      if (object.name.toLowerCase().includes(searchInput.toLowerCase())) {
+        object["path"] = [...currentPath];
+        matches.push(object);
       }
     }
+    if (object.pages) {
+      for (let index in object.pages) {
+        searchIn(object.pages[index], matches, currentPath);
+      }
+    }
+    currentPath.pop();
   };
 
   const handleSearchOnClick = () => {
-    if (searchInput.trim().length === 0) setCurrentSection(pages);
-    else {
+    setNavPages([]);
+    if (searchInput.trim().length === 0) {
+      setCurrentSection(pages);
+    } else {
       const matches = [];
-      if (pages) searchIn(pages, matches);
+      const currentPath = [];
+      if (pages) searchIn(pages, matches, currentPath);
       setCurrentSection({ type: "Section", pages: matches });
     }
   };
@@ -118,7 +124,9 @@ const Information = () => {
 
   const { path } = useParams();
   useEffect(() => {
-    if (path != null) {
+    if (currentSection.path) {
+      setNavPages(currentSection.path);
+    } else if (path != null) {
       let newSection = pages;
       path.split("-").forEach((sectionName) => {
         if ((newSection == null) | (newSection.type == "Page")) return;
@@ -133,7 +141,7 @@ const Information = () => {
         setNavPages(path.split("-"));
       }
     }
-  }, []);
+  }, [currentSection]);
 
   return (
     <Wrapper>
