@@ -88,6 +88,38 @@ export const initialState = {
           tip: "Estos productos pueden producir daños en la salud, reacciones peligrosas e incluso explosivas, por lo que es preferible que no entren en contacto con el agua ni sean llevados por la corriente.",
         },
       ],
+      link: "Recomendaciones-Antes",
+    },
+    {
+      title: "¿Cuál listado corresponde a un mejor kit de emergencia?",
+      information: {
+        title: "Kit de emergencia",
+        text: "Un kit de emergencia debería contener sólo elementos básicos para usar, o que no queramos perder, en caso de tener que evacuar durante una inundación.",
+      },
+      answers: [
+        {
+          title:
+            "Agua embotellada, productos de limpieza, documentos y parlantes",
+          img: "",
+          correct: false,
+          tip: "Los productos de limpieza y parlantes no son elementos básicos necesarios ante una evacuación",
+        },
+        {
+          title:
+            "Agua embotellada, alimentos enlatados, productos de limpieza, documentos y muda seca de ropa",
+          img: "",
+          correct: false,
+          tip: "Los productos de limpieza y parlantes no son elementos básicos necesarios ante una evacuación",
+        },
+        {
+          title:
+            "Agua embotellada, alimentos enlatados, documentos, dinero, muda seca de ropa y medicamentos",
+          img: "",
+          correct: true,
+          tip: "Los productos de limpieza y parlantes no son elementos básicos necesarios ante una evacuación",
+        },
+      ],
+      link: "Recomendaciones-Antes",
     },
     {
       title:
@@ -117,6 +149,156 @@ export const initialState = {
           tip: "Hay que resguardarse en un lugar seguro antes de que sea peligroso movernos.",
         },
       ],
+      link: "Recomendaciones-Durante",
     },
+    {
+      title:
+        "¿Qué debemos hacer con los servicios de electricidad, gas y agua?",
+      information: {
+        title: "Servicios",
+        text: "Durante una inundación, los servicios pueden verse comprometidos y utilizarlos puede provocar más problemas.",
+      },
+      answers: [
+        {
+          title: "Cortarlos al comienzo de la inundación",
+          img: "",
+          correct: true,
+          tip: "Cortar los servicios debe ser lo primero que debemos hacer.",
+        },
+        {
+          title: "Usarlos hasta que se corten sólos",
+          img: "",
+          correct: false,
+          tip: "Cortar los servicios debe ser lo primero que debemos hacer.",
+        },
+        {
+          title: "Cortarlos solo en caso de evacuación",
+          img: "",
+          correct: false,
+          tip: "Cortar los servicios debe ser lo primero que debemos hacer.",
+        },
+      ],
+      link: "Recomendaciones-Durante",
+    },
+    {
+      title:
+        "¿Qué debemos hacer con los electrodomésticos grandes (heladera, lavarropas, etc)?",
+      information: {
+        title: "Electrodomésticos grandes",
+        text: "Es recomendable mantener las salidas libres en caso de emergencia.",
+      },
+      answers: [
+        {
+          title: "Mantenerlos cerrados y desenchufarlos.",
+          img: "",
+          correct: false,
+          tip: "Los electrodomésticos grandes pueden flotar y tapar las salidas, impidiendo la evacuación en caso de emergencia.",
+        },
+        {
+          title: "Abrir sus puertas y dejarlos enchufados.",
+          img: "",
+          correct: true,
+          tip: "Los electrodomésticos grandes pueden flotar y tapar las salidas, impidiendo la evacuación en caso de emergencia.",
+        },
+        {
+          title: "Moverlos cerca de las puertas para que obstruyan el agua.",
+          img: "",
+          correct: false,
+          tip: "Los electrodomésticos grandes pueden flotar y tapar las salidas, impidiendo la evacuación en caso de emergencia.",
+        },
+      ],
+      link: "Recomendaciones-Durante",
+    },
+    // Pregunta con mapas y elección de cuál sería el punto de encuentro recomendado. Mapa con 3 puntos de encuentro, lugar actual, y zonas vulnerables al agua.
+    // {
+    //   title:
+    //     "",
+    //   information: {
+    //     title: "",
+    //     text: "",
+    //   },
+    //   answers: [
+    //     {
+    //       title:
+    //         "",
+    //       img: "",
+    //       correct: true,
+    //       tip: "",
+    //     },
+    //     {
+    //       title: "",
+    //       img: "",
+    //       correct: false,
+    //       tip: "",
+    //     },
+    //     {
+    //       title: "",
+    //       img: "",
+    //       correct: false,
+    //       tip: "",
+    //     },
+    //   ],
+    //   link: "",
+    // },
+    {
+      title:
+        "¿Cómo debemos limpiar las paredes, pisos y otras superficies afectadas por la inundación?",
+      information: {
+        title: "Limpieza",
+        text: "Lo más importante al limpiar las superficies es la desinfección.",
+      },
+      answers: [
+        {
+          title: "Ventilando las habitaciones y limpiando con agua y lavandina",
+          img: "",
+          correct: true,
+          tip: "El agua de inundación puede estar contaminada y generar problemas de salud. El agua con lavandina ayuda a desinfectar y disminuir los riesgos.",
+        },
+        {
+          title:
+            "Ventilando las habitaciones y limpiando con agua y detergente",
+          img: "",
+          correct: false,
+          tip: "El agua de inundación puede estar contaminada y generar problemas de salud. El agua con lavandina ayuda a desinfectar y disminuir los riesgos.",
+        },
+        {
+          title: "Limpiando con agua y gaseosa",
+          img: "",
+          correct: false,
+          tip: "El agua de inundación puede estar contaminada y generar problemas de salud. El agua con lavandina ayuda a desinfectar y disminuir los riesgos.",
+        },
+      ],
+      link: "Recomendaciones-Después",
+    },
+    // {
+    //   title:
+    //     "",
+    //   information: {
+    //     title: "",
+    //     text: "",
+    //   },
+    //   answers: [
+    //     {
+    //       title:
+    //         "",
+    //       img: "",
+    //       correct: true,
+    //       tip: "",
+    //     },
+    //     {
+    //       title: "",
+    //       img: "",
+    //       correct: false,
+    //       tip: "",
+    //     },
+    //     {
+    //       title: "",
+    //       img: "",
+    //       correct: false,
+    //       tip: "",
+    //     },
+    //   ],
+    //   link: "",
+    // },
   ],
 };
