@@ -117,15 +117,9 @@ const Information = () => {
     setData(getDownloadData());
   }, [downloadIndex]);
 
-  useEffect(() => {
-    if (currentSection.pages) setDownloadIndex(initialCheckState());
-  }, [currentSection]);
-
   const { path } = useParams();
   useEffect(() => {
-    if (currentSection.path) {
-      setNavPages(currentSection.path);
-    } else if (path != null) {
+    if (path != null) {
       let newSection = pages;
       path.split("-").forEach((sectionName) => {
         if ((newSection == null) | (newSection.type == "Page")) return;
@@ -139,6 +133,13 @@ const Information = () => {
         setCurrentSection(newSection);
         setNavPages(path.split("-"));
       }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (currentSection.pages) setDownloadIndex(initialCheckState());
+    if (currentSection.path) {
+      setNavPages(currentSection.path);
     }
   }, [currentSection]);
 

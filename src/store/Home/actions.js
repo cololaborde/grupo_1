@@ -5,6 +5,10 @@ export const goToInformation = () => {
   history.push("/info");
 };
 
+export const goToInformationPage = (page) => {
+  history.push("/info/" + page);
+};
+
 export const goToHome = () => {
   history.push("/home");
 };

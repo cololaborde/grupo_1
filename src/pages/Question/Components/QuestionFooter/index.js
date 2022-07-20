@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import {
   selectFontIncrease,
@@ -15,17 +15,20 @@ import {
   ResultTitle,
   Wrapper,
 } from "./styled";
+import { goToInformationPage } from "../../../../store/Home/actions";
 
 const QuestionFooter = ({
   answered,
   selectedAnswer,
   sendAnswer,
   nextQuestion,
+  infoLink,
 }) => {
   const fontIncrease = useSelector(selectFontIncrease);
   const highContrast = useSelector(selectHighContrast);
   const currentTheme = theme(highContrast);
   const modalOpened = useSelector(selectOpenModal);
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       {!answered ? (
@@ -55,6 +58,10 @@ const QuestionFooter = ({
             <GenericButton
               fontSize={15 + Number(fontIncrease) * 2 + "px"}
               text={"Más información"}
+              onSubmit={() => {
+                if (infoLink == null) return;
+                dispatch(goToInformationPage(infoLink));
+              }}
               backgroundColor={currentTheme.bg_secondary}
               hidden={modalOpened}
             />

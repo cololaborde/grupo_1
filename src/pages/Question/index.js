@@ -75,6 +75,7 @@ const Question = () => {
               answered={answered}
               sendAnswer={sendAnswer}
               nextQuestion={nextQuestion}
+              infoLink={currentQuestion.link}
             />
           </>
         ) : (
