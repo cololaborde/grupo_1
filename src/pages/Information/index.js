@@ -162,6 +162,7 @@ const Information = () => {
           onTrashClick={() => {
             setSearchInput("");
             setCurrentSection(pages);
+            setNavPages([]);
           }}
         />
         <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
