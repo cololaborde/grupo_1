@@ -65,6 +65,7 @@ const Intro = () => {
         </Content>
         <StartButtonContainer>
           <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
             text={"Comenzar"}
             onSubmit={() => dispatch(goToHome)}
             hidden={showConfigModal}
