@@ -44,7 +44,11 @@ const HamburguerMenu = (props) => {
     );
   } else {
     custom_button = (
-      <DownloadButton onSubmit={props.onSubmit} hidden={props.hidden} />
+      <DownloadButton
+        pressed={props.downloadPressed}
+        onSubmit={props.onSubmit}
+        hidden={props.hidden}
+      />
     );
   }
   let menu;

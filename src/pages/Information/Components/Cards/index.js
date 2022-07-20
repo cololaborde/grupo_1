@@ -6,10 +6,10 @@ import {
   selectOpenModal,
 } from "../../../../store/Home/selectors";
 import {
+  CardContainer,
   CardsContainer,
   RowContainer,
   CheckBoxContainer,
-  CardContainer,
   CardText,
 } from "./styled";
 import Checkbox from "../../../../components/Inputs/Checkbox";

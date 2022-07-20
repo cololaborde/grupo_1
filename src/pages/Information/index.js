@@ -15,11 +15,6 @@ import PDFDownloadButton from "./Components/PDFDownloadButton";
 import { Wrapper, MainContainer } from "./styled";
 
 const Information = () => {
-  const dispatch = useDispatch();
-
-  const pages = useSelector(selectInformation);
-  const [currentSection, setCurrentSection] = useState(pages);
-  const [navPages, setNavPages] = useState([]);
   const initialCheckState = () => {
     let checks = {};
     if (currentSection.pages) {
@@ -28,9 +23,16 @@ const Information = () => {
     return checks;
   };
 
+  const dispatch = useDispatch();
+
+  const pages = useSelector(selectInformation);
+
+  const [currentSection, setCurrentSection] = useState(pages);
+  const [navPages, setNavPages] = useState([]);
   const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
   const [download, setDownload] = useState(false);
   const [data, setData] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   const showExitModalConst = () => {
     dispatch(setShowExitModal(true));
@@ -76,6 +78,41 @@ const Information = () => {
     return toDownload;
   };
 
+  const searchIn = (obj, matches, currentPath) => {
+    let object = { ...obj };
+    if (object.name) {
+      currentPath.push(object.name);
+      if (object.name.toLowerCase().includes(searchInput.toLowerCase())) {
+        object["path"] = [...currentPath];
+        matches.push(object);
+      }
+    }
+    if (object.pages) {
+      for (let index in object.pages) {
+        searchIn(object.pages[index], matches, currentPath);
+      }
+    }
+    currentPath.pop();
+  };
+
+  const handleSearchOnClick = () => {
+    if (searchInput.trim().length > 0) {
+      setNavPages([]);
+      const matches = [];
+      const currentPath = [];
+      if (pages) searchIn(pages, matches, currentPath);
+      setCurrentSection({ type: "Section", pages: matches });
+    }
+  };
+
+  const handleInputChange = (name, value) => {
+    switch (name) {
+      case "searchbar":
+        setSearchInput(value);
+        break;
+    }
+  };
+
   useEffect(() => {
     setData(getDownloadData());
   }, [downloadIndex]);
@@ -86,7 +123,9 @@ const Information = () => {
 
   const { path } = useParams();
   useEffect(() => {
-    if (path != null) {
+    if (currentSection.path) {
+      setNavPages(currentSection.path);
+    } else if (path != null) {
       let newSection = pages;
       path.split("-").forEach((sectionName) => {
         if ((newSection == null) | (newSection.type == "Page")) return;
@@ -101,7 +140,7 @@ const Information = () => {
         setNavPages(path.split("-"));
       }
     }
-  }, []);
+  }, [currentSection]);
 
   return (
     <Wrapper>
@@ -110,11 +149,22 @@ const Information = () => {
 
       <MainContainer>
         <TopBar
+          downloadPressed={download}
           goBack={goBackButton}
           setDownload={() => setDownload(!download)}
         />
         <Title text="Información" />
-        <Search />
+        <Search
+          searchInput={searchInput}
+          onChange={handleInputChange}
+          onClick={() => handleSearchOnClick()}
+          showTrash={searchInput !== ""}
+          onTrashClick={() => {
+            setSearchInput("");
+            setCurrentSection(pages);
+            setNavPages([]);
+          }}
+        />
         <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
         {currentSection.type === "Section" ? (
           <>
