@@ -78,7 +78,8 @@ const Information = () => {
     return toDownload;
   };
 
-  const searchIn = (object, matches, currentPath) => {
+  const searchIn = (obj, matches, currentPath) => {
+    let object = { ...obj };
     if (object.name) {
       currentPath.push(object.name);
       if (object.name.toLowerCase().includes(searchInput.toLowerCase())) {
