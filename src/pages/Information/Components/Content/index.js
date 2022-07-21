@@ -9,6 +9,7 @@ import {
   ContentTitle,
   SecondContentTitle,
   ThirdContentTitle,
+  ForthContentTitle,
   UnorderedList,
 } from "./styled";
 
@@ -27,12 +28,18 @@ const Content = ({ currentSection }) => {
                 >
                   {line.substring(2)}
                 </SecondContentTitle>
-              ) : (
+              ) : line[1] == "2" ? (
                 <ThirdContentTitle
                   fontSize={20 + Number(fontIncrease) * 2 + "px"}
                 >
                   {line.substring(2)}
                 </ThirdContentTitle>
+              ) : (
+                <ForthContentTitle
+                  fontSize={18 + Number(fontIncrease) * 2 + "px"}
+                >
+                  {line.substring(2)}
+                </ForthContentTitle>
               )
             ) : (
               <ContentText fontSize={15 + Number(fontIncrease) * 2 + "px"}>
