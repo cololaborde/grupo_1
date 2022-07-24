@@ -54,7 +54,7 @@ const Answers = ({ question, selectedAnswer, answered, selectAnswer }) => {
               {answ.title}
             </AnswerTitle>
             <AnswerImageContainer>
-              <AnswerImage src={answ.img} />
+              <AnswerImage src={answ.img} alt={answ.imgAlt} />
               {answered && selectedAnswer !== null && !answ.correct && (
                 <Cross />
               )}
