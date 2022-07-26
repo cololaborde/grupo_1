@@ -18,6 +18,7 @@ import {
 } from "./styled";
 import Check from "../../../../components/Svgs/Check";
 import Cross from "../../../../components/Svgs/Cross";
+import { restoreToInitialState } from "../../../../store/Question/actions";
 
 const FinalScreen = ({ rightAnswers, wrongAnswers }) => {
   const dispatch = useDispatch();
@@ -61,14 +62,20 @@ const FinalScreen = ({ rightAnswers, wrongAnswers }) => {
         <GenericButton
           fontSize={15 + Number(fontIncrease) * 2 + "px"}
           text={"Inicio"}
-          onSubmit={() => dispatch(goToHome)}
+          onSubmit={() => {
+            dispatch(goToHome);
+            dispatch(restoreToInitialState());
+          }}
           hidden={modalOpened}
         />
 
         <GenericButton
           fontSize={15 + Number(fontIncrease) * 2 + "px"}
           text={"Información"}
-          onSubmit={() => dispatch(goToInformation)}
+          onSubmit={() => {
+            dispatch(goToInformation);
+            dispatch(restoreToInitialState());
+          }}
           hidden={modalOpened}
         />
       </ButtonsContainer>
