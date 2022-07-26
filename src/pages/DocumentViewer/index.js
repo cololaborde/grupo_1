@@ -55,7 +55,12 @@ const DocumentViewer = (props) => {
   });
 
   return (
-    <Document>
+    <Document
+      language="spanish"
+      title="Información inundaciones"
+      keywords="inundaciones, información seleccionada"
+      author="Grupo1-2022-DEU-Informatica-UNLP"
+    >
       {/*render a single page*/}
       <Page size="A4" style={styles.page}>
         {content}
