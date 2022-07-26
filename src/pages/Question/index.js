@@ -44,14 +44,14 @@ const Question = () => {
   };
 
   const nextQuestion = () => {
-    if (index < questions.length) {
-      dispatch(setCurrentQuestion(questions[index]));
+    if (index < questions.length - 1) {
+      dispatch(setCurrentQuestion(questions[index + 1]));
       dispatch(setSelectedAnswer(null));
       dispatch(setAnswered(false));
+      dispatch(setIndex(index + 1));
+    } else {
+      dispatch(setFinished(true));
     }
-    index < questions.length - 1
-      ? dispatch(setIndex(index + 1))
-      : dispatch(setFinished(true));
   };
 
   const selectAnswer = (i) =>
