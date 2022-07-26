@@ -34,7 +34,7 @@ export const AnswersContainer = styled.div`
 export const Answer = styled.button`
   text-align: center;
   margin: 0 30px auto;
-  height: 300px;
+  height: auto;
   width: 25%;
   background: none;
   padding: 0px;

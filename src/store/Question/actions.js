@@ -21,6 +21,13 @@ export const setSelectedAnswer = (selectedAnswer) => {
   };
 };
 
+export const setWellAnswered = (wellAnswered) => {
+  return {
+    type: types.SET_WELL_ANSWERED,
+    wellAnswered,
+  };
+};
+
 export const setAnswered = (answ) => {
   return {
     type: types.SET_ANSWERED,
