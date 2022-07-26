@@ -18,26 +18,55 @@ const HamburguerMenu = (props) => {
   const handleToggle = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const showConfigModal = () => {
+    dispatch(setShowConfigModal(true));
+    document
+      .getElementById("option-modal")
+      .querySelector("#close-icon")
+      .focus();
+  };
+
+  const showExitModal = () => {
+    dispatch(setShowExitModal(true));
+    document.getElementById("exit-modal").querySelector("#close-icon").focus();
+  };
+
+  const showHelpModal = () => {
+    dispatch(setShowHelpModal(true));
+    document.getElementById("help-modal").querySelector("#close-icon").focus();
+  };
+
   let custom_button;
   if (props.hasHelp) {
     custom_button = (
-      <HelpButton onSubmit={() => dispatch(setShowHelpModal(true))} />
+      <HelpButton onSubmit={() => showHelpModal()} hidden={props.hidden} />
     );
   } else {
-    custom_button = <DownloadButton onSubmit={props.onSubmit} />;
+    custom_button = (
+      <DownloadButton
+        pressed={props.downloadPressed}
+        onSubmit={props.onSubmit}
+        hidden={props.hidden}
+      />
+    );
   }
   let menu;
   if (window.innerWidth < 1024) {
     menu = (
       <MenuContainer>
-        <MenuButton onSubmit={handleToggle} />
+        <MenuButton onSubmit={handleToggle} hidden={props.hidden} />
         {menuOpen ? (
           <HiddenContainer>
             {custom_button}
             <SettingsButton
-              onSubmit={() => dispatch(setShowConfigModal(true))}
+              onSubmit={() => showConfigModal()}
+              hidden={props.hidden}
             />
-            <HomeButton onSubmit={() => dispatch(setShowExitModal(true))} />
+            <HomeButton
+              onSubmit={() => showExitModal()}
+              hidden={props.hidden}
+            />
           </HiddenContainer>
         ) : (
           ""
@@ -48,8 +77,11 @@ const HamburguerMenu = (props) => {
     menu = (
       <MenuContainer>
         {custom_button}
-        <SettingsButton onSubmit={() => dispatch(setShowConfigModal(true))} />
-        <HomeButton onSubmit={() => dispatch(setShowExitModal(true))} />
+        <SettingsButton
+          onSubmit={() => showConfigModal()}
+          hidden={props.hidden}
+        />
+        <HomeButton onSubmit={() => showExitModal()} hidden={props.hidden} />
       </MenuContainer>
     );
   }

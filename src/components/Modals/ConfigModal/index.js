@@ -12,34 +12,33 @@ import {
 import GenericModal from "../GenericModal";
 import {
   ConfigContainer,
-  TextContainer,
   Text,
-  InputsContainer,
-  RangeBarContainer,
   CheckboxContainer,
   ButtonsContainer,
   Container,
+  LineContainer,
+  SpinbuttonContainer,
 } from "./styled";
-import RangeBar from "../../Inputs/RangeBar";
 import Checkbox from "../../Inputs/Checkbox";
 import GenericButton from "../../Buttons/GenericButton";
 import {
   selectFontIncrease,
   selectHighContrast,
+  selectShowConfigModal,
 } from "../../../store/Home/selectors";
 import { theme } from "../../../theme";
+import Spinbutton from "../../Inputs/Spinbutton";
 
-const ConfigModal = (props) => {
-  if (!props.show) return null;
-
+const ConfigModal = () => {
   const dispatch = useDispatch();
   const fontIncrease = useSelector(selectFontIncrease);
   const highContrast = useSelector(selectHighContrast);
   const current_theme = theme(highContrast);
+  const showConfigModal = useSelector(selectShowConfigModal);
 
   const handleInputChange = (name, value) => {
     switch (name) {
-      case "fontSizeRange":
+      case "fontSizeSpinbutton":
         dispatch(setFontIncrease(value));
         break;
       case "highContrastCheckbox":
@@ -51,29 +50,48 @@ const ConfigModal = (props) => {
   return (
     <GenericModal
       title={"Opciones"}
-      closeAction={() => dispatch(setShowConfigModal(false))}
+      show={showConfigModal}
+      modalId="option-modal"
+      closeAction={() => {
+        dispatch(setShowConfigModal(false));
+        dispatch(restartFontIncrease());
+        dispatch(restartHighContrast());
+      }}
     >
       <Container>
         <ConfigContainer>
-          <TextContainer>
-            <Text fontSize={15 + Number(fontIncrease) + "px"}>
+          <LineContainer>
+            <Text fontSize={15 + Number(fontIncrease) * 2 + "px"}>
               {"Tamaño del texto"}
             </Text>
-            <Text fontSize={15 + Number(fontIncrease) + "px"}>
+            <SpinbuttonContainer>
+              <Spinbutton
+                value={fontIncrease}
+                onChange={handleInputChange}
+                label="Tamaño del texto"
+                fontSize={15 + Number(fontIncrease) * 2 + "px"}
+                hidden={!showConfigModal}
+              />
+            </SpinbuttonContainer>
+          </LineContainer>
+          <LineContainer>
+            <Text fontSize={15 + Number(fontIncrease) * 2 + "px"}>
               {"Contraste alto"}
             </Text>
-          </TextContainer>
-          <InputsContainer>
-            <RangeBarContainer>
-              <RangeBar value={fontIncrease} onChange={handleInputChange} />
-            </RangeBarContainer>
-            <CheckboxContainer>
-              <Checkbox value={highContrast} onChange={handleInputChange} />
+            <CheckboxContainer height={26 + Number(fontIncrease) * 2 + "px"}>
+              <Checkbox
+                value={highContrast}
+                onChange={handleInputChange}
+                label="Contraste Alto"
+                scale={(10 + Number(fontIncrease) * 2) / 10 + ""}
+                hidden={!showConfigModal}
+              />
             </CheckboxContainer>
-          </InputsContainer>
+          </LineContainer>
         </ConfigContainer>
         <ButtonsContainer>
           <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
             text={"Guardar"}
             backgroundColor={current_theme.btn_primary}
             onSubmit={() => {
@@ -81,8 +99,10 @@ const ConfigModal = (props) => {
               dispatch(saveFontIncrease(fontIncrease));
               dispatch(saveHighContrast(highContrast));
             }}
+            hidden={!showConfigModal}
           />
           <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
             text={"Cancelar"}
             backgroundColor={current_theme.btn_error}
             onSubmit={() => {
@@ -90,15 +110,17 @@ const ConfigModal = (props) => {
               dispatch(restartFontIncrease());
               dispatch(restartHighContrast());
             }}
+            hidden={!showConfigModal}
           />
-          <GenericButton
-            text={"Restablecer"}
+          {/* <GenericButton
+            text={"Por defecto"}
             backgroundColor={current_theme.btn_secondary}
             onSubmit={() => {
-              dispatch(restartFontIncrease());
-              dispatch(restartHighContrast());
+              dispatch(setFontIncrease(0));
+              dispatch(setHighContrast(false));
             }}
-          />
+            hidden={!showConfigModal}
+          /> */}
         </ButtonsContainer>
       </Container>
     </GenericModal>

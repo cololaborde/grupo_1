@@ -1,95 +1,34 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import GenericButton from "../../components/Buttons/GenericButton";
-import Checkbox from "../../components/Inputs/Checkbox";
-import RangeBar from "../../components/Inputs/RangeBar";
 import {
   goToInformation,
+  goToIntro,
   goToQuestion,
-  saveFontIncrease,
-  saveHighContrast,
-  setFontIncrease,
-  setHighContrast,
 } from "../../store/Home/actions";
 import {
   Wrapper,
-  ButtonContainer,
   Container,
-  Title,
-  TitleContainer,
-  ConfigContainer,
-  LineContainer,
-  Text,
-  RangeBarContainer,
-  CheckboxContainer,
   InfoContainer,
   InfoButtonContainer,
+  ButtonContainer,
 } from "./styled";
-import {
-  selectFontIncrease,
-  selectHighContrast,
-} from "../../store/Home/selectors";
+import Button from "./Components/Button";
+import Title from "./Components/Title";
+import Config from "./Components/Config";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const fontIncrease = useSelector(selectFontIncrease);
-  const highContrast = useSelector(selectHighContrast);
-
-  const handleInputChange = (name, value) => {
-    switch (name) {
-      case "fontSizeRange":
-        dispatch(setFontIncrease(value));
-        break;
-      case "highContrastCheckbox":
-        dispatch(setHighContrast(value));
-        break;
-    }
-  };
   return (
     <Wrapper>
       <Container>
-        <TitleContainer>
-          <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
-            {"Juego de preguntas"}
-          </Title>
-        </TitleContainer>
-        <ConfigContainer>
-          <LineContainer>
-            <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
-              {"Tamaño del texto"}
-            </Text>
-            <RangeBarContainer>
-              <RangeBar value={fontIncrease} onChange={handleInputChange} />
-            </RangeBarContainer>
-          </LineContainer>
-          <LineContainer>
-            <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
-              {"Contraste alto"}
-            </Text>
-            <CheckboxContainer>
-              <Checkbox value={highContrast} onChange={handleInputChange} />
-            </CheckboxContainer>
-          </LineContainer>
-        </ConfigContainer>
+        <Title text="Juego de preguntas" />
+        <Config />
         <ButtonContainer>
-          <GenericButton
-            onSubmit={() => {
-              dispatch(goToQuestion());
-              dispatch(saveFontIncrease(fontIncrease));
-              dispatch(saveHighContrast());
-            }}
-            text={"Jugar"}
-            fontSize={20 + Number(fontIncrease) * 2 + "px"}
-          />
+          <Button text="Jugar" action={goToQuestion} />
         </ButtonContainer>
       </Container>
       <InfoContainer>
         <InfoButtonContainer>
-          <GenericButton
-            onSubmit={() => dispatch(goToInformation)}
-            text={"Información"}
-            fontSize={20 + Number(fontIncrease) * 2 + "px"}
-          />
+          <Button text="Ayuda" action={goToIntro} />
+          <Button text="Información" action={goToInformation} />
         </InfoButtonContainer>
       </InfoContainer>
     </Wrapper>

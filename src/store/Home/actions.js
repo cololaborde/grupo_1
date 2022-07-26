@@ -5,12 +5,20 @@ export const goToInformation = () => {
   history.push("/info");
 };
 
+export const goToInformationPage = (page) => {
+  history.push("/info/" + page);
+};
+
 export const goToHome = () => {
   history.push("/home");
 };
 
 export const goToQuestion = () => {
   history.push("/pregunta");
+};
+
+export const goToIntro = () => {
+  history.push("/intro");
 };
 
 export const setFontIncrease = (increase) => {

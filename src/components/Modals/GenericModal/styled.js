@@ -25,10 +25,12 @@ export const Box = styled.div`
   z-index: 1;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
   background-color: #e8e8e8;
-  border: 0.5px solid #e8e8e8;
   border-radius: 20px;
   box-shadow: 0 0 20px 0 rgba(10, 27, 45, 0.15);
   background: #f3f4f5;
+  @media (max-width: 320px) {
+    max-height: 300px;
+  }
 `;
 
 export const Container = styled.div`
@@ -54,14 +56,14 @@ export const TopBar = styled.div`
   background-color: ${(props) => props.theme.bg_primary};
 `;
 export const TitleContainer = styled.div`
-  padding: 15px;
+  padding: 5px 15px;
   display: flex;
   width: auto;
   align-items: center;
   flex-direction: column;
 `;
 
-export const Title = styled.div`
+export const Title = styled.h1`
   width: 100%;
   font-size: 1.25rem;
   font-weight: bold;
@@ -71,13 +73,20 @@ export const Title = styled.div`
   text-overflow: ellipsis;
   color: ${(props) => props.theme.text};
 `;
-export const IconContainer = styled.div`
+export const IconContainer = styled.button`
   display: flex;
   cursor: pointer;
   right: 0;
   margin-left: auto;
   padding-right: 10px;
   text-align: right;
+  border-style: none;
+  background: none;
+  &:focus {
+    border: 2px solid ${(props) => props.theme.btn_primary};
+    outline-style: solid;
+    outline-color: white;
+    outline-width: medium;
 `;
 
 export const CloseIcon = styled(Close)`

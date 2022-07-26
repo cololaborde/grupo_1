@@ -1,49 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BackButton from "../../components/Buttons/BackButton";
-import HamburguerMenu from "../../components/Buttons/HamburguerMenu";
-import SearchButton from "../../components/Buttons/SearchButton";
+import { useParams } from "react-router-dom";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
 import { setShowExitModal } from "../../store/Home/actions";
-import {
-  selectFontIncrease,
-  selectShowConfigModal,
-  selectShowExitModal,
-} from "../../store/Home/selectors";
 import { selectInformation } from "../../store/Information/selectors";
-import {
-  Wrapper,
-  MainContainer,
-  BackContainer,
-  TitleContainer,
-  Title,
-  SearchContainer,
-  CardsContainer,
-  CardContainer,
-  CardText,
-  SearchBar,
-  NavContainer,
-  NavText,
-  ContentContainer,
-  Content,
-} from "./styled";
+import Cards from "./Components/Cards";
+import Content from "./Components/Content";
+import NavBar from "./Components/NavBar";
+import Search from "./Components/Search";
+import Title from "./Components/Title";
+import TopBar from "./Components/TopBar";
+import PDFDownloadButton from "./Components/PDFDownloadButton";
+import { Wrapper, MainContainer } from "./styled";
 
 const Information = () => {
+  const initialCheckState = () => {
+    let checks = {};
+    if (currentSection.pages) {
+      for (let i = 0; i < currentSection.pages.length; i++) checks[i] = false;
+    }
+    return checks;
+  };
+
   const dispatch = useDispatch();
 
   const pages = useSelector(selectInformation);
-  const fontIncrease = useSelector(selectFontIncrease);
+
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
-  function goMain() {
+  const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
+  const [download, setDownload] = useState(false);
+  const [data, setData] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+
+  const showExitModalConst = () => {
+    dispatch(setShowExitModal(true));
+    document.getElementById("exit-modal").querySelector("#close-icon").focus();
+  };
+
+  const goMain = () => {
     if (navPages.length > 0) {
       setNavPages([]);
       setCurrentSection(pages);
     }
-  }
+  };
 
-  function goBack(index = -1) {
+  const goBack = (index = -1) => {
     if (index < navPages.length - 1) {
       let newSection = pages;
       for (var i = 0; i <= index; i++) {
@@ -54,75 +57,148 @@ const Information = () => {
       }
       setCurrentSection(newSection);
     }
-  }
-  const showConfigModal = useSelector(selectShowConfigModal);
-  const showExitModal = useSelector(selectShowExitModal);
+  };
+
+  const goBackButton = () =>
+    navPages.length > 1
+      ? goBack(navPages.length - 2)
+      : navPages.length == 1
+      ? goMain()
+      : showExitModalConst();
+
+  const getDownloadData = () => {
+    let toDownload = [];
+    if (currentSection.pages) {
+      const pagesCopy = [...currentSection.pages];
+      pagesCopy.map((item, index) => {
+        if (downloadIndex[index]) toDownload.push(item);
+      });
+    } else toDownload = [currentSection];
+
+    return toDownload;
+  };
+
+  const searchIn = (obj, matches, currentPath) => {
+    let object = { ...obj };
+    if (object.name) {
+      currentPath.push(object.name);
+      if (object.name.toLowerCase().includes(searchInput.toLowerCase())) {
+        object["path"] = [...currentPath];
+        matches.push(object);
+      }
+    }
+    if (object.pages) {
+      for (let index in object.pages) {
+        searchIn(object.pages[index], matches, currentPath);
+      }
+    }
+    currentPath.pop();
+  };
+
+  const handleSearchOnClick = () => {
+    if (searchInput.trim().length > 0) {
+      setNavPages([]);
+      const matches = [];
+      const currentPath = [];
+      if (pages) searchIn(pages, matches, currentPath);
+      setCurrentSection({ type: "Section", pages: matches });
+    }
+  };
+
+  const handleInputChange = (name, value) => {
+    switch (name) {
+      case "searchbar":
+        setSearchInput(value);
+        break;
+    }
+  };
+
+  useEffect(() => {
+    setData(getDownloadData());
+  }, [downloadIndex]);
+
+  const { path } = useParams();
+  useEffect(() => {
+    if (path != null) {
+      let newSection = pages;
+      path.split("-").forEach((sectionName) => {
+        if ((newSection == null) | (newSection.type == "Page")) return;
+        let auxSection = null;
+        auxSection = newSection.pages.find((s) => {
+          return s.name === sectionName;
+        });
+        newSection = auxSection;
+      });
+      if (newSection != null) {
+        setCurrentSection(newSection);
+        setNavPages(path.split("-"));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (currentSection.pages) setDownloadIndex(initialCheckState());
+    if (currentSection.path) {
+      setNavPages(currentSection.path);
+    }
+  }, [currentSection]);
+
   return (
     <Wrapper>
+      <ConfigModal />
+      <ExitModal />
+
       <MainContainer>
-        <ConfigModal show={showConfigModal} />
-        <ExitModal show={showExitModal} />
-        <BackContainer>
-          <BackButton
-            onSubmit={() =>
-              navPages.length > 1
-                ? goBack(navPages.length - 2)
-                : navPages.length == 1
-                ? goMain()
-                : dispatch(setShowExitModal(true))
-            }
-          />
-        </BackContainer>
-        <HamburguerMenu />
-        <TitleContainer>
-          <Title fontSize={40 + Number(fontIncrease) + "px"}>Información</Title>
-        </TitleContainer>
-        <SearchContainer>
-          <SearchBar type="text" name="searchbar" placeholder="Buscar" />
-          <SearchButton />
-        </SearchContainer>
-        <NavContainer>
-          <NavText
-            fontSize={15 + Number(fontIncrease) + "px"}
-            onClick={() => goMain()}
-          >
-            {" > Información"}
-          </NavText>
-          {navPages.map((page, index) => (
-            <NavText
-              key={index}
-              fontSize={15 + Number(fontIncrease) + "px"}
-              onClick={() => goBack(index)}
-            >
-              {" >"} {page}
-            </NavText>
-          ))}
-        </NavContainer>
+        <TopBar
+          downloadPressed={download}
+          goBack={goBackButton}
+          setDownload={() => setDownload(!download)}
+        />
+        <Title text="Información" />
+        <Search
+          searchInput={searchInput}
+          onChange={handleInputChange}
+          onClick={() => handleSearchOnClick()}
+          showTrash={searchInput !== ""}
+          onTrashClick={() => {
+            setSearchInput("");
+            setCurrentSection(pages);
+            setNavPages([]);
+          }}
+        />
+        <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
         {currentSection.type === "Section" ? (
-          <CardsContainer>
-            {currentSection.pages.map((page, index) => (
-              <CardContainer
-                key={index}
-                onClick={() => (
-                  setNavPages(navPages.concat(page.name)),
-                  setCurrentSection(page)
-                )}
-              >
-                <CardText fontSize={20 + Number(fontIncrease) + "px"}>
-                  {page.name}
-                </CardText>
-              </CardContainer>
-            ))}
-          </CardsContainer>
+          <>
+            {download && (
+              <PDFDownloadButton
+                downloadIndex={downloadIndex}
+                currentSection={currentSection}
+                data={data}
+                onClick={() => {
+                  setDownloadIndex(initialCheckState());
+                  setData([]);
+                }}
+                download={download}
+              />
+            )}
+            <Cards
+              download={download}
+              downloadIndex={downloadIndex}
+              currentSection={currentSection}
+              goToSection={(page) => {
+                setNavPages(navPages.concat(page.name));
+                setCurrentSection(page);
+              }}
+              checkSection={(index) => {
+                setDownloadIndex({
+                  ...downloadIndex,
+                  [index]: !downloadIndex[index],
+                });
+              }}
+            />
+          </>
         ) : (
-          <ContentContainer>
-            <Title>{currentSection.name}</Title>
-            {currentSection.content.map((line, index) => (
-              <Content key={index} fontSize={15 + Number(fontIncrease) + "px"}>
-                {line}
-              </Content>
-            ))}
-          </ContentContainer>
+          <Content currentSection={currentSection} />
         )}
       </MainContainer>
     </Wrapper>

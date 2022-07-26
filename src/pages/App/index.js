@@ -8,8 +8,6 @@ import Question from "../Question";
 import { theme } from "../../theme";
 import { useSelector } from "react-redux";
 import { selectHighContrast } from "../../store/Home/selectors";
-/* import PrivateRoute from 'components/commons/PrivateRoute';
- */
 import Intro from "../Intro";
 export const Container = styled.div`
   height: 97vh;
@@ -28,6 +26,11 @@ const App = () => {
             <Route exact path="/intro" component={withRouter(Intro)} />
             <Route exact path="/home" component={withRouter(Home)} />
             <Route exact path="/info" component={withRouter(Information)} />
+            <Route
+              exact
+              path="/info/:path"
+              component={withRouter(Information)}
+            />
             <Route exact path="/pregunta" component={withRouter(Question)} />
           </Switch>
         </Router>

@@ -10,3 +10,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+document.documentElement.lang = "es";

@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   left: 0;
   height: auto;
   min-height: 100vh;
-  max-height: 200vh;
   width: 100vw;
   background-color: ${(props) => props.theme.bg};
 `;
@@ -14,14 +13,12 @@ export const Wrapper = styled.div`
 export const MainContainer = styled.div`
   position: relative;
   width: auto;
-  max-width: 800px;
+  max-width: 700px;
   height: auto;
   margin: auto;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
-  min-height: 500px;
   border-radius: 20px;
   align-items: center;
   justify-content: center;
@@ -32,6 +29,9 @@ export const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-self: center;
+  text-align: center;
+  margin-left: 15px;
+  margin-right: 15px;
   width: 60%;
   @media (max-width: 767px) {
     width: 80%;
@@ -42,13 +42,17 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const Title = styled.p`
+export const Title = styled.h1`
   font-size: ${(props) => props.fontSize || "40px"};
   color: ${(props) => props.color || props.theme.text};
   font-weight: bold;
   font-family: Arial;
-  margin: 15px;
-  text-align: center;
+`;
+
+export const MenuContainer = styled.div`
+  position: absolute;
+  right: 15px;
+  top: 15px;
 `;
 
 export const StartButtonContainer = styled.div`
@@ -60,15 +64,10 @@ export const Content = styled.p`
   font-size: ${(props) => props.fontSize || "15px"};
   color: ${(props) => props.color || props.theme.text};
   font-family: Arial;
-  margin: 15px;
-  padding: 20px;
+  margin: 0 2%;
+  width: auto;
+  padding: 15px;
   @media (max-width: 420px) {
-    margin: 5px;
+    padding: 5px;
   }
-`;
-
-export const MenuContainer = styled.div`
-  position: absolute;
-  right: 15px;
-  top: 15px;
 `;

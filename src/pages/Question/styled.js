@@ -34,29 +34,6 @@ export const BackContainer = styled.div`
   top: 15px;
 `;
 
-export const TitleContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 60%;
-  @media (max-width: 767px) {
-    width: 80%;
-  }
-  @media (max-width: 420px) {
-    width: 100%;
-    margin-top: 60px;
-  }
-`;
-
-export const Title = styled.p`
-  font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || props.theme.text};
-  font-weight: bold;
-  font-family: Arial;
-  margin: 15px;
-  text-align: center;
-`;
-
 export const AnswersContainer = styled.div`
   width: 100%;
   margin-top: 40px;
@@ -66,18 +43,31 @@ export const AnswersContainer = styled.div`
   align-items: center;
 `;
 
-export const Answer = styled.div`
+export const Answer = styled.button`
   text-align: center;
-  margin: 0 50px auto;
+  margin: 0 30px auto;
   height: auto;
-  width: 20%;
+  width: 25%;
+  background: none;
+  padding: 0px;
   @media (max-width: 767px) {
     margin: 0 10px auto;
     width: 40%;
   }
+  border-style: ${(props) => (props.selected ? "solid" : "none")};
+  border-color: ${(props) => props.theme.btn_primary};
+  border-width: 5px;
   &:hover {
     cursor: pointer;
     transform: translateY(-3px);
+  }
+  &:focus {
+    border: 3px solid
+      ${(props) =>
+        props.selected ? props.theme.btn_primary : props.theme.btn_secondary};
+    outline-style: solid;
+    outline-color: white;
+    outline-width: medium;
   }
 `;
 
@@ -85,8 +75,7 @@ export const AnswerTitle = styled.div`
   font-size: ${(props) => props.fontSize || "20px"};
   font-family: Arial;
   color: ${(props) => props.color || props.theme.text};
-  text-decoration: ${(props) =>
-    props.underline ? "underline" : "none" || "none"};
+  background-color: ${(props) => props.backgroundColor || "none"};
 `;
 
 export const AnswerImage = styled.img`
@@ -110,16 +99,17 @@ export const SendButtonContainer = styled.div`
   justify-content: center;
 `;
 
-export const ResultTitle = styled.div`
+export const ResultTitle = styled.h2`
   font-size: ${(props) => props.fontSize || "40px"};
   color: ${(props) => props.color || props.theme.text};
   font-weight: bold;
   font-family: Arial;
 `;
 
-export const ResultTip = styled.div`
+export const ResultTip = styled.p`
   margin: 15px 0;
   font-size: ${(props) => props.fontSize || "20px"};
+  font-family: Arial;
   color: ${(props) => props.color || props.theme.text};
   text-align: center;
 `;
@@ -138,8 +128,24 @@ export const CounterContainer = styled.div`
   background-color: ${(props) => props.theme.bg_primary};
   border-radius: 10px;
   padding: 5px;
-  margin: 0 5px 6px;
+  margin-top: 30px;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  top: 0;
+`;
+
+export const CounterText = styled.p`
+  font-size: ${(props) => props.fontSize || "20px"};
+  font-family: Arial;
+  font-weight: bold;
+  color: ${(props) => props.color || props.theme.text};
+  margin: 0;
+`;
+
+export const Text = styled.p`
+  font-size: ${(props) => props.fontSize || "20px"};
+  font-family: Arial;
+  color: ${(props) => props.color || props.theme.text};
+  margin-top: 3px;
+  max-width: 50%;
+  height: 100%;
 `;

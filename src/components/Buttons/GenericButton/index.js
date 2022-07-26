@@ -6,12 +6,14 @@ const GenericButton = (props) => {
     <Wrapper>
       <Button
         disabled={props.disabled}
+        aria-disabled={props.disabled}
         textColor={props.textColor}
         fontSize={props.fontSize}
         backgroundColor={props.backgroundColor}
         onClick={props.onSubmit}
+        aria-hidden={props.hidden}
+        tabIndex={props.hidden ? "-1" : "0"}
       >
-        {" "}
         {props.text}
       </Button>
     </Wrapper>

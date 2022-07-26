@@ -9,6 +9,7 @@ import homeReducer from "./store/Home/reducer";
 import questionReducer from "./store/Question/reducer";
 import informationReducer from "./store/Information/reducer";
 import introReducer from "./store/Intro/reducer";
+import documentViewerReducer from "./store/DocumentViewer/reducer";
 
 /*
 Merges the main reducer with the router state and dynamically injected reducers
@@ -20,6 +21,7 @@ export default function createReducer(injectedReducers = {}) {
     question: questionReducer,
     information: informationReducer,
     intro: introReducer,
+    viewerReducer: documentViewerReducer,
     router: connectRouter(history),
     ...injectedReducers,
   });

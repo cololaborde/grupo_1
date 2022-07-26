@@ -17,6 +17,7 @@ const RangeBar = (props) => {
       value={value}
       onChange={handleChange}
       step="1"
+      aria-label={props.label}
     />
   );
 };

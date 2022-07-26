@@ -5,14 +5,17 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   height: 100%;
   border-radius: 10px;
-  color: ${(props) => props.textColor || "black"};
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${(props) => props.theme.btn_primary};
+  color: ${(props) => props.theme.btn_primary};
   font-weight: bold;
   background-color: ${(props) =>
     props.backgroundColor || props.theme.bg_secondary};
-  font-size: ${(props) => props.fontSize || "12px"}
+  font-size: ${(props) => props.fontSize || "12px"};
   text-align: center;
   padding: 10px;
   margin: 5px;
@@ -27,5 +30,11 @@ export const Button = styled.div`
     cursor: pointer;
     transform: translateY(-2px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  &:focus {
+    border: 2px solid ${(props) => props.theme.btn_primary};
+    outline-style: solid;
+    outline-color: white;
+    outline-width: medium;
   }
 `;
