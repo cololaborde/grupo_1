@@ -20,7 +20,7 @@ const Button = ({ text, action }) => {
       onSubmit={() => {
         dispatch(saveFontIncrease(fontIncrease));
         dispatch(saveHighContrast(highContrast));
-        dispatch(action());
+        action();
       }}
       text={text}
       fontSize={20 + Number(fontIncrease) * 2 + "px"}

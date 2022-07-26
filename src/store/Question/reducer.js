@@ -14,6 +14,9 @@ const questionReducer = (state = initialState, action) =>
       case types.SET_SELECTED_ANSWER:
         draft.selectedAnswer = action.selectedAnswer;
         break;
+      case types.SET_WELL_ANSWERED:
+        draft.wellAnswered = action.wellAnswered;
+        break;
       case types.SET_ANSWERED:
         draft.answered = action.answ;
         break;
@@ -24,6 +27,7 @@ const questionReducer = (state = initialState, action) =>
         draft.index = 0;
         draft.currentQuestion = draft.questions[0];
         draft.selectedAnswer = null;
+        draft.wellAnswered = 0;
         draft.answered = false;
         draft.finished = false;
         break;

@@ -363,6 +363,7 @@ export const initialState = {
   index: 0,
   currentQuestion: questions[0],
   selectedAnswer: null,
+  wellAnswered: 0,
   answered: false,
   finished: false,
 };

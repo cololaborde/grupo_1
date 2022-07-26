@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
 import HelpModal from "../../components/Modals/HelpModal";
 import {
+  restoreToInitialState,
   setAnswered,
   setCurrentQuestion,
   setFinished,
   setIndex,
   setSelectedAnswer,
+  setWellAnswered,
 } from "../../store/Question/actions";
 import {
   selectAnswered,
@@ -17,6 +19,7 @@ import {
   selectIndex,
   selectQuestions,
   selectSelectedAnswer,
+  selectWellAnswered,
 } from "../../store/Question/selectors";
 import Answers from "./Components/Answers";
 import FinalScreen from "./Components/FinalScreen";
@@ -36,10 +39,10 @@ const Question = () => {
   const answered = useSelector(selectAnswered);
   const finished = useSelector(selectFinished);
 
-  const [wellAnswered, setWellAnswered] = useState(0);
+  const wellAnswered = useSelector(selectWellAnswered);
 
   const sendAnswer = () => {
-    if (selectedAnswer.correct) setWellAnswered(wellAnswered + 1);
+    if (selectedAnswer.correct) dispatch(setWellAnswered(wellAnswered + 1));
     dispatch(setAnswered(true));
   };
 
@@ -65,7 +68,11 @@ const Question = () => {
         title={currentQuestion.information.title}
         text={currentQuestion.information.text}
       />
-      <ExitModal />
+      <ExitModal
+        action={() => {
+          if (finished) dispatch(restoreToInitialState());
+        }}
+      />
 
       {/* Main Container */}
       <MainContainer>

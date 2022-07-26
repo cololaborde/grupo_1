@@ -12,7 +12,7 @@ import {
   selectShowExitModal,
 } from "../../../store/Home/selectors";
 
-const ExitModal = () => {
+const ExitModal = ({ action }) => {
   const dispatch = useDispatch();
   const fontIncrease = useSelector(selectFontIncrease);
   const highContrast = useSelector(selectHighContrast);
@@ -38,6 +38,7 @@ const ExitModal = () => {
             onSubmit={() => {
               dispatch(goToHome);
               dispatch(setShowExitModal(false));
+              if (action) action();
             }}
             hidden={!showExitModal}
             fontSize={20 + Number(fontIncrease) * 2 + "px"}
