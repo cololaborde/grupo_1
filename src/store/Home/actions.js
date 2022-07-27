@@ -81,3 +81,10 @@ export const setShowHelpModal = (show) => {
     show,
   };
 };
+
+export const setShowDownloadModal = (show) => {
+  return {
+    type: types.SET_SHOW_DOWNLOAD_MODAL,
+    show,
+  };
+};

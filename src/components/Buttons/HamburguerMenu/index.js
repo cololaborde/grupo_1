@@ -8,6 +8,7 @@ import HelpButton from "../HelpButton";
 import { useDispatch } from "react-redux";
 import {
   setShowConfigModal,
+  setShowDownloadModal,
   setShowExitModal,
   setShowHelpModal,
 } from "../../../store/Home/actions";
@@ -37,6 +38,14 @@ const HamburguerMenu = (props) => {
     document.getElementById("help-modal").querySelector("#close-icon").focus();
   };
 
+  const showDownloadModal = () => {
+    dispatch(setShowDownloadModal(true));
+    document
+      .getElementById("download-modal")
+      .querySelector("#close-icon")
+      .focus();
+  };
+
   let custom_button;
   if (props.hasHelp) {
     custom_button = (
@@ -45,8 +54,7 @@ const HamburguerMenu = (props) => {
   } else {
     custom_button = (
       <DownloadButton
-        pressed={props.downloadPressed}
-        onSubmit={props.onSubmit}
+        onSubmit={() => showDownloadModal()}
         hidden={props.hidden}
       />
     );

@@ -9,18 +9,10 @@ import {
   CardContainer,
   CardsContainer,
   RowContainer,
-  CheckBoxContainer,
   CardText,
 } from "./styled";
-import Checkbox from "../../../../components/Inputs/Checkbox";
 
-const Cards = ({
-  currentSection,
-  download,
-  downloadIndex,
-  goToSection,
-  checkSection,
-}) => {
+const Cards = ({ currentSection, goToSection }) => {
   const fontIncrease = useSelector(selectFontIncrease);
   const modalOpened = useSelector(selectOpenModal);
   return (
@@ -38,19 +30,6 @@ const Cards = ({
               {page.name}
             </CardText>
           </CardContainer>
-          {download && (
-            <CheckBoxContainer
-              marginTop={20 + Number(fontIncrease) * 0.5 + "px"}
-              marginLeft={10 + Number(fontIncrease) * 1.5 + "px"}
-            >
-              <Checkbox
-                value={!!downloadIndex[index]}
-                onChange={() => checkSection(index)}
-                label={"Seleccionar" + page.name}
-                scale={(15 + Number(fontIncrease) * 2) / 10 + ""}
-              />
-            </CheckBoxContainer>
-          )}
         </RowContainer>
       ))}
     </CardsContainer>

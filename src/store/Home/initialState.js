@@ -4,4 +4,5 @@ export const initialState = {
   showExitModal: false,
   showConfigModal: false,
   showHelpModal: false,
+  showDownloadModal: false,
 };

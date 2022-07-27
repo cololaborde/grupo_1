@@ -11,27 +11,16 @@ import NavBar from "./Components/NavBar";
 import Search from "./Components/Search";
 import Title from "./Components/Title";
 import TopBar from "./Components/TopBar";
-import PDFDownloadButton from "./Components/PDFDownloadButton";
 import { Wrapper, MainContainer } from "./styled";
+import DownloadModal from "../../components/Modals/DownloadModal";
 
 const Information = () => {
-  const initialCheckState = () => {
-    let checks = {};
-    if (currentSection.pages) {
-      for (let i = 0; i < currentSection.pages.length; i++) checks[i] = false;
-    }
-    return checks;
-  };
-
   const dispatch = useDispatch();
 
   const pages = useSelector(selectInformation);
 
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
-  const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
-  const [download, setDownload] = useState(false);
-  const [data, setData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
   const showExitModalConst = () => {
@@ -65,18 +54,6 @@ const Information = () => {
       : navPages.length == 1
       ? goMain()
       : showExitModalConst();
-
-  const getDownloadData = () => {
-    let toDownload = [];
-    if (currentSection.pages) {
-      const pagesCopy = [...currentSection.pages];
-      pagesCopy.map((item, index) => {
-        if (downloadIndex[index]) toDownload.push(item);
-      });
-    } else toDownload = [currentSection];
-
-    return toDownload;
-  };
 
   const searchIn = (obj, matches, currentPath) => {
     let object = { ...obj };
@@ -113,10 +90,6 @@ const Information = () => {
     }
   };
 
-  useEffect(() => {
-    setData(getDownloadData());
-  }, [downloadIndex]);
-
   const { path } = useParams();
   useEffect(() => {
     if (path != null) {
@@ -137,7 +110,6 @@ const Information = () => {
   }, []);
 
   useEffect(() => {
-    if (currentSection.pages) setDownloadIndex(initialCheckState());
     if (currentSection.path) {
       setNavPages(currentSection.path);
     }
@@ -147,13 +119,10 @@ const Information = () => {
     <Wrapper>
       <ConfigModal />
       <ExitModal />
+      <DownloadModal />
 
       <MainContainer>
-        <TopBar
-          downloadPressed={download}
-          goBack={goBackButton}
-          setDownload={() => setDownload(!download)}
-        />
+        <TopBar goBack={goBackButton} />
         <Title text="Información" />
         <Search
           searchInput={searchInput}
@@ -168,35 +137,13 @@ const Information = () => {
         />
         <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
         {currentSection.type === "Section" ? (
-          <>
-            {download && (
-              <PDFDownloadButton
-                downloadIndex={downloadIndex}
-                currentSection={currentSection}
-                data={data}
-                onClick={() => {
-                  setDownloadIndex(initialCheckState());
-                  setData([]);
-                }}
-                download={download}
-              />
-            )}
-            <Cards
-              download={download}
-              downloadIndex={downloadIndex}
-              currentSection={currentSection}
-              goToSection={(page) => {
-                setNavPages(navPages.concat(page.name));
-                setCurrentSection(page);
-              }}
-              checkSection={(index) => {
-                setDownloadIndex({
-                  ...downloadIndex,
-                  [index]: !downloadIndex[index],
-                });
-              }}
-            />
-          </>
+          <Cards
+            currentSection={currentSection}
+            goToSection={(page) => {
+              setNavPages(navPages.concat(page.name));
+              setCurrentSection(page);
+            }}
+          />
         ) : (
           <Content currentSection={currentSection} />
         )}
