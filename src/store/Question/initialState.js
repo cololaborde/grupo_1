@@ -231,6 +231,38 @@ export const questions = [
   },
   {
     title:
+      "Luego de una inundación, ¿Qué debemos hacer con los alimentos o bebidas que pueden haber entrado en contacto con el agua?",
+    information: {
+      title: "Alimentos y/o bebidas",
+      text: "Pueden encontrarse contaminados en caso de que hayan entrado en contacto con el agua.",
+    },
+    answers: [
+      {
+        title: "Tirarlos sólo si se encontraban descubiertos",
+        img: "",
+        imgAlt: "Heladera cerrada y desenchufada",
+        correct: false,
+        tip: "Debe desecharse todo alimento o agua embotellada que entre o pueda haber entrado en contacto con el agua de la inundación.",
+      },
+      {
+        title: "Tirarlos inmediatamente",
+        img: "",
+        imgAlt: "Heladera abierta y enchufada",
+        correct: true,
+        tip: "Debe desecharse todo alimento o agua embotellada que entre o pueda haber entrado en contacto con el agua de la inundación.",
+      },
+      {
+        title: "Mantenerlos para consumo",
+        img: "",
+        imgAlt: "Heladera cerrada frente a una puerta",
+        correct: false,
+        tip: "Debe desecharse todo alimento o agua embotellada que entre o pueda haber entrado en contacto con el agua de la inundación.",
+      },
+    ],
+    link: "Recomendaciones-Durante",
+  },
+  {
+    title:
       "¿Qué debemos hacer con los electrodomésticos grandes (heladera, lavarropas, etc)?",
     information: {
       title: "Electrodomésticos grandes",
