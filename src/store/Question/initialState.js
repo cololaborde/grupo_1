@@ -361,7 +361,7 @@ export const questions = [
         tip: "Debe desecharse todo alimento o agua embotellada que entre o pueda haber entrado en contacto con el agua de la inundación.",
       },
     ],
-    link: "Recomendaciones-Durante",
+    link: "Recomendaciones-Después",
   },
   // {
   //   title:
