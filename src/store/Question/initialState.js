@@ -22,6 +22,10 @@ import q7i3 from "../../images/q7i3.png";
 import q8i1 from "../../images/q8i1.png";
 import q8i2 from "../../images/q8i2.png";
 import q8i3 from "../../images/q8i3.png";
+import q9i1 from "../../images/q9i1.png";
+import q9i2 from "../../images/q9i2.png";
+import q9i3 from "../../images/q9i3.png";
+
 // import q9i1 from "../../images/q9i1.png";
 // import q9i2 from "../../images/q9i2.png";
 // import q9i3 from "../../images/q9i3.png";
@@ -261,6 +265,7 @@ export const questions = [
     ],
     link: "Recomendaciones-Durante",
   },
+
   // // Pregunta con mapas y elección de cuál sería el punto de encuentro recomendado. Mapa con 3 puntos de encuentro, lugar actual, y zonas vulnerables al agua.
   // // {
   // //   title:
@@ -322,6 +327,38 @@ export const questions = [
         imgAlt: "Un balde de agua y una botella de gaseosa cola",
         correct: false,
         tip: "El agua de inundación puede estar contaminada y generar problemas de salud. El agua con lavandina ayuda a desinfectar y disminuir los riesgos.",
+      },
+    ],
+    link: "Recomendaciones-Después",
+  },
+  {
+    title:
+      "Luego de una inundación, ¿Qué debemos hacer con los alimentos o bebidas que pueden haber entrado en contacto con el agua?",
+    information: {
+      title: "Alimentos y/o bebidas",
+      text: "Pueden encontrarse contaminados en caso de que hayan entrado en contacto con el agua.",
+    },
+    answers: [
+      {
+        title: "Tirarlos sólo si se encontraban descubiertos",
+        img: q9i1,
+        imgAlt: "Revisando alimentos",
+        correct: false,
+        tip: "Debe desecharse todo alimento o agua embotellada que entre o pueda haber entrado en contacto con el agua de la inundación.",
+      },
+      {
+        title: "Tirarlos inmediatamente",
+        img: q9i2,
+        imgAlt: "Tirando alimentos a la basura",
+        correct: true,
+        tip: "Debe desecharse todo alimento o agua embotellada que entre o pueda haber entrado en contacto con el agua de la inundación.",
+      },
+      {
+        title: "Mantenerlos para consumo",
+        img: q9i3,
+        imgAlt: "Diferentes alimentos",
+        correct: false,
+        tip: "Debe desecharse todo alimento o agua embotellada que entre o pueda haber entrado en contacto con el agua de la inundación.",
       },
     ],
     link: "Recomendaciones-Después",
