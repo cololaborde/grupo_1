@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowDownloadModal } from "../../../store/Home/actions";
 import GenericModal from "../GenericModal";
-import GenericButton from "../../Buttons/GenericButton";
 import {
   selectDownloadModal,
   selectFontIncrease,
 } from "../../../store/Home/selectors";
 import { Link, List, ListItem, Text } from "./styled";
-import TestPdf from "../../../pdfs/test.pdf";
+import Pdf1 from "../../../pdfs/Recomendaciones.pdf";
+import Pdf2 from "../../../pdfs/Sitios Existentes.pdf";
 
 const DownloadModal = () => {
   const dispatch = useDispatch();
@@ -27,9 +27,10 @@ const DownloadModal = () => {
       <List>
         <ListItem>
           <Link
-            href={TestPdf}
+            href={Pdf1}
             role="link"
-            hidden={!showDownloadModal}
+            aria-hidden={!showDownloadModal}
+            tabIndex={!showDownloadModal ? "-1" : "0"}
             fontSize={15 + Number(fontIncrease) * 2 + "px"}
           >
             Recomendaciones
@@ -37,8 +38,10 @@ const DownloadModal = () => {
         </ListItem>
         <ListItem>
           <Link
+            href={Pdf2}
             role="link"
-            hidden={!showDownloadModal}
+            aria-hidden={!showDownloadModal}
+            tabIndex={!showDownloadModal ? "-1" : "0"}
             fontSize={15 + Number(fontIncrease) * 2 + "px"}
           >
             Sitios Existentes
