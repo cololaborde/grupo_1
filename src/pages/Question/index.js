@@ -82,18 +82,24 @@ const Question = () => {
 
   useEffect(() => {
     if (answered == true) {
-      document.getElementById("next-button").focus();
-      scrollToBottom();
+      if (document.getElementById("send-button") != null) {
+        document.getElementById("send-button").focus();
+        scrollToBottom();
+      }
     }
   }, [answered]);
 
   useEffect(() => {
     if (selectedAnswer != null) {
-      document.getElementById("send-button").focus();
-      scrollToBottom();
+      if (document.getElementById("send-button") != null) {
+        document.getElementById("send-button").focus();
+        scrollToBottom();
+      }
     } else {
-      document.getElementById("title").focus();
-      scrollToTop();
+      if (document.getElementById("title") != null) {
+        document.getElementById("title").focus();
+        scrollToTop();
+      }
     }
   }, [selectedAnswer]);
 
