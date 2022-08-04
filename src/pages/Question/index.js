@@ -81,17 +81,19 @@ const Question = () => {
   };
 
   useEffect(() => {
-    if (answered == true) {
+    if (answered) {
       document.getElementById("next-button").focus();
       scrollToBottom();
     }
   }, [answered]);
 
   useEffect(() => {
-    if (selectedAnswer != null) {
+    console.log(selectedAnswer);
+    if (selectedAnswer) {
       document.getElementById("send-button").focus();
       scrollToBottom();
     } else {
+      console.log(document);
       document.getElementById("title").focus();
       scrollToTop();
     }
@@ -102,6 +104,7 @@ const Question = () => {
       {/* Modals */}
       <ConfigModal />
       <HelpModal
+        infoPath={currentQuestion.link}
         title={currentQuestion.information.title}
         text={currentQuestion.information.text}
       />

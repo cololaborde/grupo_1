@@ -43,3 +43,11 @@ export const ResultButtons = styled.div`
   align-items: center;
   flex-direction: row;
 `;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;

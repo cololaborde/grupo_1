@@ -14,6 +14,7 @@ import {
   ResultTip,
   ResultTitle,
   Wrapper,
+  ButtonsContainer,
 } from "./styled";
 import { goToInformationPage } from "../../../../store/Home/actions";
 
@@ -32,16 +33,28 @@ const QuestionFooter = ({
   return (
     <Wrapper>
       {!answered ? (
-        <GenericButton
-          fontSize={15 + Number(fontIncrease) * 2 + "px"}
-          disabled={selectedAnswer === null}
-          text={"Enviar respuesta"}
-          onSubmit={() => {
-            sendAnswer();
-          }}
-          hidden={modalOpened}
-          id={"send-button"}
-        />
+        <ButtonsContainer>
+          <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
+            disabled={selectedAnswer === null}
+            text={"Enviar respuesta"}
+            onSubmit={() => {
+              sendAnswer();
+            }}
+            hidden={modalOpened}
+            id={"send-button"}
+          />
+          <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
+            text={"Más información"}
+            onSubmit={() => {
+              if (infoLink == null) return;
+              dispatch(goToInformationPage(infoLink));
+            }}
+            backgroundColor={currentTheme.bg_secondary}
+            hidden={modalOpened}
+          />
+        </ButtonsContainer>
       ) : (
         <ResultContainer>
           <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>
