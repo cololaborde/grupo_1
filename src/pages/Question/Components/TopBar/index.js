@@ -5,7 +5,7 @@ import {
   selectFontIncrease,
   selectOpenModal,
 } from "../../../../store/Home/selectors";
-import HamburguerMenu from "../../../../components/Buttons/HamburguerMenu";
+import HamburgerMenu from "../../../../components/Buttons/HamburgerMenu";
 import { CounterContainer, CounterText } from "./styled";
 
 const TopBar = ({ finished, counterText }) => {
@@ -20,7 +20,7 @@ const TopBar = ({ finished, counterText }) => {
           </CounterText>
         </CounterContainer>
       )}
-      <HamburguerMenu hasHelp="true" hidden={modalOpened} />
+      <HamburgerMenu hasHelp="true" hidden={modalOpened} />
     </>
   );
 };

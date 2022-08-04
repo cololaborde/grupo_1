@@ -11,6 +11,7 @@ const HomeButton = (props) => {
         icon={<Home />}
         ariaLabel="Inicio"
         hidden={props.hidden}
+        tutorial={props.tutorial}
       />
     </Wrapper>
   );

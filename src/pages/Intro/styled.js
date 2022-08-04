@@ -25,30 +25,6 @@ export const MainContainer = styled.div`
   background-color: ${(props) => props.theme.bg_primary};
 `;
 
-export const TitleContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  text-align: center;
-  margin-left: 15px;
-  margin-right: 15px;
-  width: 60%;
-  @media (max-width: 767px) {
-    width: 80%;
-  }
-  @media (max-width: 420px) {
-    width: 100%;
-    margin-top: 60px;
-  }
-`;
-
-export const Title = styled.h1`
-  font-size: ${(props) => props.fontSize || "40px"};
-  color: ${(props) => props.color || props.theme.text};
-  font-weight: bold;
-  font-family: Arial;
-`;
-
 export const MenuContainer = styled.div`
   position: absolute;
   right: 15px;
@@ -58,16 +34,4 @@ export const MenuContainer = styled.div`
 export const StartButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-`;
-
-export const Content = styled.p`
-  font-size: ${(props) => props.fontSize || "15px"};
-  color: ${(props) => props.color || props.theme.text};
-  font-family: Arial;
-  margin: 0 2%;
-  width: auto;
-  padding: 15px;
-  @media (max-width: 420px) {
-    padding: 5px;
-  }
 `;

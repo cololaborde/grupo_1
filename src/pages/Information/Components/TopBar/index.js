@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { selectOpenModal } from "../../../../store/Home/selectors";
 import BackButton from "../../../../components/Buttons/BackButton";
-import HamburguerMenu from "../../../../components/Buttons/HamburguerMenu";
+import HamburgerMenu from "../../../../components/Buttons/HamburgerMenu";
 import { BackContainer } from "./styled";
 
 const TopBar = ({ goBack }) => {
@@ -13,7 +13,7 @@ const TopBar = ({ goBack }) => {
       <BackContainer>
         <BackButton onSubmit={goBack} hidden={modalOpened} />
       </BackContainer>
-      <HamburguerMenu hidden={modalOpened} />
+      <HamburgerMenu hidden={modalOpened} />
     </>
   );
 };

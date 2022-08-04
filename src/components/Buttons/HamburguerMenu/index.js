@@ -13,7 +13,7 @@ import {
   setShowHelpModal,
 } from "../../../store/Home/actions";
 
-const HamburguerMenu = (props) => {
+const HamburgerMenu = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const handleToggle = () => {
@@ -96,4 +96,4 @@ const HamburguerMenu = (props) => {
   return <Wrapper>{menu}</Wrapper>;
 };
 
-export default HamburguerMenu;
+export default HamburgerMenu;

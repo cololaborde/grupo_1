@@ -11,6 +11,7 @@ const SearchButton = (props) => {
         icon={<Search />}
         ariaLabel="Buscar"
         hidden={props.hidden}
+        tutorial={props.tutorial}
       />
     </Wrapper>
   );

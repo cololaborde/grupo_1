@@ -18,6 +18,7 @@ const DownloadButton = (props) => {
         icon={<DownloadIcon />}
         ariaLabel="Descargar"
         hidden={props.hidden}
+        tutorial={props.tutorial}
       />
     </Wrapper>
   );

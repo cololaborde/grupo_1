@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GenericButton from "../../components/Buttons/GenericButton";
 import SettingsButton from "../../components/Buttons/SettingsButton";
@@ -8,46 +8,25 @@ import {
   selectFontIncrease,
   selectShowConfigModal,
 } from "../../store/Home/selectors";
-import { CONSTANTS } from "./constants";
 import {
-  Content,
   MainContainer,
   MenuContainer,
   StartButtonContainer,
-  Title,
-  TitleContainer,
   Wrapper,
 } from "./styled";
+import Title from "./Components/Title";
+import Tutorial from "./Components/Tutorial";
 
 const Intro = () => {
   const fontIncrease = useSelector(selectFontIncrease);
   const showConfigModal = useSelector(selectShowConfigModal);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const keyDownHandler = (event) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        dispatch(setShowConfigModal(false));
-      }
-    };
-
-    document.addEventListener("keydown", keyDownHandler);
-
-    return () => {
-      document.removeEventListener("keydown", keyDownHandler);
-    };
-  }, []);
-
   return (
     <Wrapper>
       <ConfigModal show={showConfigModal} />
       <MainContainer>
-        <TitleContainer>
-          <Title fontSize={40 + Number(fontIncrease) * 2 + "px"}>
-            {"Juego de preguntas"}
-          </Title>
-        </TitleContainer>
+        <Title />
         <MenuContainer>
           <SettingsButton
             onSubmit={() => {
@@ -60,9 +39,7 @@ const Intro = () => {
             hidden={showConfigModal}
           />
         </MenuContainer>
-        <Content fontSize={18 + Number(fontIncrease) * 2 + "px"}>
-          {CONSTANTS.informationText}
-        </Content>
+        <Tutorial />
         <StartButtonContainer>
           <GenericButton
             fontSize={15 + Number(fontIncrease) * 2 + "px"}

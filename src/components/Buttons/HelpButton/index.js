@@ -11,6 +11,7 @@ const HelpButton = (props) => {
         icon={<QuestionMarkIcon />}
         ariaLabel="Ayuda"
         hidden={props.hidden}
+        tutorial={props.tutorial}
       />
     </Wrapper>
   );
