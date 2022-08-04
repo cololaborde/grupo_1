@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
@@ -40,6 +40,26 @@ const Question = () => {
   const finished = useSelector(selectFinished);
 
   const wellAnswered = useSelector(selectWellAnswered);
+  const topRef = useRef(null);
+  const bottomRef = useRef(null);
+
+  const scrollToTop = () => {
+    if (topRef.current)
+      topRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+  };
+
+  const scrollToBottom = () => {
+    if (bottomRef.current)
+      bottomRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+  };
 
   const sendAnswer = () => {
     if (selectedAnswer.correct) dispatch(setWellAnswered(wellAnswered + 1));
@@ -52,6 +72,7 @@ const Question = () => {
       dispatch(setSelectedAnswer(null));
       dispatch(setAnswered(false));
       dispatch(setIndex(index + 1));
+      scrollToTop();
     } else {
       dispatch(setFinished(true));
     }
@@ -59,6 +80,14 @@ const Question = () => {
 
   const selectAnswer = (i) =>
     !answered ? dispatch(setSelectedAnswer(currentQuestion.answers[i])) : null;
+
+  useEffect(() => {
+    if (answered == true) scrollToBottom();
+  }, [answered]);
+
+  useEffect(() => {
+    if (selectedAnswer != null) scrollToBottom();
+  }, [selectedAnswer]);
 
   return (
     <Wrapper>
@@ -83,6 +112,7 @@ const Question = () => {
           }
         />
 
+        <div ref={topRef}></div>
         <Title
           text={!finished ? currentQuestion.title : "Has llegado al final"}
         />
@@ -108,6 +138,7 @@ const Question = () => {
             wrongAnswers={questions.length - wellAnswered}
           />
         )}
+        <div ref={bottomRef}></div>
       </MainContainer>
     </Wrapper>
   );
