@@ -13,6 +13,7 @@ const GenericButton = (props) => {
         onClick={props.onSubmit}
         aria-hidden={props.hidden}
         tabIndex={props.hidden ? "-1" : "0"}
+        id={props.id}
       >
         {props.text}
       </Button>

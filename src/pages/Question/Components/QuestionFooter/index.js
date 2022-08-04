@@ -40,6 +40,7 @@ const QuestionFooter = ({
             sendAnswer();
           }}
           hidden={modalOpened}
+          id={"send-button"}
         />
       ) : (
         <ResultContainer>
@@ -54,6 +55,7 @@ const QuestionFooter = ({
                 nextQuestion();
               }}
               hidden={modalOpened}
+              id={"next-button"}
             />
             <GenericButton
               fontSize={15 + Number(fontIncrease) * 2 + "px"}

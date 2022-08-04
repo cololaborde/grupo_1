@@ -57,7 +57,6 @@ const Question = () => {
       bottomRef.current.scrollIntoView({
         behavior: "smooth",
         block: "end",
-        inline: "nearest",
       });
   };
 
@@ -72,21 +71,30 @@ const Question = () => {
       dispatch(setSelectedAnswer(null));
       dispatch(setAnswered(false));
       dispatch(setIndex(index + 1));
-      scrollToTop();
     } else {
       dispatch(setFinished(true));
     }
   };
 
-  const selectAnswer = (i) =>
+  const selectAnswer = (i) => {
     !answered ? dispatch(setSelectedAnswer(currentQuestion.answers[i])) : null;
+  };
 
   useEffect(() => {
-    if (answered == true) scrollToBottom();
+    if (answered == true) {
+      document.getElementById("next-button").focus();
+      scrollToBottom();
+    }
   }, [answered]);
 
   useEffect(() => {
-    if (selectedAnswer != null) scrollToBottom();
+    if (selectedAnswer != null) {
+      document.getElementById("send-button").focus();
+      scrollToBottom();
+    } else {
+      document.getElementById("title").focus();
+      scrollToTop();
+    }
   }, [selectedAnswer]);
 
   return (

@@ -8,7 +8,7 @@ const Title = ({ text }) => {
   const fontIncrease = useSelector(selectFontIncrease);
   return (
     <TitleContainer>
-      <TitleText fontSize={40 + Number(fontIncrease) * 2 + "px"}>
+      <TitleText fontSize={40 + Number(fontIncrease) * 2 + "px"} id="title">
         {text}
       </TitleText>
     </TitleContainer>
