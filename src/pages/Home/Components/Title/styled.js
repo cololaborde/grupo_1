@@ -5,8 +5,11 @@ export const TitleContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-left: 15px;
-  margin-right: 15px;
+  width: 80%;
+  @media (max-width: 360px) {
+    margin-top: 60px;
+    width: 100%;
+  }
 `;
 
 export const TitleText = styled.h1`
@@ -14,4 +17,6 @@ export const TitleText = styled.h1`
   color: ${(props) => props.color || props.theme.text};
   font-weight: bold;
   font-family: Arial;
+  margin: 15px;
+  text-align: center;
 `;
