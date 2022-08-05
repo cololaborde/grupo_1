@@ -2,11 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import {
   selectFontIncrease,
-  selectHighContrast,
   selectOpenModal,
 } from "../../../../store/Home/selectors";
 import SearchButton from "../../../../components/Buttons/SearchButton";
-import TrashButton from "../../../../components/Buttons/TrashButton";
+import DeleteButton from "../../../../components/Buttons/DeleteButton";
 import {
   TutorialContainer,
   Text,
@@ -18,10 +17,8 @@ import {
   CardText,
 } from "./styled";
 import { CONSTANTS } from "../../constants";
-import { theme } from "../../../../theme";
 
 const TutorialContent = ({ type }) => {
-  const highContrast = useSelector(selectHighContrast);
   const fontIncrease = useSelector(selectFontIncrease);
   const modalOpened = useSelector(selectOpenModal);
   return (
@@ -64,10 +61,9 @@ const TutorialContent = ({ type }) => {
               </Text>
             </ListItem>
             <ListItem>
-              <TrashButton
+              <DeleteButton
+                hidden={modalOpened}
                 ariaLabel={"Botón de tutorial: Restablecer búsqueda"}
-                show={true}
-                color={theme(highContrast).text}
               />
               <Text fontSize={18 + Number(fontIncrease) * 2 + "px"}>
                 Botón para limpiar la entrada de búsqueda

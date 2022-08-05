@@ -27,7 +27,6 @@ import {
   selectShowConfigModal,
 } from "../../../store/Home/selectors";
 import { theme } from "../../../theme";
-import Spinbutton from "../../Inputs/Spinbutton";
 import SpinNumber from "../../Inputs/SpinNumber";
 
 const ConfigModal = () => {
