@@ -14,6 +14,7 @@ const IconButton = (props) => {
         aria-hidden={props.hidden ? "true" : "false"}
         tabIndex={props.hidden ? "-1" : "0"}
         id={props.ariaLabel}
+        padding={props.padding}
       >
         {props.icon}
       </Button>

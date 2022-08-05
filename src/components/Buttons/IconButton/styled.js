@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
-  max-width: 58px;
 `;
 
 export const Button = styled.button`
@@ -18,7 +17,7 @@ export const Button = styled.button`
     props.backgroundColor || props.theme.bg_secondary};
   font-size: ${(props) => props.fontSize || "12px"};
   text-align: center;
-  padding: 10px;
+  padding: ${(props) => props.padding || "10px"};
   margin: 5px 5px;
   font-size: small;
   font-family: Arial;
