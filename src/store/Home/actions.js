@@ -29,6 +29,10 @@ export const goToInformationTutorial = () => {
   history.push("/tutorial/info");
 };
 
+export const goToInformationTutorialPage = (page) => {
+  history.push("/tutorial/info/" + page);
+};
+
 export const setFontIncrease = (increase) => {
   return {
     type: types.CHANGE_FONT_INCREASE,

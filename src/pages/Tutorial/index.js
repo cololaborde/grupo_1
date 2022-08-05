@@ -6,6 +6,7 @@ import ConfigModal from "../../components/Modals/ConfigModal";
 import {
   goToHome,
   goToInformation,
+  goToInformationPage,
   goToQuestion,
   setShowConfigModal,
   setShowInformationTutorial,
@@ -26,7 +27,7 @@ import TutorialContent from "./Components/TutorialContent";
 import { useParams } from "react-router-dom";
 
 const Intro = () => {
-  const { type } = useParams();
+  const { type, path } = useParams();
   const dispatch = useDispatch();
   if (type != "pregunta" && type != "info") {
     dispatch(goToHome);
@@ -38,7 +39,11 @@ const Intro = () => {
       dispatch(goToQuestion);
     } else if (type === "info") {
       dispatch(setShowInformationTutorial(false));
-      dispatch(goToInformation);
+      if (path == null) {
+        dispatch(goToInformation);
+      } else {
+        dispatch(goToInformationPage(path));
+      }
     }
   };
 

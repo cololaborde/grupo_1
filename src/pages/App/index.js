@@ -38,6 +38,11 @@ const App = () => {
               path="/tutorial/:type"
               component={withRouter(Tutorial)}
             />
+            <Route
+              exact
+              path="/tutorial/:type/:path"
+              component={withRouter(Tutorial)}
+            />
           </Switch>
         </Router>
       </Container>

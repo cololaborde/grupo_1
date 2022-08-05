@@ -5,6 +5,7 @@ import {
   selectFontIncrease,
   selectHighContrast,
   selectOpenModal,
+  selectShowInformationTutorial,
 } from "../../../../store/Home/selectors";
 import { theme } from "../../../../theme";
 import GenericButton from "../../../../components/Buttons/GenericButton";
@@ -15,7 +16,10 @@ import {
   ResultTitle,
   Wrapper,
 } from "./styled";
-import { goToInformationPage } from "../../../../store/Home/actions";
+import {
+  goToInformationPage,
+  goToInformationTutorialPage,
+} from "../../../../store/Home/actions";
 
 const QuestionFooter = ({
   answered,
@@ -28,6 +32,7 @@ const QuestionFooter = ({
   const highContrast = useSelector(selectHighContrast);
   const currentTheme = theme(highContrast);
   const modalOpened = useSelector(selectOpenModal);
+  const showInformationTutorial = useSelector(selectShowInformationTutorial);
   const dispatch = useDispatch();
   return (
     <Wrapper>
@@ -62,6 +67,9 @@ const QuestionFooter = ({
               text={"Más información"}
               onSubmit={() => {
                 if (infoLink == null) return;
+                if (showInformationTutorial == true) {
+                  dispatch(goToInformationTutorialPage(infoLink));
+                }
                 dispatch(goToInformationPage(infoLink));
               }}
               backgroundColor={currentTheme.bg_secondary}
