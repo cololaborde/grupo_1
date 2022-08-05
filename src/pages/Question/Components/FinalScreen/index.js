@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import {
   goToHome,
   goToInformation,
-  goToQuestion,
   setGoBackHome,
 } from "../../../../store/Home/actions";
 import {
