@@ -88,3 +88,17 @@ export const setShowDownloadModal = (show) => {
     show,
   };
 };
+
+export const setShowQuestionTutorial = (show) => {
+  return {
+    type: types.SET_SHOW_QUESTION_TUTORIAL,
+    show,
+  };
+};
+
+export const setShowInformationTutorial = (show) => {
+  return {
+    type: types.SET_SHOW_INFORMATION_TUTORIAL,
+    show,
+  };
+};

@@ -39,6 +39,12 @@ const homeReducer = (state = initialState, action) =>
       case types.SET_SHOW_DOWNLOAD_MODAL:
         draft.showDownloadModal = action.show;
         break;
+      case types.SET_SHOW_QUESTION_TUTORIAL:
+        draft.showQuestionTutorial = action.show;
+        break;
+      case types.SET_SHOW_INFORMATION_TUTORIAL:
+        draft.showInformationTutorial = action.show;
+        break;
     }
   });
 export default homeReducer;

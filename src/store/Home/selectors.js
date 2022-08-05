@@ -16,3 +16,7 @@ export const selectOpenModal = (state) =>
   get(state, "home.showConfigModal", false) |
   get(state, "home.showHelpModal", false) |
   get(state, "home.showDownloadModal", false);
+export const selectShowQuestionTutorial = (state) =>
+  get(state, "home.showQuestionTutorial", true);
+export const selectShowInformationTutorial = (state) =>
+  get(state, "home.showInformationTutorial", true);

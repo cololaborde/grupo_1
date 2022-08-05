@@ -5,4 +5,6 @@ export const initialState = {
   showConfigModal: false,
   showHelpModal: false,
   showDownloadModal: false,
+  showQuestionTutorial: true,
+  showInformationTutorial: true,
 };
