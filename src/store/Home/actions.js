@@ -21,6 +21,14 @@ export const goToIntro = () => {
   history.push("/intro");
 };
 
+export const goToQuestionTutorial = () => {
+  history.push("/tutorial/pregunta");
+};
+
+export const goToInformationTutorial = () => {
+  history.push("/tutorial/info");
+};
+
 export const setFontIncrease = (increase) => {
   return {
     type: types.CHANGE_FONT_INCREASE,

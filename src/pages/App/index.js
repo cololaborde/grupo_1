@@ -5,6 +5,7 @@ import Home from "../Home";
 import history from "../../utils/history";
 import Information from "../Information";
 import Question from "../Question";
+import Tutorial from "../Tutorial";
 import { theme } from "../../theme";
 import { useSelector } from "react-redux";
 import { selectHighContrast } from "../../store/Home/selectors";
@@ -32,6 +33,11 @@ const App = () => {
               component={withRouter(Information)}
             />
             <Route exact path="/pregunta" component={withRouter(Question)} />
+            <Route
+              exact
+              path="/tutorial/:type"
+              component={withRouter(Tutorial)}
+            />
           </Switch>
         </Router>
       </Container>

@@ -9,7 +9,7 @@ const IconButton = (props) => {
         textColor={props.textColor}
         backgroundColor={props.backgroundColor}
         aria-label={
-          (props.tutorial ? " Botón de tutorial: " : "") + props.ariaLabel
+          (props.tutorial ? "Botón de tutorial: " : "") + props.ariaLabel
         }
         aria-hidden={props.hidden ? "true" : "false"}
         tabIndex={props.hidden ? "-1" : "0"}

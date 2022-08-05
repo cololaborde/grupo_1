@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
 import HelpModal from "../../components/Modals/HelpModal";
+import { goToQuestionTutorial } from "../../store/Home/actions";
+import { selectShowQuestionTutorial } from "../../store/Home/selectors";
 import {
   restoreToInitialState,
   setAnswered,
@@ -30,6 +32,11 @@ import { Wrapper, MainContainer } from "./styled";
 
 const Question = () => {
   const dispatch = useDispatch();
+
+  const showQuestionTutorial = useSelector(selectShowQuestionTutorial);
+  if (showQuestionTutorial == true) {
+    dispatch(goToQuestionTutorial);
+  }
 
   const questions = useSelector(selectQuestions);
   const index = useSelector(selectIndex);

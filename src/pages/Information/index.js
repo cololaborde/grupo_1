@@ -3,8 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
-import { setShowExitModal } from "../../store/Home/actions";
+import {
+  goToInformationTutorial,
+  setShowExitModal,
+} from "../../store/Home/actions";
 import { selectInformation } from "../../store/Information/selectors";
+import { selectShowInformationTutorial } from "../../store/Home/selectors";
 import Cards from "./Components/Cards";
 import Content from "./Components/Content";
 import NavBar from "./Components/NavBar";
@@ -16,6 +20,11 @@ import DownloadModal from "../../components/Modals/DownloadModal";
 
 const Information = () => {
   const dispatch = useDispatch();
+
+  const showInformationTutorial = useSelector(selectShowInformationTutorial);
+  if (showInformationTutorial == true) {
+    dispatch(goToInformationTutorial);
+  }
 
   const pages = useSelector(selectInformation);
 
