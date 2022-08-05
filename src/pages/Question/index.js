@@ -88,12 +88,10 @@ const Question = () => {
   }, [answered]);
 
   useEffect(() => {
-    console.log(selectedAnswer);
     if (selectedAnswer) {
       document.getElementById("send-button").focus();
       scrollToBottom();
     } else {
-      console.log(document);
       document.getElementById("title").focus();
       scrollToTop();
     }

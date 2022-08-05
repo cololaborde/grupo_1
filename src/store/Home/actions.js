@@ -5,6 +5,13 @@ export const goToInformation = () => {
   history.push("/info");
 };
 
+export const setGoBackHome = (goBackHome) => {
+  return {
+    type: types.SET_INFO_GO_BACK_HOME,
+    goBackHome,
+  };
+};
+
 export const goToInformationPage = (page) => {
   history.push("/info/" + page);
 };

@@ -50,8 +50,8 @@ const HelpModal = (props) => {
           fontSize={15 + Number(fontIncrease) * 2 + "px"}
           text={"Más información"}
           onSubmit={() => {
-            if (props.infoPath == null) return;
-            dispatch(goToInformationPage(props.infoPath));
+            dispatch(setShowHelpModal(false));
+            if (props.infoPath) dispatch(goToInformationPage(props.infoPath));
           }}
           backgroundColor={currentTheme.bg}
           hidden={modalOpened}

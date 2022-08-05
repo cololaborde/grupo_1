@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
-import { setShowExitModal } from "../../store/Home/actions";
+import { goToQuestion, setShowExitModal } from "../../store/Home/actions";
 import { selectInformation } from "../../store/Information/selectors";
 import Cards from "./Components/Cards";
 import Content from "./Components/Content";
@@ -13,15 +13,19 @@ import Title from "./Components/Title";
 import TopBar from "./Components/TopBar";
 import { Wrapper, MainContainer } from "./styled";
 import DownloadModal from "../../components/Modals/DownloadModal";
+import { infoGoBackHome } from "../../store/Home/selectors";
 
 const Information = () => {
   const dispatch = useDispatch();
 
   const pages = useSelector(selectInformation);
+  const goBackToHome = useSelector(infoGoBackHome);
 
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+
+  console.log(goBackToHome);
 
   const showExitModalConst = () => {
     dispatch(setShowExitModal(true));
@@ -49,11 +53,12 @@ const Information = () => {
   };
 
   const goBackButton = () =>
-    navPages.length > 1
+    goBackToHome ? showExitModalConst() : goToQuestion();
+  /* navPages.length > 1
       ? goBack(navPages.length - 2)
       : navPages.length == 1
       ? goMain()
-      : showExitModalConst();
+      : showExitModalConst(); */
 
   const searchIn = (obj, matches, currentPath) => {
     let object = { ...obj };

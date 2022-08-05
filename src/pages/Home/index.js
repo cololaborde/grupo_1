@@ -3,6 +3,7 @@ import {
   goToInformation,
   goToIntro,
   goToQuestion,
+  setGoBackHome,
 } from "../../store/Home/actions";
 import {
   Wrapper,
@@ -14,8 +15,10 @@ import {
 import Button from "./Components/Button";
 import Title from "./Components/Title";
 import Config from "./Components/Config";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <Container>
@@ -28,7 +31,13 @@ const Home = () => {
       <InfoContainer>
         <InfoButtonContainer>
           <Button text="Ayuda" action={goToIntro} />
-          <Button text="Información" action={goToInformation} />
+          <Button
+            text="Información"
+            action={() => {
+              dispatch(setGoBackHome(true));
+              goToInformation();
+            }}
+          />
         </InfoButtonContainer>
       </InfoContainer>
     </Wrapper>

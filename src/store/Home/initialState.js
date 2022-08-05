@@ -5,4 +5,5 @@ export const initialState = {
   showConfigModal: false,
   showHelpModal: false,
   showDownloadModal: false,
+  infoGoBackHome: null,
 };
