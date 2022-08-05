@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
-import { goToQuestion, setShowExitModal } from "../../store/Home/actions";
+import {
+  goToHome,
+  goToQuestion,
+  setShowExitModal,
+} from "../../store/Home/actions";
 import { selectInformation } from "../../store/Information/selectors";
 import Cards from "./Components/Cards";
 import Content from "./Components/Content";
@@ -52,8 +56,7 @@ const Information = () => {
     }
   };
 
-  const goBackButton = () =>
-    goBackToHome ? showExitModalConst() : goToQuestion();
+  const goBackButton = () => (goBackToHome ? goToHome() : goToQuestion());
   /* navPages.length > 1
       ? goBack(navPages.length - 2)
       : navPages.length == 1

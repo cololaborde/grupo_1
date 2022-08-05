@@ -16,7 +16,10 @@ import {
   Wrapper,
   ButtonsContainer,
 } from "./styled";
-import { goToInformationPage } from "../../../../store/Home/actions";
+import {
+  goToInformationPage,
+  setGoBackHome,
+} from "../../../../store/Home/actions";
 
 const QuestionFooter = ({
   answered,
@@ -48,8 +51,10 @@ const QuestionFooter = ({
             fontSize={15 + Number(fontIncrease) * 2 + "px"}
             text={"Más información"}
             onSubmit={() => {
-              if (infoLink == null) return;
-              dispatch(goToInformationPage(infoLink));
+              if (infoLink) {
+                dispatch(setGoBackHome(false));
+                dispatch(goToInformationPage(infoLink));
+              }
             }}
             backgroundColor={currentTheme.bg_secondary}
             hidden={modalOpened}
@@ -74,8 +79,10 @@ const QuestionFooter = ({
               fontSize={15 + Number(fontIncrease) * 2 + "px"}
               text={"Más información"}
               onSubmit={() => {
-                if (infoLink == null) return;
-                dispatch(goToInformationPage(infoLink));
+                if (infoLink) {
+                  dispatch(setGoBackHome(false));
+                  dispatch(goToInformationPage(infoLink));
+                }
               }}
               backgroundColor={currentTheme.bg_secondary}
               hidden={modalOpened}

@@ -29,6 +29,9 @@ const ExitModal = ({ action }) => {
         <Text fontSize={20 + Number(fontIncrease) * 2 + "px"}>
           {"¿Desea volver al menú principal?"}
         </Text>
+        <Text fontSize={15 + Number(fontIncrease) * 2 + "px"}>
+          {"Su progreso en el juego se conservará"}
+        </Text>
       </TextContainer>
       <ButtonsContainer>
         <ButtonWrapper>

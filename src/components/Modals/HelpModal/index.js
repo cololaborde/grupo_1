@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   goToInformationPage,
+  setGoBackHome,
   setShowHelpModal,
 } from "../../../store/Home/actions";
 import {
@@ -51,7 +52,10 @@ const HelpModal = (props) => {
           text={"Más información"}
           onSubmit={() => {
             dispatch(setShowHelpModal(false));
-            if (props.infoPath) dispatch(goToInformationPage(props.infoPath));
+            if (props.infoPath) {
+              dispatch(setGoBackHome(false));
+              dispatch(goToInformationPage(props.infoPath));
+            }
           }}
           backgroundColor={currentTheme.bg}
           hidden={modalOpened}

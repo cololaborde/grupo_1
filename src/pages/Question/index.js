@@ -81,19 +81,25 @@ const Question = () => {
   };
 
   useEffect(() => {
-    if (answered) {
-      document.getElementById("next-button").focus();
-      scrollToBottom();
+    if (answered == true) {
+      if (document.getElementById("send-button") != null) {
+        document.getElementById("send-button").focus();
+        scrollToBottom();
+      }
     }
   }, [answered]);
 
   useEffect(() => {
-    if (selectedAnswer) {
-      document.getElementById("send-button").focus();
-      scrollToBottom();
+    if (selectedAnswer != null) {
+      if (document.getElementById("send-button") != null) {
+        document.getElementById("send-button").focus();
+        scrollToBottom();
+      }
     } else {
-      document.getElementById("title").focus();
-      scrollToTop();
+      if (document.getElementById("title") != null) {
+        document.getElementById("title").focus();
+        scrollToTop();
+      }
     }
   }, [selectedAnswer]);
 
