@@ -51,7 +51,6 @@ const QuestionFooter = ({
           dispatch(setShowExitModal(true));
 
           dispatch(setGoBackHome(false));
-          //
         }
       }}
       backgroundColor={currentTheme.bg_secondary}

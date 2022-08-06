@@ -2,7 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   goToInformationPage,
+  setExitModalConfig,
   setGoBackHome,
+  setShowExitModal,
   setShowHelpModal,
 } from "../../../store/Home/actions";
 import {
@@ -54,7 +56,13 @@ const HelpModal = (props) => {
             dispatch(setShowHelpModal(false));
             if (props.infoPath) {
               dispatch(setGoBackHome(false));
-              dispatch(goToInformationPage(props.infoPath));
+              dispatch(
+                setExitModalConfig({
+                  title: "¿Desea salir al apartado de información?",
+                  onSubmit: () => goToInformationPage(props.infoPath),
+                })
+              );
+              dispatch(setShowExitModal(true));
             }
           }}
           backgroundColor={currentTheme.bg}
