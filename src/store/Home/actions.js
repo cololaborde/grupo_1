@@ -95,3 +95,10 @@ export const setShowDownloadModal = (show) => {
     show,
   };
 };
+
+export const setExitModalConfig = (exitModalConfig) => {
+  return {
+    type: types.SET_EXIT_MODAL_CONFIG,
+    exitModalConfig,
+  };
+};

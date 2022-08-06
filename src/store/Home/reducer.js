@@ -41,6 +41,10 @@ const homeReducer = (state = initialState, action) =>
         break;
       case types.SET_INFO_GO_BACK_HOME:
         draft.infoGoBackHome = action.goBackHome;
+        break;
+      case types.SET_EXIT_MODAL_CONFIG:
+        draft.exitModalConfig = action.exitModalConfig;
+        break;
     }
   });
 export default homeReducer;

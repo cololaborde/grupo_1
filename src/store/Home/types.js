@@ -11,3 +11,4 @@ export const SET_SHOW_CONFIG_MODAL = `${prefix}/SET_SHOW_CONFIG_MODAL`;
 export const SET_SHOW_HELP_MODAL = `${prefix}/SET_SHOW_HELP_MODAL`;
 export const SET_SHOW_DOWNLOAD_MODAL = `${prefix}/SET_SHOW_DOWNLOAD_MODAL`;
 export const SET_INFO_GO_BACK_HOME = `${prefix}/SET_INFO_GO_BACK_HOME`;
+export const SET_EXIT_MODAL_CONFIG = `${prefix}/SET_EXIT_MODAL_CONFIG`;

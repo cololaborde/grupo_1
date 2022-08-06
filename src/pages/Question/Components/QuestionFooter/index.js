@@ -18,7 +18,9 @@ import {
 } from "./styled";
 import {
   goToInformationPage,
+  setExitModalConfig,
   setGoBackHome,
+  setShowExitModal,
 } from "../../../../store/Home/actions";
 
 const QuestionFooter = ({
@@ -33,6 +35,30 @@ const QuestionFooter = ({
   const currentTheme = theme(highContrast);
   const modalOpened = useSelector(selectOpenModal);
   const dispatch = useDispatch();
+
+  const MoreInformationButton = () => (
+    <GenericButton
+      fontSize={15 + Number(fontIncrease) * 2 + "px"}
+      text={"Más información"}
+      onSubmit={() => {
+        if (infoLink) {
+          dispatch(
+            setExitModalConfig({
+              title: "¿Desea salir al apartado de información?",
+              onSubmit: () => goToInformationPage(infoLink),
+            })
+          );
+          dispatch(setShowExitModal(true));
+
+          dispatch(setGoBackHome(false));
+          //
+        }
+      }}
+      backgroundColor={currentTheme.bg_secondary}
+      hidden={modalOpened}
+    />
+  );
+
   return (
     <Wrapper>
       {!answered ? (
@@ -47,18 +73,7 @@ const QuestionFooter = ({
             hidden={modalOpened}
             id={"send-button"}
           />
-          <GenericButton
-            fontSize={15 + Number(fontIncrease) * 2 + "px"}
-            text={"Más información"}
-            onSubmit={() => {
-              if (infoLink) {
-                dispatch(setGoBackHome(false));
-                dispatch(goToInformationPage(infoLink));
-              }
-            }}
-            backgroundColor={currentTheme.bg_secondary}
-            hidden={modalOpened}
-          />
+          <MoreInformationButton />
         </ButtonsContainer>
       ) : (
         <ResultContainer>
@@ -75,18 +90,7 @@ const QuestionFooter = ({
               hidden={modalOpened}
               id={"next-button"}
             />
-            <GenericButton
-              fontSize={15 + Number(fontIncrease) * 2 + "px"}
-              text={"Más información"}
-              onSubmit={() => {
-                if (infoLink) {
-                  dispatch(setGoBackHome(false));
-                  dispatch(goToInformationPage(infoLink));
-                }
-              }}
-              backgroundColor={currentTheme.bg_secondary}
-              hidden={modalOpened}
-            />
+            <MoreInformationButton />
           </ResultButtons>
           <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>
             {selectedAnswer.tip}
