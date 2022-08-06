@@ -53,13 +53,15 @@ const HelpModal = (props) => {
           fontSize={15 + Number(fontIncrease) * 2 + "px"}
           text={"Más información"}
           onSubmit={() => {
-            dispatch(setShowHelpModal(false));
             if (props.infoPath) {
               dispatch(setGoBackHome(false));
               dispatch(
                 setExitModalConfig({
                   title: "¿Desea salir al apartado de información?",
-                  onSubmit: () => goToInformationPage(props.infoPath),
+                  onSubmit: () => {
+                    goToInformationPage(props.infoPath);
+                    dispatch(setShowHelpModal(false));
+                  },
                 })
               );
               dispatch(setShowExitModal(true));
