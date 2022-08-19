@@ -115,6 +115,7 @@ const Question = () => {
       {/* Modals */}
       <ConfigModal />
       <HelpModal
+        infoPath={currentQuestion.link}
         title={currentQuestion.information.title}
         text={currentQuestion.information.text}
       />

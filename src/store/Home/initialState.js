@@ -7,4 +7,6 @@ export const initialState = {
   showDownloadModal: false,
   showQuestionTutorial: true,
   showInformationTutorial: true,
+  infoGoBackHome: null,
+  exitModalConfig: {},
 };

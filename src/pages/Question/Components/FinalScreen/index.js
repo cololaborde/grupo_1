@@ -1,7 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { goToHome, goToInformation } from "../../../../store/Home/actions";
+import {
+  goToHome,
+  goToInformation,
+  setGoBackHome,
+} from "../../../../store/Home/actions";
 import {
   selectFontIncrease,
   selectHighContrast,
@@ -73,7 +77,8 @@ const FinalScreen = ({ rightAnswers, wrongAnswers }) => {
           fontSize={15 + Number(fontIncrease) * 2 + "px"}
           text={"Información"}
           onSubmit={() => {
-            dispatch(goToInformation);
+            dispatch(setGoBackHome(false));
+            dispatch(goToInformation());
             dispatch(restoreToInitialState());
           }}
           hidden={modalOpened}

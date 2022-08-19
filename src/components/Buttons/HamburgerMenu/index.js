@@ -7,6 +7,8 @@ import MenuButton from "../MenuButton";
 import HelpButton from "../HelpButton";
 import { useDispatch } from "react-redux";
 import {
+  goToHome,
+  setExitModalConfig,
   setShowConfigModal,
   setShowDownloadModal,
   setShowExitModal,
@@ -29,6 +31,12 @@ const HamburgerMenu = (props) => {
   };
 
   const showExitModal = () => {
+    dispatch(
+      setExitModalConfig({
+        title: "¿Desea salir al menú principal?",
+        onSubmit: goToHome,
+      })
+    );
     dispatch(setShowExitModal(true));
     document.getElementById("exit-modal").querySelector("#close-icon").focus();
   };

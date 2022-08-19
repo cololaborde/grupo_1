@@ -15,10 +15,14 @@ import {
   ResultTip,
   ResultTitle,
   Wrapper,
+  ButtonsContainer,
 } from "./styled";
 import {
   goToInformationPage,
   goToInformationTutorialPage,
+  setExitModalConfig,
+  setGoBackHome,
+  setShowExitModal,
 } from "../../../../store/Home/actions";
 
 const QuestionFooter = ({
@@ -34,19 +38,50 @@ const QuestionFooter = ({
   const modalOpened = useSelector(selectOpenModal);
   const showInformationTutorial = useSelector(selectShowInformationTutorial);
   const dispatch = useDispatch();
+
+  const MoreInformationButton = () => (
+    <GenericButton
+      fontSize={15 + Number(fontIncrease) * 2 + "px"}
+      text={"Más información"}
+      onSubmit={() => {
+        if (infoLink) {
+          dispatch(
+            setExitModalConfig({
+              title: "¿Desea salir al apartado de información?",
+              onSubmit: () => {
+                if (showInformationTutorial == true) {
+                  goToInformationTutorialPage(infoLink);
+                }
+                goToInformationPage(infoLink);
+              },
+            })
+          );
+          dispatch(setShowExitModal(true));
+
+          dispatch(setGoBackHome(false));
+        }
+      }}
+      backgroundColor={currentTheme.bg_secondary}
+      hidden={modalOpened}
+    />
+  );
+
   return (
     <Wrapper>
       {!answered ? (
-        <GenericButton
-          fontSize={15 + Number(fontIncrease) * 2 + "px"}
-          disabled={selectedAnswer === null}
-          text={"Enviar respuesta"}
-          onSubmit={() => {
-            sendAnswer();
-          }}
-          hidden={modalOpened}
-          id={"send-button"}
-        />
+        <ButtonsContainer>
+          <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
+            disabled={selectedAnswer === null}
+            text={"Enviar respuesta"}
+            onSubmit={() => {
+              sendAnswer();
+            }}
+            hidden={modalOpened}
+            id={"send-button"}
+          />
+          <MoreInformationButton />
+        </ButtonsContainer>
       ) : (
         <ResultContainer>
           <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>
@@ -62,19 +97,7 @@ const QuestionFooter = ({
               hidden={modalOpened}
               id={"next-button"}
             />
-            <GenericButton
-              fontSize={15 + Number(fontIncrease) * 2 + "px"}
-              text={"Más información"}
-              onSubmit={() => {
-                if (infoLink == null) return;
-                if (showInformationTutorial == true) {
-                  dispatch(goToInformationTutorialPage(infoLink));
-                }
-                dispatch(goToInformationPage(infoLink));
-              }}
-              backgroundColor={currentTheme.bg_secondary}
-              hidden={modalOpened}
-            />
+            <MoreInformationButton />
           </ResultButtons>
           <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>
             {selectedAnswer.tip}

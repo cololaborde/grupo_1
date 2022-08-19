@@ -4,6 +4,7 @@ import {
   goToIntro,
   goToQuestion,
   setShowConfigModal,
+  setGoBackHome,
 } from "../../store/Home/actions";
 import {
   Wrapper,
@@ -47,7 +48,13 @@ const Home = () => {
       <InfoContainer>
         <InfoButtonContainer>
           <Button text="Ayuda" action={goToIntro} />
-          <Button text="Información" action={goToInformation} />
+          <Button
+            text="Información"
+            action={() => {
+              dispatch(setGoBackHome(true));
+              goToInformation();
+            }}
+          />
         </InfoButtonContainer>
       </InfoContainer>
     </Wrapper>

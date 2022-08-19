@@ -5,6 +5,13 @@ export const goToInformation = () => {
   history.push("/info");
 };
 
+export const setGoBackHome = (goBackHome) => {
+  return {
+    type: types.SET_INFO_GO_BACK_HOME,
+    goBackHome,
+  };
+};
+
 export const goToInformationPage = (page) => {
   history.push("/info/" + page);
 };
@@ -112,5 +119,12 @@ export const setShowInformationTutorial = (show) => {
   return {
     type: types.SET_SHOW_INFORMATION_TUTORIAL,
     show,
+  };
+};
+
+export const setExitModalConfig = (exitModalConfig) => {
+  return {
+    type: types.SET_EXIT_MODAL_CONFIG,
+    exitModalConfig,
   };
 };

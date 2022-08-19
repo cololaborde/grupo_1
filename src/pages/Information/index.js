@@ -5,7 +5,8 @@ import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
 import {
   goToInformationTutorial,
-  setShowExitModal,
+  goToHome,
+  goToQuestion,
 } from "../../store/Home/actions";
 import { selectInformation } from "../../store/Information/selectors";
 import { selectShowInformationTutorial } from "../../store/Home/selectors";
@@ -17,6 +18,7 @@ import Title from "./Components/Title";
 import TopBar from "./Components/TopBar";
 import { Wrapper, MainContainer } from "./styled";
 import DownloadModal from "../../components/Modals/DownloadModal";
+import { infoGoBackHome } from "../../store/Home/selectors";
 
 const Information = () => {
   const dispatch = useDispatch();
@@ -27,15 +29,11 @@ const Information = () => {
   }
 
   const pages = useSelector(selectInformation);
+  const goBackToHome = useSelector(infoGoBackHome);
 
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-
-  const showExitModalConst = () => {
-    dispatch(setShowExitModal(true));
-    document.getElementById("exit-modal").querySelector("#close-icon").focus();
-  };
 
   const goMain = () => {
     if (navPages.length > 0) {
@@ -57,12 +55,7 @@ const Information = () => {
     }
   };
 
-  const goBackButton = () =>
-    navPages.length > 1
-      ? goBack(navPages.length - 2)
-      : navPages.length == 1
-      ? goMain()
-      : showExitModalConst();
+  const goBackButton = () => (goBackToHome ? goToHome() : goToQuestion());
 
   const searchIn = (obj, matches, currentPath) => {
     let object = { ...obj };
