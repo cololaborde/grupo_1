@@ -47,15 +47,21 @@ const TutorialContent = ({ type }) => {
                 name="searchbar"
                 placeholder="Buscar"
                 aria-hidden={modalOpened ? "true" : "false"}
-                tabIndex={modalOpened ? "-1" : ""}
+                tabIndex={modalOpened ? "-1" : "0"}
                 ariaLabel={"Botón de tutorial: Ingresar palabras clave"}
+                disabled={true}
+                aria-disabled={true}
               />
               <Text fontSize={18 + Number(fontIncrease) * 2 + "px"}>
                 Entrada de palabras claves a buscar
               </Text>
             </ListItem>
             <ListItem>
-              <SearchButton hidden={modalOpened} tutorial={true} />
+              <SearchButton
+                hidden={modalOpened}
+                tutorial={true}
+                disabled={true}
+              />
               <Text fontSize={18 + Number(fontIncrease) * 2 + "px"}>
                 Botón para buscar lo ingresado
               </Text>
@@ -64,6 +70,7 @@ const TutorialContent = ({ type }) => {
               <DeleteButton
                 hidden={modalOpened}
                 ariaLabel={"Botón de tutorial: Restablecer búsqueda"}
+                disabled={true}
               />
               <Text fontSize={18 + Number(fontIncrease) * 2 + "px"}>
                 Botón para limpiar la entrada de búsqueda
@@ -73,7 +80,9 @@ const TutorialContent = ({ type }) => {
               <NavText
                 fontSize={15 + Number(fontIncrease) + "px"}
                 aria-hidden={modalOpened ? "true" : "false"}
-                tabIndex={modalOpened ? "-1" : ""}
+                tabIndex={modalOpened ? "-1" : "0"}
+                disabled={true}
+                aria-disabled={true}
               >
                 {" - Nombre de sección"}
               </NavText>
@@ -86,7 +95,9 @@ const TutorialContent = ({ type }) => {
             <ListItem>
               <CardContainer
                 aria-hidden={modalOpened ? "true" : "false"}
-                tabIndex={modalOpened ? "-1" : ""}
+                tabIndex={modalOpened ? "-1" : "0"}
+                disabled={true}
+                aria-disabled={true}
               >
                 <CardText fontSize={20 + Number(fontIncrease) + "px"}>
                   Nombre de sección

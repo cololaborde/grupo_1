@@ -62,7 +62,7 @@ const QuestionFooter = ({
         }
       }}
       backgroundColor={currentTheme.bg_secondary}
-      hidden={modalOpened}
+      hidden={modalOpened ? "true" : "false"}
     />
   );
 
@@ -77,7 +77,7 @@ const QuestionFooter = ({
             onSubmit={() => {
               sendAnswer();
             }}
-            hidden={modalOpened}
+            hidden={modalOpened ? "true" : "false"}
             id={"send-button"}
           />
           <MoreInformationButton />
@@ -94,7 +94,7 @@ const QuestionFooter = ({
               onSubmit={() => {
                 nextQuestion();
               }}
-              hidden={modalOpened}
+              hidden={modalOpened ? "true" : "false"}
               id={"next-button"}
             />
             <MoreInformationButton />

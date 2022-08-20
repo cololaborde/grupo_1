@@ -12,6 +12,7 @@ const MenuButton = (props) => {
         ariaLabel="Menu desplegable"
         hidden={props.hidden}
         tutorial={props.tutorial}
+        disabled={props.disabled}
       />
     </Wrapper>
   );

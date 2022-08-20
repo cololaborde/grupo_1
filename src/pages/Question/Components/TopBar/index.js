@@ -20,7 +20,7 @@ const TopBar = ({ finished, counterText }) => {
           </CounterText>
         </CounterContainer>
       )}
-      <HamburgerMenu hasHelp="true" hidden={modalOpened} />
+      <HamburgerMenu hasHelp="true" hidden={modalOpened ? "true" : "false"} />
     </>
   );
 };

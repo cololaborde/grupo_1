@@ -13,7 +13,7 @@ const TopBar = ({ goBack }) => {
       <BackContainer>
         <BackButton onSubmit={goBack} hidden={modalOpened} />
       </BackContainer>
-      <HamburgerMenu hidden={modalOpened} />
+      <HamburgerMenu hidden={modalOpened ? "true" : "false"} />
     </>
   );
 };

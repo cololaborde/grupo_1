@@ -19,6 +19,7 @@ const DownloadButton = (props) => {
         ariaLabel="Descargar"
         hidden={props.hidden}
         tutorial={props.tutorial}
+        disabled={props.disabled}
       />
     </Wrapper>
   );

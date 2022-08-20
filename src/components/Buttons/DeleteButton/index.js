@@ -12,6 +12,7 @@ const SubButton = (props) => {
         ariaLabel={props.ariaLabel}
         hidden={props.hidden}
         tutorial={props.tutorial}
+        disabled={props.disabled}
       />
     </Wrapper>
   );

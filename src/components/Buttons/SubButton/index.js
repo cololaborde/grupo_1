@@ -13,6 +13,7 @@ const SubButton = (props) => {
         hidden={props.hidden}
         tutorial={props.tutorial}
         padding={props.padding}
+        disabled={props.disabled}
       />
     </Wrapper>
   );

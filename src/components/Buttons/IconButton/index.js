@@ -5,6 +5,8 @@ const IconButton = (props) => {
   return (
     <Wrapper>
       <Button
+        disabled={props.disabled}
+        aria-disabled={props.disabled}
         onClick={props.onSubmit}
         textColor={props.textColor}
         backgroundColor={props.backgroundColor}

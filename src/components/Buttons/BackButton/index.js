@@ -12,6 +12,7 @@ const BackButton = (props) => {
         ariaLabel="Retroceder"
         hidden={props.hidden}
         tutorial={props.tutorial}
+        disabled={props.disabled}
       />
     </Wrapper>
   );

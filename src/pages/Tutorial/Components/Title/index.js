@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import { selectFontIncrease } from "../../../../store/Home/selectors";
 import { TitleContainer, TitleText } from "./styled";
 
-const Title = () => {
+const Title = ({ type }) => {
   const fontIncrease = useSelector(selectFontIncrease);
   return (
     <TitleContainer>
       <TitleText fontSize={40 + Number(fontIncrease) * 2 + "px"}>
-        {"Juego de preguntas"}
+        {type === "pregunta" ? "Tutorial de juego" : "Tutorial de Información"}
       </TitleText>
     </TitleContainer>
   );

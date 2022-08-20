@@ -54,7 +54,7 @@ const Intro = () => {
     <Wrapper>
       <ConfigModal show={showConfigModal} />
       <MainContainer>
-        <Title />
+        <Title type={type} />
         <MenuContainer>
           <SettingsButton
             onSubmit={() => {

@@ -25,31 +25,51 @@ const Tutorial = () => {
       </Text>
       <List>
         <ListItem>
-          <SettingsButton hidden={showConfigModal} tutorial={true} />
+          <SettingsButton
+            hidden={showConfigModal}
+            tutorial={true}
+            disabled={true}
+          />
           <Text fontSize={18 + Number(fontIncrease) * 2 + "px"}>
             Botón para cambiar las configuraciones
           </Text>
         </ListItem>
         <ListItem>
-          <HomeButton hidden={showConfigModal} tutorial={true} />
+          <HomeButton
+            hidden={showConfigModal}
+            tutorial={true}
+            disabled={true}
+          />
           <Text fontSize={18 + Number(fontIncrease) * 2 + "px"}>
             Botón para volver al menu principal
           </Text>
         </ListItem>
         <ListItem>
-          <MenuButton hidden={showConfigModal} tutorial={true} />
+          <MenuButton
+            hidden={showConfigModal}
+            tutorial={true}
+            disabled={true}
+          />
           <Text fontSize={18 + Number(fontIncrease) * 2 + "px"}>
             Menú desplegable de botones
           </Text>
         </ListItem>
         <ListItem>
-          <HelpButton hidden={showConfigModal} tutorial={true} />
+          <HelpButton
+            hidden={showConfigModal}
+            tutorial={true}
+            disabled={true}
+          />
           <Text fontSize={18 + Number(fontIncrease) * 2 + "px"}>
             Botón para obtener ayuda durante el juego
           </Text>
         </ListItem>
         <ListItem>
-          <DownloadButton hidden={showConfigModal} tutorial={true} />
+          <DownloadButton
+            hidden={showConfigModal}
+            tutorial={true}
+            disabled={true}
+          />
           <Text fontSize={18 + Number(fontIncrease) * 2 + "px"}>
             Botón para descargar información
           </Text>

@@ -12,6 +12,7 @@ const HelpButton = (props) => {
         ariaLabel="Ayuda"
         hidden={props.hidden}
         tutorial={props.tutorial}
+        disabled={props.disabled}
       />
     </Wrapper>
   );
