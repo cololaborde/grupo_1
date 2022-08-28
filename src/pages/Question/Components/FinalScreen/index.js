@@ -70,7 +70,7 @@ const FinalScreen = ({ rightAnswers, wrongAnswers }) => {
             dispatch(goToHome);
             dispatch(restoreToInitialState());
           }}
-          hidden={modalOpened ? "true" : "false"}
+          hidden={modalOpened ? true : false}
         />
 
         <GenericButton
@@ -81,7 +81,7 @@ const FinalScreen = ({ rightAnswers, wrongAnswers }) => {
             dispatch(goToInformation());
             dispatch(restoreToInitialState());
           }}
-          hidden={modalOpened ? "true" : "false"}
+          hidden={modalOpened ? true : false}
         />
       </ButtonsContainer>
     </>

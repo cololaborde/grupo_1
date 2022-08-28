@@ -68,7 +68,7 @@ const HelpModal = (props) => {
             }
           }}
           backgroundColor={currentTheme.bg}
-          hidden={modalOpened ? "true" : "false"}
+          hidden={modalOpened ? false : true}
         />
       </Container>
     </GenericModal>

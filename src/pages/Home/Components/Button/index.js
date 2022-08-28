@@ -26,7 +26,7 @@ const Button = ({ text, action }) => {
       }}
       text={text}
       fontSize={20 + Number(fontIncrease) * 2 + "px"}
-      hidden={modalOpened ? "true" : "false"}
+      hidden={modalOpened ? true : false}
     />
   );
 };
