@@ -8,7 +8,7 @@ const Title = () => {
   return (
     <TitleContainer>
       <TitleText fontSize={40 + Number(fontIncrease) * 2 + "px"}>
-        {"Juego de preguntas"}
+        {"Flooded Quiz"}
       </TitleText>
     </TitleContainer>
   );

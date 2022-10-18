@@ -28,7 +28,7 @@ const Home = () => {
     <Wrapper>
       <ConfigModal show={showConfigModal} />
       <Container>
-        <Title text="Juego de preguntas" />
+        <Title text="Flooded Quiz" />
         <SettingsButtonContainer>
           <SettingsButton
             onSubmit={() => {

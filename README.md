@@ -1,5 +1,5 @@
 <h1 align="center">
-Grupo 1 - Juego de preguntas
+Grupo 1 - Flooded Quiz
 </h1>
 
 ## Pasos para ejecutar
