@@ -38,6 +38,15 @@ const Answers = ({ question, selectedAnswer, answered, selectAnswer }) => {
             }
             aria-hidden={modalOpened ? "true" : "false"}
             tabIndex={modalOpened ? "-1" : ""}
+            aria-label={
+              answered
+                ? answ.correct
+                  ? "Respuesta correcta: " + answ.title
+                  : "Respuesta incorrecta: " + answ.title
+                : ""
+            }
+            disabled={answered}
+            aria-disabled={answered}
           >
             <AnswerTitle
               backgroundColor={

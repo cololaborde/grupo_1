@@ -5,6 +5,13 @@ export const goToInformation = () => {
   history.push("/info");
 };
 
+export const setGoBackHome = (goBackHome) => {
+  return {
+    type: types.SET_INFO_GO_BACK_HOME,
+    goBackHome,
+  };
+};
+
 export const goToInformationPage = (page) => {
   history.push("/info/" + page);
 };
@@ -19,6 +26,18 @@ export const goToQuestion = () => {
 
 export const goToIntro = () => {
   history.push("/intro");
+};
+
+export const goToQuestionTutorial = () => {
+  history.push("/tutorial/pregunta");
+};
+
+export const goToInformationTutorial = () => {
+  history.push("/tutorial/info");
+};
+
+export const goToInformationTutorialPage = (page) => {
+  history.push("/tutorial/info/" + page);
 };
 
 export const setFontIncrease = (increase) => {
@@ -79,5 +98,33 @@ export const setShowHelpModal = (show) => {
   return {
     type: types.SET_SHOW_HELP_MODAL,
     show,
+  };
+};
+
+export const setShowDownloadModal = (show) => {
+  return {
+    type: types.SET_SHOW_DOWNLOAD_MODAL,
+    show,
+  };
+};
+
+export const setShowQuestionTutorial = (show) => {
+  return {
+    type: types.SET_SHOW_QUESTION_TUTORIAL,
+    show,
+  };
+};
+
+export const setShowInformationTutorial = (show) => {
+  return {
+    type: types.SET_SHOW_INFORMATION_TUTORIAL,
+    show,
+  };
+};
+
+export const setExitModalConfig = (exitModalConfig) => {
+  return {
+    type: types.SET_EXIT_MODAL_CONFIG,
+    exitModalConfig,
   };
 };

@@ -27,7 +27,7 @@ import {
   selectShowConfigModal,
 } from "../../../store/Home/selectors";
 import { theme } from "../../../theme";
-import Spinbutton from "../../Inputs/Spinbutton";
+import SpinNumber from "../../Inputs/SpinNumber";
 
 const ConfigModal = () => {
   const dispatch = useDispatch();
@@ -65,11 +65,19 @@ const ConfigModal = () => {
               {"Tamaño del texto"}
             </Text>
             <SpinbuttonContainer>
-              <Spinbutton
+              <SpinNumber
+                name="Tamaño del texto"
                 value={fontIncrease}
-                onChange={handleInputChange}
-                label="Tamaño del texto"
-                fontSize={15 + Number(fontIncrease) * 2 + "px"}
+                onAdd={() => {
+                  if (fontIncrease < 5) {
+                    dispatch(setFontIncrease(parseInt(fontIncrease) + 1));
+                  }
+                }}
+                onSub={() => {
+                  if (fontIncrease > 0) {
+                    dispatch(setFontIncrease(parseInt(fontIncrease) - 1));
+                  }
+                }}
                 hidden={!showConfigModal}
               />
             </SpinbuttonContainer>
@@ -98,6 +106,8 @@ const ConfigModal = () => {
               dispatch(setShowConfigModal(false));
               dispatch(saveFontIncrease(fontIncrease));
               dispatch(saveHighContrast(highContrast));
+              if (document.getElementById("Opciones") != null)
+                document.getElementById("Opciones").focus();
             }}
             hidden={!showConfigModal}
           />
@@ -109,6 +119,8 @@ const ConfigModal = () => {
               dispatch(setShowConfigModal(false));
               dispatch(restartFontIncrease());
               dispatch(restartHighContrast());
+              if (document.getElementById("Opciones") != null)
+                document.getElementById("Opciones").focus();
             }}
             hidden={!showConfigModal}
           />

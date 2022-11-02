@@ -4,4 +4,9 @@ export const initialState = {
   showExitModal: false,
   showConfigModal: false,
   showHelpModal: false,
+  showDownloadModal: false,
+  showQuestionTutorial: true,
+  showInformationTutorial: true,
+  infoGoBackHome: null,
+  exitModalConfig: {},
 };

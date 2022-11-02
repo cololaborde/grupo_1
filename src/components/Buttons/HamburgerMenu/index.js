@@ -7,12 +7,15 @@ import MenuButton from "../MenuButton";
 import HelpButton from "../HelpButton";
 import { useDispatch } from "react-redux";
 import {
+  goToHome,
+  setExitModalConfig,
   setShowConfigModal,
+  setShowDownloadModal,
   setShowExitModal,
   setShowHelpModal,
 } from "../../../store/Home/actions";
 
-const HamburguerMenu = (props) => {
+const HamburgerMenu = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const handleToggle = () => {
@@ -28,6 +31,12 @@ const HamburguerMenu = (props) => {
   };
 
   const showExitModal = () => {
+    dispatch(
+      setExitModalConfig({
+        title: "¿Desea salir al menú principal?",
+        onSubmit: goToHome,
+      })
+    );
     dispatch(setShowExitModal(true));
     document.getElementById("exit-modal").querySelector("#close-icon").focus();
   };
@@ -35,6 +44,14 @@ const HamburguerMenu = (props) => {
   const showHelpModal = () => {
     dispatch(setShowHelpModal(true));
     document.getElementById("help-modal").querySelector("#close-icon").focus();
+  };
+
+  const showDownloadModal = () => {
+    dispatch(setShowDownloadModal(true));
+    document
+      .getElementById("download-modal")
+      .querySelector("#close-icon")
+      .focus();
   };
 
   let custom_button;
@@ -45,8 +62,7 @@ const HamburguerMenu = (props) => {
   } else {
     custom_button = (
       <DownloadButton
-        pressed={props.downloadPressed}
-        onSubmit={props.onSubmit}
+        onSubmit={() => showDownloadModal()}
         hidden={props.hidden}
       />
     );
@@ -88,4 +104,4 @@ const HamburguerMenu = (props) => {
   return <Wrapper>{menu}</Wrapper>;
 };
 
-export default HamburguerMenu;
+export default HamburgerMenu;

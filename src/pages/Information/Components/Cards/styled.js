@@ -17,11 +17,6 @@ export const RowContainer = styled.div`
   flex-direction: row;
 `;
 
-export const CheckBoxContainer = styled.div`
-  margin-top: ${(props) => props.marginTop || "20px"};
-  margin-left: ${(props) => props.marginLeft || "10px"};
-`;
-
 export const CardContainer = styled.button`
   min-height: 50px;
   width: 100%;

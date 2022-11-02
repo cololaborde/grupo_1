@@ -9,7 +9,18 @@ export const selectShowConfigModal = (state) =>
   get(state, "home.showConfigModal", false);
 export const selectShowHelpModal = (state) =>
   get(state, "home.showHelpModal", false);
+export const selectDownloadModal = (state) =>
+  get(state, "home.showDownloadModal", false);
 export const selectOpenModal = (state) =>
   get(state, "home.showExitModal", false) |
   get(state, "home.showConfigModal", false) |
-  get(state, "home.showHelpModal", false);
+  get(state, "home.showHelpModal", false) |
+  get(state, "home.showDownloadModal", false);
+export const infoGoBackHome = (state) =>
+  get(state, "home.infoGoBackHome", null);
+export const selectExitModalConfig = (state) =>
+  get(state, "home.exitModalConfig", {});
+export const selectShowQuestionTutorial = (state) =>
+  get(state, "home.showQuestionTutorial", true);
+export const selectShowInformationTutorial = (state) =>
+  get(state, "home.showInformationTutorial", true);

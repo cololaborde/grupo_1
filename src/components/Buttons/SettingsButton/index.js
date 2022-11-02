@@ -11,6 +11,8 @@ const SettingsButton = (props) => {
         icon={<Settings />}
         ariaLabel="Opciones"
         hidden={props.hidden}
+        tutorial={props.tutorial}
+        disabled={props.disabled}
       />
     </Wrapper>
   );

@@ -55,11 +55,17 @@ export const InfoButtonContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  margin-top: 4%;
+  margin-top: 2%;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
   align-items: center;
   justify-content: center;
   background-color: ${(props) => props.theme.bg_primary};
+`;
+
+export const SettingsButtonContainer = styled.div`
+  position: absolute;
+  right: 15px;
+  top: 15px;
 `;

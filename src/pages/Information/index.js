@@ -3,41 +3,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
-import { setShowExitModal } from "../../store/Home/actions";
+import {
+  goToInformationTutorial,
+  goToHome,
+  goToQuestion,
+} from "../../store/Home/actions";
 import { selectInformation } from "../../store/Information/selectors";
+import { selectShowInformationTutorial } from "../../store/Home/selectors";
 import Cards from "./Components/Cards";
 import Content from "./Components/Content";
 import NavBar from "./Components/NavBar";
 import Search from "./Components/Search";
 import Title from "./Components/Title";
 import TopBar from "./Components/TopBar";
-import PDFDownloadButton from "./Components/PDFDownloadButton";
 import { Wrapper, MainContainer } from "./styled";
+import DownloadModal from "../../components/Modals/DownloadModal";
+import { infoGoBackHome } from "../../store/Home/selectors";
 
 const Information = () => {
-  const initialCheckState = () => {
-    let checks = {};
-    if (currentSection.pages) {
-      for (let i = 0; i < currentSection.pages.length; i++) checks[i] = false;
-    }
-    return checks;
-  };
-
   const dispatch = useDispatch();
 
+  const showInformationTutorial = useSelector(selectShowInformationTutorial);
+  if (showInformationTutorial == true) {
+    dispatch(goToInformationTutorial);
+  }
+
   const pages = useSelector(selectInformation);
+  const goBackToHome = useSelector(infoGoBackHome);
 
   const [currentSection, setCurrentSection] = useState(pages);
   const [navPages, setNavPages] = useState([]);
-  const [downloadIndex, setDownloadIndex] = useState(initialCheckState());
-  const [download, setDownload] = useState(false);
-  const [data, setData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-
-  const showExitModalConst = () => {
-    dispatch(setShowExitModal(true));
-    document.getElementById("exit-modal").querySelector("#close-icon").focus();
-  };
 
   const goMain = () => {
     if (navPages.length > 0) {
@@ -59,24 +55,7 @@ const Information = () => {
     }
   };
 
-  const goBackButton = () =>
-    navPages.length > 1
-      ? goBack(navPages.length - 2)
-      : navPages.length == 1
-      ? goMain()
-      : showExitModalConst();
-
-  const getDownloadData = () => {
-    let toDownload = [];
-    if (currentSection.pages) {
-      const pagesCopy = [...currentSection.pages];
-      pagesCopy.map((item, index) => {
-        if (downloadIndex[index]) toDownload.push(item);
-      });
-    } else toDownload = [currentSection];
-
-    return toDownload;
-  };
+  const goBackButton = () => (goBackToHome ? goToHome() : goToQuestion());
 
   const searchIn = (obj, matches, currentPath) => {
     let object = { ...obj };
@@ -113,10 +92,6 @@ const Information = () => {
     }
   };
 
-  useEffect(() => {
-    setData(getDownloadData());
-  }, [downloadIndex]);
-
   const { path } = useParams();
   useEffect(() => {
     if (path != null) {
@@ -137,7 +112,6 @@ const Information = () => {
   }, []);
 
   useEffect(() => {
-    if (currentSection.pages) setDownloadIndex(initialCheckState());
     if (currentSection.path) {
       setNavPages(currentSection.path);
     }
@@ -147,13 +121,10 @@ const Information = () => {
     <Wrapper>
       <ConfigModal />
       <ExitModal />
+      <DownloadModal />
 
       <MainContainer>
-        <TopBar
-          downloadPressed={download}
-          goBack={goBackButton}
-          setDownload={() => setDownload(!download)}
-        />
+        <TopBar goBack={goBackButton} />
         <Title text="Información" />
         <Search
           searchInput={searchInput}
@@ -168,35 +139,13 @@ const Information = () => {
         />
         <NavBar navPages={navPages} goMain={goMain} goBack={goBack} />
         {currentSection.type === "Section" ? (
-          <>
-            {download && (
-              <PDFDownloadButton
-                downloadIndex={downloadIndex}
-                currentSection={currentSection}
-                data={data}
-                onClick={() => {
-                  setDownloadIndex(initialCheckState());
-                  setData([]);
-                }}
-                download={download}
-              />
-            )}
-            <Cards
-              download={download}
-              downloadIndex={downloadIndex}
-              currentSection={currentSection}
-              goToSection={(page) => {
-                setNavPages(navPages.concat(page.name));
-                setCurrentSection(page);
-              }}
-              checkSection={(index) => {
-                setDownloadIndex({
-                  ...downloadIndex,
-                  [index]: !downloadIndex[index],
-                });
-              }}
-            />
-          </>
+          <Cards
+            currentSection={currentSection}
+            goToSection={(page) => {
+              setNavPages(navPages.concat(page.name));
+              setCurrentSection(page);
+            }}
+          />
         ) : (
           <Content currentSection={currentSection} />
         )}

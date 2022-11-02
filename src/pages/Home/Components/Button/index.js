@@ -9,12 +9,14 @@ import {
 import {
   selectFontIncrease,
   selectHighContrast,
+  selectOpenModal,
 } from "../../../../store/Home/selectors";
 
 const Button = ({ text, action }) => {
   const dispatch = useDispatch();
   const fontIncrease = useSelector(selectFontIncrease);
   const highContrast = useSelector(selectHighContrast);
+  const modalOpened = useSelector(selectOpenModal);
   return (
     <GenericButton
       onSubmit={() => {
@@ -24,7 +26,7 @@ const Button = ({ text, action }) => {
       }}
       text={text}
       fontSize={20 + Number(fontIncrease) * 2 + "px"}
-      hidden={false}
+      hidden={modalOpened ? true : false}
     />
   );
 };

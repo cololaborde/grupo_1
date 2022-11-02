@@ -1,31 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import {
   selectFontIncrease,
   selectOpenModal,
 } from "../../../../store/Home/selectors";
-import BackButton from "../../../../components/Buttons/BackButton";
-import HamburguerMenu from "../../../../components/Buttons/HamburguerMenu";
-import { BackContainer, CounterContainer, CounterText } from "./styled";
-import { setShowExitModal } from "../../../../store/Home/actions";
+import HamburgerMenu from "../../../../components/Buttons/HamburgerMenu";
+import { CounterContainer, CounterText } from "./styled";
 
 const TopBar = ({ finished, counterText }) => {
-  const dispatch = useDispatch();
   const fontIncrease = useSelector(selectFontIncrease);
   const modalOpened = useSelector(selectOpenModal);
-  const showExitModalConst = () => {
-    dispatch(setShowExitModal(true));
-    document.getElementById("exit-modal").querySelector("#close-icon").focus();
-  };
   return (
     <>
-      <BackContainer>
-        <BackButton
-          onSubmit={() => showExitModalConst()}
-          hidden={modalOpened}
-        />
-      </BackContainer>
       {!finished && (
         <CounterContainer>
           <CounterText fontSize={15 + Number(fontIncrease) * 2 + "px"}>
@@ -33,7 +20,7 @@ const TopBar = ({ finished, counterText }) => {
           </CounterText>
         </CounterContainer>
       )}
-      <HamburguerMenu hasHelp="true" hidden={modalOpened} />
+      <HamburgerMenu hasHelp="true" hidden={modalOpened ? true : false} />
     </>
   );
 };

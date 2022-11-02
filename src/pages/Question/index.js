@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ConfigModal from "../../components/Modals/ConfigModal";
 import ExitModal from "../../components/Modals/ExitModal";
 import HelpModal from "../../components/Modals/HelpModal";
+import { goToQuestionTutorial } from "../../store/Home/actions";
+import { selectShowQuestionTutorial } from "../../store/Home/selectors";
 import {
   restoreToInitialState,
   setAnswered,
@@ -31,6 +33,11 @@ import { Wrapper, MainContainer } from "./styled";
 const Question = () => {
   const dispatch = useDispatch();
 
+  const showQuestionTutorial = useSelector(selectShowQuestionTutorial);
+  if (showQuestionTutorial == true) {
+    dispatch(goToQuestionTutorial);
+  }
+
   const questions = useSelector(selectQuestions);
   const index = useSelector(selectIndex);
   const currentQuestion = useSelector(selectCurrentQuestion);
@@ -40,6 +47,25 @@ const Question = () => {
   const finished = useSelector(selectFinished);
 
   const wellAnswered = useSelector(selectWellAnswered);
+  const topRef = useRef(null);
+  const bottomRef = useRef(null);
+
+  const scrollToTop = () => {
+    if (topRef.current)
+      topRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+  };
+
+  const scrollToBottom = () => {
+    if (bottomRef.current)
+      bottomRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+  };
 
   const sendAnswer = () => {
     if (selectedAnswer.correct) dispatch(setWellAnswered(wellAnswered + 1));
@@ -57,14 +83,39 @@ const Question = () => {
     }
   };
 
-  const selectAnswer = (i) =>
+  const selectAnswer = (i) => {
     !answered ? dispatch(setSelectedAnswer(currentQuestion.answers[i])) : null;
+  };
+
+  useEffect(() => {
+    if (answered == true) {
+      if (document.getElementById("send-button") != null) {
+        document.getElementById("send-button").focus();
+        scrollToBottom();
+      }
+    }
+  }, [answered]);
+
+  useEffect(() => {
+    if (selectedAnswer != null) {
+      if (document.getElementById("send-button") != null) {
+        document.getElementById("send-button").focus();
+        scrollToBottom();
+      }
+    } else {
+      if (document.getElementById("title") != null) {
+        document.getElementById("title").focus();
+        scrollToTop();
+      }
+    }
+  }, [selectedAnswer]);
 
   return (
     <Wrapper>
       {/* Modals */}
       <ConfigModal />
       <HelpModal
+        infoPath={currentQuestion.link}
         title={currentQuestion.information.title}
         text={currentQuestion.information.text}
       />
@@ -83,6 +134,7 @@ const Question = () => {
           }
         />
 
+        <div ref={topRef}></div>
         <Title
           text={!finished ? currentQuestion.title : "Has llegado al final"}
         />
@@ -108,6 +160,7 @@ const Question = () => {
             wrongAnswers={questions.length - wellAnswered}
           />
         )}
+        <div ref={bottomRef}></div>
       </MainContainer>
     </Wrapper>
   );

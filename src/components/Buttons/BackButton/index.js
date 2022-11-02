@@ -11,6 +11,8 @@ const BackButton = (props) => {
         icon={<ArrowBack />}
         ariaLabel="Retroceder"
         hidden={props.hidden}
+        tutorial={props.tutorial}
+        disabled={props.disabled}
       />
     </Wrapper>
   );

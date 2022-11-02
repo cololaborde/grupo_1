@@ -5,6 +5,7 @@ import {
   selectFontIncrease,
   selectHighContrast,
   selectOpenModal,
+  selectShowInformationTutorial,
 } from "../../../../store/Home/selectors";
 import { theme } from "../../../../theme";
 import GenericButton from "../../../../components/Buttons/GenericButton";
@@ -14,8 +15,15 @@ import {
   ResultTip,
   ResultTitle,
   Wrapper,
+  ButtonsContainer,
 } from "./styled";
-import { goToInformationPage } from "../../../../store/Home/actions";
+import {
+  goToInformationPage,
+  goToInformationTutorialPage,
+  setExitModalConfig,
+  setGoBackHome,
+  setShowExitModal,
+} from "../../../../store/Home/actions";
 
 const QuestionFooter = ({
   answered,
@@ -28,19 +36,52 @@ const QuestionFooter = ({
   const highContrast = useSelector(selectHighContrast);
   const currentTheme = theme(highContrast);
   const modalOpened = useSelector(selectOpenModal);
+  const showInformationTutorial = useSelector(selectShowInformationTutorial);
   const dispatch = useDispatch();
+
+  const MoreInformationButton = () => (
+    <GenericButton
+      fontSize={15 + Number(fontIncrease) * 2 + "px"}
+      text={"Más información"}
+      onSubmit={() => {
+        if (infoLink) {
+          dispatch(
+            setExitModalConfig({
+              title: "¿Desea salir al apartado de información?",
+              onSubmit: () => {
+                if (showInformationTutorial == true) {
+                  goToInformationTutorialPage(infoLink);
+                }
+                goToInformationPage(infoLink);
+              },
+            })
+          );
+          dispatch(setShowExitModal(true));
+
+          dispatch(setGoBackHome(false));
+        }
+      }}
+      backgroundColor={currentTheme.bg_secondary}
+      hidden={modalOpened ? true : false}
+    />
+  );
+
   return (
     <Wrapper>
       {!answered ? (
-        <GenericButton
-          fontSize={15 + Number(fontIncrease) * 2 + "px"}
-          disabled={selectedAnswer === null}
-          text={"Enviar respuesta"}
-          onSubmit={() => {
-            sendAnswer();
-          }}
-          hidden={modalOpened}
-        />
+        <ButtonsContainer>
+          <GenericButton
+            fontSize={15 + Number(fontIncrease) * 2 + "px"}
+            disabled={selectedAnswer === null}
+            text={"Enviar respuesta"}
+            onSubmit={() => {
+              sendAnswer();
+            }}
+            hidden={modalOpened ? true : false}
+            id={"send-button"}
+          />
+          <MoreInformationButton />
+        </ButtonsContainer>
       ) : (
         <ResultContainer>
           <ResultTitle fontSize={40 + Number(fontIncrease) + "px"}>
@@ -53,18 +94,10 @@ const QuestionFooter = ({
               onSubmit={() => {
                 nextQuestion();
               }}
-              hidden={modalOpened}
+              hidden={modalOpened ? true : false}
+              id={"next-button"}
             />
-            <GenericButton
-              fontSize={15 + Number(fontIncrease) * 2 + "px"}
-              text={"Más información"}
-              onSubmit={() => {
-                if (infoLink == null) return;
-                dispatch(goToInformationPage(infoLink));
-              }}
-              backgroundColor={currentTheme.bg_secondary}
-              hidden={modalOpened}
-            />
+            <MoreInformationButton />
           </ResultButtons>
           <ResultTip fontSize={20 + Number(fontIncrease) + "px"}>
             {selectedAnswer.tip}

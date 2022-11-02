@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-export const BackContainer = styled.div`
-  position: absolute;
-  left: 15px;
-  top: 15px;
-`;
-
 export const CounterContainer = styled.div`
   display: flex;
   background-color: ${(props) => props.theme.bg_primary};

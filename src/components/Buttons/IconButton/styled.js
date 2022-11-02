@@ -17,8 +17,8 @@ export const Button = styled.button`
     props.backgroundColor || props.theme.bg_secondary};
   font-size: ${(props) => props.fontSize || "12px"};
   text-align: center;
-  padding: 10px;
-  margin: 5px;
+  padding: ${(props) => props.padding || "10px"};
+  margin: 5px 5px;
   font-size: small;
   font-family: Arial;
   transition: all 0.2s;
